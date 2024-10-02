@@ -3,7 +3,7 @@ title: rpxy
 author:
   name: Jun Kurihara
 
-destination: >
+description: >
   A simple and ultrafast http reverse proxy serving multiple domain names and terminating TLS for http/1.1, 2 and 3, written in Rust
 
 baseurl: /
