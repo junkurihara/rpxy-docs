@@ -6,3 +6,9 @@
 .github-icon {
   text-align: center;
 }
+
+.github-icon-img {
+  filter: var(--icon-filter);
+  width: 48px;
+  height: 48px;
+}
