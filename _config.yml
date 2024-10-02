@@ -17,6 +17,12 @@ google_analytics: G-L20D25S665
 remote_theme: jekyll/minima
 
 # minima settings
+# If you want to link only specific pages in your header, use this and add the path to the pages
+# in order as they should show up.
+header_pages:
+  - title: "Source"
+    url: "https://github.com/junkurihara/rust-rpxy"
+
 minima:
   skin: auto
   social_links:
