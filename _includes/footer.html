@@ -19,11 +19,13 @@
       {%- endif %}
       </div>
       <div class="footer-col">
-        <p>{{ site.website_source_url | escape }}
-          <a href="{{ site.website_source_url }}">
-            Edit this site on GitHub
-          </a>
-        </p>
+        { % if site.website_source_url  -%}
+          <p>
+            <a href="{{ site.website_source_url }}">
+              Edit this site on GitHub
+            </a>
+          </p>
+        {%- endif %}
       </div>
     </div>
 
