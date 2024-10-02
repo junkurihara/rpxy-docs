@@ -12,3 +12,42 @@
   width: 48px;
   height: 48px;
 }
+
+h1 {
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+// {{< next-button >}}
+div.next-button-container {
+  display: flex;
+  justify-content: right;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+a.next-button {
+  display: inline-block;
+  font-size: $font-size-14;
+  color: var(--color-link);
+  line-height: $padding-16 * 2;
+  padding: 0 $padding-16;
+  margin: 0 $padding-4;
+  border: $padding-1 solid var(--color-link);
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
