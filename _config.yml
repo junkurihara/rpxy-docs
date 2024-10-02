@@ -3,5 +3,8 @@ title: rpxy - A simple and ultrafast http reverse proxy in Rust
 baseurl: /
 url: https://rpxy.io
 
+# GitHub pages settings
+theme: jekyll-theme-minima
+
 # google analytics
 google_analytics: G-L20D25S665
