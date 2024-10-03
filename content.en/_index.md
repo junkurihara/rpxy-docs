@@ -13,7 +13,7 @@ layout: hextra-home
 
 <div class="hx-mt-6 hx-mb-6">
 {{< hextra/hero-headline >}}
-Simple and ultrafast reverse-proxy written in Rust
+Simple and ultrafast reverse-proxy&nbsp;<br class="sm:hx-block hx-hidden" />written in Rust
 {{< /hextra/hero-headline >}}
 </div>
 
