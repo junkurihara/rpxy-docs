@@ -32,7 +32,7 @@ layout: hextra-home
 
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
-    title="Blazing Fast"
+    title="Blazingly Fast"
     subtitle="Thanks to Rust and libraries built on top of it, `rpxy` serves HTTP messages blazing fast. In fact, `rpxy` outperforms other popular reverse-proxies in terms of the speed."
   >}}
   {{< hextra/feature-card
