@@ -9,9 +9,7 @@ sidebar:
 ---
 
 
-## Building/Installation of `rpxy`
-
-### Building from Source
+## Building from Source
 
 You can build an executable binary yourself by checking out this Git repository.
 
@@ -32,12 +30,12 @@ You can build an executable binary yourself by checking out this Git repository.
 
 Then you have an executive binary `rust-rpxy/target/release/rpxy`.
 
-{{< callout type="info" >}}
-Note that we do not have an option of installation via [`crates.io`](https://crates.io/), i.e., `cargo install`, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see below) as the easiest way for `amd64` environment.
-{{< /callout >}}
-
-### Package Installation for Linux (RPM/DEB)
+## Package Installation for Linux (RPM/DEB)
 
 You can find the Jenkins CI/CD build scripts for `rpxy` in the [./.build](https://github.com/junkurihara/rust-rpxy/tree/develop/.build) directory.
 
 Prebuilt packages for Linux RPM and DEB are available at [https://rpxy.gamerboy59.dev](https://rpxy.gamerboy59.dev), provided by [@Gamerboy59](https://github.com/Gamerboy59).
+
+{{< callout type="info" >}}
+Note that we do not have an option of installation via [`crates.io`](https://crates.io/), i.e., `cargo install`, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see below) as the easiest way for `amd64` environment.
+{{< /callout >}}
