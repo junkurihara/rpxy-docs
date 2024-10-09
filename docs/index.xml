@@ -35,7 +35,7 @@ title="Copy code"
 &lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
 &lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="../container/" >another section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.
+Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.
 &lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/tls/</guid><description>
