@@ -66,4 +66,4 @@ displayPoweredBy = true
 
 [params.editURL]
 enable = true
-base = "https://github.com/junkurihara/rpxy-docs/edit/main/content"
+base = "https://github.com/junkurihara/rpxy-docs/edit/main/content.en"
