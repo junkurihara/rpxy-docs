@@ -14,3 +14,5 @@ Here we explain some typical setups for `rpxy`. We will start with the most basi
 {{< card link="2_tls" title="2. TLS Termination" icon="key" >}}
 {{< card link="3_routing" title="3. Routing" icon="globe" >}}
 {{< /cards >}}
+
+Wwe frequently add new options for `rpxy` configuration. Then, we first add new option entries in [Configuration Options](/docs/guide/configuration) section and the [`config-example.toml`](https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml) file. So please refer to them for up-to-date options.

@@ -3,12 +3,10 @@ title: ACME (Let's Encrypt) Integration
 type: docs
 prev: /docs/guide/advanced/cache
 # next: /docs/guide/advanced/acme
-weight: 2
+weight: 3
 sidebar:
   open: true
 ---
-
-## Automated Certificate Issuance and Renewal via TLS-ALPN-01 ACME protocol
 
 In addition to [use static files of certificates and private keys](/docs/guide/basics/2_tls), the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as [RFC8555](https://www.rfc-editor.org/rfc/rfc8555), are available in `rpxy`. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.
 
