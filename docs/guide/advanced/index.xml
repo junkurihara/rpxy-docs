@@ -1,0 +1,110 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Advanced Usage</title><link>https://rpxy.io/docs/guide/advanced/</link><description>Recent content in Advanced Usage on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/guide/advanced/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP/3</title><link>https://rpxy.io/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/http3/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn" target="_blank" rel="noopener">&lt;code>quinn&lt;/code>&lt;/a>, &lt;a href="https://github.com/aws/s2n-quic" target="_blank" rel="noopener">&lt;code>s2n-quic&lt;/code>&lt;/a> and &lt;a href="https://github.com/hyperium/h3" target="_blank" rel="noopener">&lt;code>hyperium/h3&lt;/code>&lt;/a>. To enable this experimental feature, add an entry &lt;code>experimental.h3&lt;/code> in your &lt;code>config.toml&lt;/code> like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.io/docs/guide/advanced/client_auth" >except for the applications with TLS client authentication&lt;/a>.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">h3&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">alt_svc_max_age&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">3600&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">request_max_body_size&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">65536&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_connections&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">10000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_bidistream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_unistream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_idle_timeout&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">10&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+ℹ️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.
+&lt;/div>
+&lt;/div>
+&lt;/div></description></item><item><title>ACME (Let's Encrypt) Integration</title><link>https://rpxy.io/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/acme/</guid><description>
+&lt;p>In addition to &lt;a href="https://rpxy.io/docs/guide/basics/2_tls" >use static files of certificates and private keys&lt;/a>, the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">RFC8555&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># TLS port, which is also used for ACME challenge.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># ACME enabled domain name.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Note that acme option must be specified in the experimental section.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="s2">&amp;#34;app_with_acme&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">server_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;example.org&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">reverse_proxy&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[{&lt;/span> &lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;app1.local:8080&amp;#39;&lt;/span> &lt;span class="p">}]&lt;/span> &lt;span class="p">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">https_redirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">acme&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c"># do not specify tls_cert_path and/or tls_cert_key_path&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>ACME will be used to get a certificate for the &lt;code>server_name&lt;/code> with ACME &lt;a href="https://www.rfc-editor.org/rfc/rfc8737" target="_blank" rel="noopener">&lt;code>TLS-ALPN-01&lt;/code> (RFC8737)&lt;/a> protocol. So all you need is to open
+the TLS port 443 to the public. Also in this case, you don&amp;rsquo;t need to specify &lt;code>tls_cert_path&lt;/code> and &lt;code>tls_cert_key_path&lt;/code> for the application.&lt;/p>
+&lt;p>For every ACME enabled domain, the following settings are referred to acquire a certificate and a private key.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Global ACME settings. Unless specified, ACME is disabled.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">acme&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Email address for ACME registration.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">email&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;test@example.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Optional: ACME directory URL. [default: &amp;#34;https://acme-v02.api.letsencrypt.org/directory&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">dir_url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://acme-staging-v02.api.letsencrypt.org/directory&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Optional: Directory storing retrieved certificates and private keys, which is relative to the current working directory. [default: &amp;#34;./acme_registry&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">registry_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;./acme_registry&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>The above configuration is common to all ACME enabled domains. Note that the https port must be open to the public to prove the domain ownership.&lt;/p>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+⚠️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+This is a brand-new feature and maybe still unstable.
+&lt;/div>
+&lt;/div>
+&lt;/div></description></item><item><title>Caching</title><link>https://rpxy.io/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/cache/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> takes an approach to cache responses in a &lt;em>hybrid&lt;/em> way of temporary files and on-memory objects.
+If &lt;code>[experimental.cache]&lt;/code> is specified in &lt;code>config.toml&lt;/code>, you can leverage the local caching feature using temporary files and on-memory objects. An example configuration is as follows.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># If this specified, file cache feature is enabled&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cache&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">cache_dir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;./cache&amp;#39;&lt;/span> &lt;span class="c"># optional. default is &amp;#34;./cache&amp;#34; relative to the current working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_entry&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1000&lt;/span> &lt;span class="c"># optional. default is 1k&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_each_size&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">65535&lt;/span> &lt;span class="c"># optional. default is 64k&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_each_size_on_memory&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">4096&lt;/span> &lt;span class="c"># optional. default is 4k if 0, it is always file cache.&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>A &lt;em>storable&lt;/em> (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code>max_cache_each_size&lt;/code> in bytes. If it is also less than or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code>max_cache_each_size&lt;/code> must be larger or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>.&lt;/p>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+ℹ️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.
+&lt;/div>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

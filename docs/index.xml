@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Documentation</title><link>https://rpxy.io/docs/</link><description>Recent content in Documentation on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.io/docs/guide/basics/cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/cleartext/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Documentation</title><link>https://rpxy.io/docs/</link><description>Recent content in Documentation on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.io/docs/guide/basics/1_cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/1_cleartext/</guid><description>
 &lt;p>Here we describe how to configure a simple reverse proxy server that forwards incoming &lt;em>cleartext&lt;/em> HTTP requests to a backend application.&lt;/p>
 &lt;h2>The Simplest Configuration&lt;span class="hx-absolute -hx-mt-20" id="the-simplest-configuration">&lt;/span>
 &lt;a href="#the-simplest-configuration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The simplest configuration of the TOML-based configuration file, say &lt;code>config.toml&lt;/code>, is given like the following.&lt;/p>
@@ -130,7 +130,35 @@ Currently, no health-checking mechanism is implemented. If a backend location is
 &lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Docker Images</title><link>https://rpxy.io/docs/container/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker/</guid><description>
-&lt;p>TBD&lt;/p></description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
+&lt;p>TBD&lt;/p></description></item><item><title>HTTP/3</title><link>https://rpxy.io/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/http3/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn" target="_blank" rel="noopener">&lt;code>quinn&lt;/code>&lt;/a>, &lt;a href="https://github.com/aws/s2n-quic" target="_blank" rel="noopener">&lt;code>s2n-quic&lt;/code>&lt;/a> and &lt;a href="https://github.com/hyperium/h3" target="_blank" rel="noopener">&lt;code>hyperium/h3&lt;/code>&lt;/a>. To enable this experimental feature, add an entry &lt;code>experimental.h3&lt;/code> in your &lt;code>config.toml&lt;/code> like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.io/docs/guide/advanced/client_auth" >except for the applications with TLS client authentication&lt;/a>.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">h3&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">alt_svc_max_age&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">3600&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">request_max_body_size&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">65536&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_connections&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">10000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_bidistream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_concurrent_unistream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_idle_timeout&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">10&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+ℹ️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.
+&lt;/div>
+&lt;/div>
+&lt;/div></description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
 &lt;h2>Building from Source&lt;span class="hx-absolute -hx-mt-20" id="building-from-source">&lt;/span>
 &lt;a href="#building-from-source" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>You can build an executable binary yourself by checking out this Git repository.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
@@ -168,8 +196,18 @@ title="Copy code"
 Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.
 &lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/tls/</guid><description>
-&lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys, and how to integrate with ACME (Let&amp;rsquo;s Encrypt) for automatic certificate issuance. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
+&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/2_tls/</guid><description>
+&lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+ℹ️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme" >the advanced section&lt;/a>.
+&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;p>First of all, you need to specify a port &lt;code>listen_port_tls&lt;/code> listening the HTTPS traffic, separately from HTTP port (&lt;code>listen_port&lt;/code>) in the configuration file.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">80&lt;/span>
@@ -183,8 +221,8 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;h2>Specifying Existing TLS Certificates&lt;span class="hx-absolute -hx-mt-20" id="specifying-existing-tls-certificates">&lt;/span>
-&lt;a href="#specifying-existing-tls-certificates" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Suppose that you have a TLS certificate and a private key in PEM format, and that you want to use them for serving HTTPS traffic. Then, serving an HTTPS endpoint can be easily done for your desired application just by specifying TLS certificates and private keys in PEM files.&lt;/p>
+&lt;h2>Using Existing TLS Certificates&lt;span class="hx-absolute -hx-mt-20" id="using-existing-tls-certificates">&lt;/span>
+&lt;a href="#using-existing-tls-certificates" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Suppose that you have a TLS certificate and a private key in PEM format, and that you want to use them for serving HTTPS traffic. Then, serving an HTTPS endpoint can be easily done for your desired application just by specifying TLS certificates and private keys in PEM files.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">80&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
@@ -213,8 +251,178 @@ We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/
 &lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;h2>ACME (Let&amp;rsquo;s Encrypt) Integration&lt;span class="hx-absolute -hx-mt-20" id="acme-lets-encrypt-integration">&lt;/span>
-&lt;a href="#acme-lets-encrypt-integration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In addition to use static files of certificates and private keys, the automatic issuance and renewal of certificates, i.e., &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">ACME (Automated Certificate Management Environment; RFC8555)&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
+&lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx-absolute -hx-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>
+&lt;a href="#redirecting-cleartext-http-requests-to-https" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In the current Web, we believe it is common to serve everything through HTTPS rather than HTTP, and hence &lt;em>https redirection&lt;/em> is often used for HTTP requests. When you specify both &lt;code>listen_port&lt;/code> and &lt;code>listen_port_tls&lt;/code>, you can enable an option of such redirection by making &lt;code>https_redirection&lt;/code> true.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">https_redirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.crt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_key_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.key&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> always requires a configuration file in TOML format, e.g., &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml" target="_blank" rel="noopener">&lt;code>config.toml&lt;/code> on GitHub repo&lt;/a>.&lt;/p>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+ℹ️
+&lt;/div>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced" >Advanced Usage&lt;/a> sections.
+The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>You can run &lt;code>rpxy&lt;/code> with a configuration file like&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% ./path/to/rpxy --config config.toml&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>If you specify &lt;code>-w&lt;/code> option along with the config file path, &lt;code>rpxy&lt;/code> tracks the change of &lt;code>config.toml&lt;/code> in the real-time manner and apply the change immediately without restarting the process.&lt;/p>
+&lt;p>The full help messages are given follows.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>usage: rpxy [OPTIONS] --config &amp;lt;FILE&amp;gt;
+Options:
+-c, --config &amp;lt;FILE&amp;gt; Configuration file path like ./config.toml
+-w, --watch Activate dynamic reloading of the config file via continuous monitoring
+-h, --help Print help
+-V, --version Print version&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> can serves and routes incoming requests to multiple backend destination according to the path information. The routing information can be specified for each application (&lt;code>server_name&lt;/code>) as follows.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">server_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;app1.example.com&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">https_redirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.crt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_key_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.key&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;default.backend.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/path&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;path.backend.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/path/another&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">replace_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/path&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;another.backend.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>In the above example, a request to&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">https://app1.example.com/path/to?query=ok&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>matches the second &lt;code>reverse_proxy&lt;/code> entry in the longest-prefix-matching manner, and will be routed to &lt;code>path.backend.local&lt;/code> with preserving path and query information, i.e., served as&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">http://path.backend.local/path/to?query=ok&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>On the other hand, a request to&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">https://app1.example.com/path/another/xx?query=ng&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>matching the third entry is routed with &lt;em>being rewritten its path information&lt;/em> specified by &lt;code>replace_path&lt;/code> option. Namely, the matched &lt;code>/path/another&lt;/code> part is rewritten with &lt;code>/path&lt;/code>, and it is served as&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">http://another.backend.local/path/xx?query=ng&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>Requests that doesn&amp;rsquo;t match any paths will be routed by the first entry that doesn&amp;rsquo;t have the &lt;code>path&lt;/code> option, which means the &lt;em>default destination&lt;/em>. In other words, if every &lt;code>reverse_proxy&lt;/code> entry has an explicit &lt;code>path&lt;/code> option, &lt;code>rpxy&lt;/code> rejects requests that don&amp;rsquo;t match any paths.&lt;/p>
+&lt;h2>Simple Path-based Routing Example&lt;span class="hx-absolute -hx-mt-20" id="simple-path-based-routing-example">&lt;/span>
+&lt;a href="#simple-path-based-routing-example" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>This path-based routing option would be enough in many cases. For example, you can serve multiple applications with one domain by specifying unique path to each application. More specifically, see the following example.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">server_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;app.example.com&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">#...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/subapp1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">replace_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;subapp1.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/subapp2&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">replace_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;subapp2.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse_proxy&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/subapp3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">replace_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;subapp3.local&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>This example configuration explains a very frequent situation of path-based routing. When a request to &lt;code>app.example.com/subappN&lt;/code> routes to &lt;code>sbappN.local&lt;/code> by replacing a path part &lt;code>/subappN&lt;/code> to &lt;code>/&lt;/code>.&lt;/p></description></item><item><title>ACME (Let's Encrypt) Integration</title><link>https://rpxy.io/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/acme/</guid><description>
+&lt;p>In addition to &lt;a href="https://rpxy.io/docs/guide/basics/2_tls" >use static files of certificates and private keys&lt;/a>, the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">RFC8555&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># TLS port, which is also used for ACME challenge.&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
@@ -265,11 +473,16 @@ title="Copy code"
 This is a brand-new feature and maybe still unstable.
 &lt;/div>
 &lt;/div>
-&lt;/div>
-&lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx-absolute -hx-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>
-&lt;a href="#redirecting-cleartext-http-requests-to-https" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In the current Web, we believe it is common to serve everything through HTTPS rather than HTTP, and hence &lt;em>https redirection&lt;/em> is often used for HTTP requests. When you specify both &lt;code>listen_port&lt;/code> and &lt;code>listen_port_tls&lt;/code>, you can enable an option of such redirection by making &lt;code>https_redirection&lt;/code> true.&lt;/p>
+&lt;/div></description></item><item><title>Caching</title><link>https://rpxy.io/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/cache/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> takes an approach to cache responses in a &lt;em>hybrid&lt;/em> way of temporary files and on-memory objects.
+If &lt;code>[experimental.cache]&lt;/code> is specified in &lt;code>config.toml&lt;/code>, you can leverage the local caching feature using temporary files and on-memory objects. An example configuration is as follows.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">https_redirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.crt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">tls_cert_key_path&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;server.key&amp;#39;&lt;/span> &lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># If this specified, file cache feature is enabled&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cache&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">cache_dir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;./cache&amp;#39;&lt;/span> &lt;span class="c"># optional. default is &amp;#34;./cache&amp;#34; relative to the current working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_entry&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1000&lt;/span> &lt;span class="c"># optional. default is 1k&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_each_size&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">65535&lt;/span> &lt;span class="c"># optional. default is 64k&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">max_cache_each_size_on_memory&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">4096&lt;/span> &lt;span class="c"># optional. default is 4k if 0, it is always file cache.&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
 &lt;button
 class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
 title="Copy code"
@@ -279,47 +492,14 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
-&lt;p>&lt;code>rpxy&lt;/code> always requires a configuration file in TOML format, e.g., &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml" target="_blank" rel="noopener">&lt;code>config.toml&lt;/code> on GitHub repo&lt;/a>.&lt;/p>
+&lt;p>A &lt;em>storable&lt;/em> (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code>max_cache_each_size&lt;/code> in bytes. If it is also less than or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code>max_cache_each_size&lt;/code> must be larger or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
 ℹ️
 &lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
 &lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.
+Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.
 &lt;/div>
 &lt;/div>
-&lt;/div>
-&lt;p>You can run &lt;code>rpxy&lt;/code> with a configuration file like&lt;/p>
-&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% ./path/to/rpxy --config config.toml&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-&lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-title="Copy code"
->
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;/button>
-&lt;/div>
-&lt;/div>
-&lt;p>If you specify &lt;code>-w&lt;/code> option along with the config file path, &lt;code>rpxy&lt;/code> tracks the change of &lt;code>config.toml&lt;/code> in the real-time manner and apply the change immediately without restarting the process.&lt;/p>
-&lt;p>The full help messages are given follows.&lt;/p>
-&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-&lt;pre>&lt;code>usage: rpxy [OPTIONS] --config &amp;lt;FILE&amp;gt;
-Options:
--c, --config &amp;lt;FILE&amp;gt; Configuration file path like ./config.toml
--w, --watch Activate dynamic reloading of the config file via continuous monitoring
--h, --help Print help
--V, --version Print version&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-&lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-title="Copy code"
->
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;/button>
-&lt;/div>
-&lt;/div>
-&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>3. More Flexible Routing Based on URL Path</title><link>https://rpxy.io/docs/guide/basics/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/routing/</guid><description>
-&lt;p>TBD&lt;/p></description></item></channel></rss>
+&lt;/div></description></item></channel></rss>
