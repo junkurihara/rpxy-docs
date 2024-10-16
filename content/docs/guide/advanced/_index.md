@@ -8,6 +8,8 @@ weight: 4
 #   open: true
 ---
 
+This section covers advanced topics and features of `rpxy` that are useful for more complex use cases.
+
 {{< cards >}}
 {{< card link="http3" title="HTTP/3" icon="fast-forward" >}}
 {{< card link="client_auth" title="TLS Client Authentication" icon="key" >}}

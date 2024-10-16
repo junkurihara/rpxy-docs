@@ -9,12 +9,10 @@ theme = 'hextra'
 [languages]
 [languages.en]
 languageName = 'English'
-contentDir = 'content.en'
 weight = 1
 
 [languages.ja]
 languageName = '日本語'
-contentDir = 'content.ja'
 weight = 2
 
 [markup]
@@ -66,4 +64,4 @@ displayPoweredBy = true
 
 [params.editURL]
 enable = true
-base = "https://github.com/junkurihara/rpxy-docs/edit/main/content.en"
+base = "https://github.com/junkurihara/rpxy-docs/edit/main/content"
