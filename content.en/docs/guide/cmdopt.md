@@ -11,6 +11,7 @@ sidebar:
 `rpxy` always requires a configuration file in TOML format, e.g., [`config.toml` on GitHub repo](https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml).
 
 {{< callout type="info" >}}
+We will introduce some typical configurations in the [Basic Setups](/docs/guide/basics) and [Advanced Usage](/docs/guide/advanced) sections.
 The detailed configuration options are described in the [Configuration Options](/docs/configuration) section.
 {{< /callout >}}
 

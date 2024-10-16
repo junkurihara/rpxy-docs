@@ -2,7 +2,7 @@
 title: 1. Cleartext HTTP Reverse Proxy
 type: docs
 prev: /docs/guide/basics/
-next: /docs/guide/basics/tls
+next: /docs/guide/basics/2_tls
 weight: 1
 sidebar:
   open: true
