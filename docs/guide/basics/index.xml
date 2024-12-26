@@ -69,13 +69,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>In the above setting, by specifying &lt;code>default_app&lt;/code> entry, any &lt;em>cleartext HTTP&lt;/em> request will be served by the specified application if its HOST header or URL in Request line doesn&amp;rsquo;t match any &lt;code>server_name&lt;/code>s in &lt;code>reverse_proxy&lt;/code> entries.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Any &lt;em>HTTPS&lt;/em> request with no matched &lt;code>server_name&lt;/code> will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Any &lt;em>HTTPS&lt;/em> request with no matched &lt;code>server_name&lt;/code> will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Upstream Connection over HTTPS to Backend Application&lt;span class="hx-absolute -hx-mt-20" id="upstream-connection-over-https-to-backend-application">&lt;/span>
@@ -121,24 +117,16 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/2_tls/</guid><description>
 &lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme" >the advanced section&lt;/a>.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme" >the advanced section&lt;/a>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>First of all, you need to specify a port &lt;code>listen_port_tls&lt;/code> listening the HTTPS traffic, separately from HTTP port (&lt;code>listen_port&lt;/code>) in the configuration file.&lt;/p>
@@ -175,13 +163,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>In the above setting, both cleartext HTTP requests to port 80 and ciphertext HTTPS requests to port 443 are routed to the backend &lt;code>app1.local:8080&lt;/code> in the same fashion. If you don&amp;rsquo;t need to serve cleartext requests, just remove &lt;code>listen_port = 80&lt;/code> and specify only &lt;code>listen_port_tls = 443&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx-absolute -hx-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>

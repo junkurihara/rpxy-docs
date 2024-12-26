@@ -18,13 +18,9 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>TLS Client Authentication</title><link>https://rpxy.io/docs/guide/advanced/client_auth/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/client_auth/</guid><description>
 &lt;p>TLS client authentication is enabled when &lt;code>apps.&amp;quot;app_name&amp;quot;.tls.client_ca_cert_path&lt;/code> is set for the domain specified by &lt;code>&amp;quot;app_name&amp;quot;&lt;/code> like&lt;/p>
@@ -42,13 +38,9 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>ACME (Let's Encrypt) Integration</title><link>https://rpxy.io/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/acme/</guid><description>
 &lt;p>In addition to &lt;a href="https://rpxy.io/docs/guide/basics/2_tls" >use static files of certificates and private keys&lt;/a>, the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">RFC8555&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
@@ -94,13 +86,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>The above configuration is common to all ACME enabled domains. Note that the https port must be open to the public to prove the domain ownership.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-This is a brand-new feature and maybe still unstable.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">This is a brand-new feature and maybe still unstable.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Caching</title><link>https://rpxy.io/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/cache/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> takes an approach to cache responses in a &lt;em>hybrid&lt;/em> way of temporary files and on-memory objects.
@@ -123,12 +111,8 @@ title="Copy code"
 &lt;/div>
 &lt;p>A &lt;em>storable&lt;/em> (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code>max_cache_each_size&lt;/code> in bytes. If it is also less than or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code>max_cache_each_size&lt;/code> must be larger or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.&lt;/div>
 &lt;/div>
 &lt;/div></description></item></channel></rss>

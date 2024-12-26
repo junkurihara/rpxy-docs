@@ -37,23 +37,15 @@
 &lt;/table>
 &lt;p>All you need is to mount your &lt;code>config.toml&lt;/code> as &lt;code>/etc/rpxy.toml&lt;/code> and certificates/private keys as you like through the docker volume option. Note that the file path of keys and certificates must be ones in your docker container.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-&lt;strong>If &lt;code>WATCH=true&lt;/code>, You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to correctly track file changes&lt;/strong>. This is a docker limitation. Even if &lt;code>WATCH=false&lt;/code>, you can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;strong>If &lt;code>WATCH=true&lt;/code>, You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to correctly track file changes&lt;/strong>. This is a docker limitation. Even if &lt;code>WATCH=false&lt;/code>, you can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example" >the following section&lt;/a> for examples of docker configuration.&lt;/p>

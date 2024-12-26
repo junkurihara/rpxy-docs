@@ -22,12 +22,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>Then you have an executive binary &lt;code>rust-rpxy/target/release/rpxy&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-&lt;p>By default QUIC and HTTP/3 is enabled using &lt;code>quinn&lt;/code>. If you want to use &lt;code>s2n-quic&lt;/code>, build as follows. You may need several additional dependencies.&lt;/p>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;p>By default QUIC and HTTP/3 is enabled using &lt;code>quinn&lt;/code>. If you want to use &lt;code>s2n-quic&lt;/code>, build as follows. You may need several additional dependencies.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% cargo build --no-default-features --features http3-s2n --release&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
 &lt;button
@@ -38,8 +35,7 @@ title="Copy code"
 &lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
-&lt;/div>
-&lt;/div>
+&lt;/div>&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Package Installation for Linux (RPM/DEB)&lt;span class="hx-absolute -hx-mt-20" id="package-installation-for-linux-rpmdeb">&lt;/span>
@@ -85,35 +81,23 @@ title="Copy code"
 &lt;/tbody>
 &lt;/table>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-If you are using self-signed certificates for the backend applications, you need to select non-&lt;code>webpki-roots&lt;/code> binaries.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">If you are using self-signed certificates for the backend applications, you need to select non-&lt;code>webpki-roots&lt;/code> binaries.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> always requires a configuration file in TOML format, e.g., &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml" target="_blank" rel="noopener">&lt;code>config.toml&lt;/code> on GitHub repo&lt;/a>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced" >Advanced Usage&lt;/a> sections.
-The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced" >Advanced Usage&lt;/a> sections.
+The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>You can run &lt;code>rpxy&lt;/code> with a configuration file like&lt;/p>

@@ -69,13 +69,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>In the above setting, by specifying &lt;code>default_app&lt;/code> entry, any &lt;em>cleartext HTTP&lt;/em> request will be served by the specified application if its HOST header or URL in Request line doesn&amp;rsquo;t match any &lt;code>server_name&lt;/code>s in &lt;code>reverse_proxy&lt;/code> entries.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Any &lt;em>HTTPS&lt;/em> request with no matched &lt;code>server_name&lt;/code> will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Any &lt;em>HTTPS&lt;/em> request with no matched &lt;code>server_name&lt;/code> will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Upstream Connection over HTTPS to Backend Application&lt;span class="hx-absolute -hx-mt-20" id="upstream-connection-over-https-to-backend-application">&lt;/span>
@@ -121,13 +117,9 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>HTTP/3</title><link>https://rpxy.io/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/http3/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn" target="_blank" rel="noopener">&lt;code>quinn&lt;/code>&lt;/a>, &lt;a href="https://github.com/aws/s2n-quic" target="_blank" rel="noopener">&lt;code>s2n-quic&lt;/code>&lt;/a> and &lt;a href="https://github.com/hyperium/h3" target="_blank" rel="noopener">&lt;code>hyperium/h3&lt;/code>&lt;/a>. To enable this experimental feature, add an entry &lt;code>experimental.h3&lt;/code> in your &lt;code>config.toml&lt;/code> like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.io/docs/guide/advanced/client_auth" >except for the applications with TLS client authentication&lt;/a>.&lt;/p>
@@ -149,13 +141,9 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
 &lt;h2>Building from Source&lt;span class="hx-absolute -hx-mt-20" id="building-from-source">&lt;/span>
@@ -181,12 +169,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>Then you have an executive binary &lt;code>rust-rpxy/target/release/rpxy&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-&lt;p>By default QUIC and HTTP/3 is enabled using &lt;code>quinn&lt;/code>. If you want to use &lt;code>s2n-quic&lt;/code>, build as follows. You may need several additional dependencies.&lt;/p>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;p>By default QUIC and HTTP/3 is enabled using &lt;code>quinn&lt;/code>. If you want to use &lt;code>s2n-quic&lt;/code>, build as follows. You may need several additional dependencies.&lt;/p>
 &lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% cargo build --no-default-features --features http3-s2n --release&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
 &lt;button
@@ -197,8 +182,7 @@ title="Copy code"
 &lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
-&lt;/div>
-&lt;/div>
+&lt;/div>&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Package Installation for Linux (RPM/DEB)&lt;span class="hx-absolute -hx-mt-20" id="package-installation-for-linux-rpmdeb">&lt;/span>
@@ -244,34 +228,22 @@ title="Copy code"
 &lt;/tbody>
 &lt;/table>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-If you are using self-signed certificates for the backend applications, you need to select non-&lt;code>webpki-roots&lt;/code> binaries.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">If you are using self-signed certificates for the backend applications, you need to select non-&lt;code>webpki-roots&lt;/code> binaries.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/2_tls/</guid><description>
 &lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme" >the advanced section&lt;/a>.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme" >the advanced section&lt;/a>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>First of all, you need to specify a port &lt;code>listen_port_tls&lt;/code> listening the HTTPS traffic, separately from HTTP port (&lt;code>listen_port&lt;/code>) in the configuration file.&lt;/p>
@@ -308,13 +280,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>In the above setting, both cleartext HTTP requests to port 80 and ciphertext HTTPS requests to port 443 are routed to the backend &lt;code>app1.local:8080&lt;/code> in the same fashion. If you don&amp;rsquo;t need to serve cleartext requests, just remove &lt;code>listen_port = 80&lt;/code> and specify only &lt;code>listen_port_tls = 443&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx-absolute -hx-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>
@@ -333,14 +301,10 @@ title="Copy code"
 &lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> always requires a configuration file in TOML format, e.g., &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml" target="_blank" rel="noopener">&lt;code>config.toml&lt;/code> on GitHub repo&lt;/a>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced" >Advanced Usage&lt;/a> sections.
-The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced" >Advanced Usage&lt;/a> sections.
+The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration" >Configuration Options&lt;/a> section.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>You can run &lt;code>rpxy&lt;/code> with a configuration file like&lt;/p>
@@ -412,23 +376,15 @@ title="Copy code"
 &lt;/table>
 &lt;p>All you need is to mount your &lt;code>config.toml&lt;/code> as &lt;code>/etc/rpxy.toml&lt;/code> and certificates/private keys as you like through the docker volume option. Note that the file path of keys and certificates must be ones in your docker container.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-&lt;strong>If &lt;code>WATCH=true&lt;/code>, You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to correctly track file changes&lt;/strong>. This is a docker limitation. Even if &lt;code>WATCH=false&lt;/code>, you can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;strong>If &lt;code>WATCH=true&lt;/code>, You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to correctly track file changes&lt;/strong>. This is a docker limitation. Even if &lt;code>WATCH=false&lt;/code>, you can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
@@ -469,13 +425,9 @@ title="Copy code"
 &lt;/div>
 &lt;/div>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> can serves and routes incoming requests to multiple backend destination according to the path information. The routing information can be specified for each application (&lt;code>server_name&lt;/code>) as follows.&lt;/p>
@@ -635,13 +587,9 @@ title="Copy code"
 &lt;/div>
 &lt;p>The above configuration is common to all ACME enabled domains. Note that the https port must be open to the public to prove the domain ownership.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-⚠️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-This is a brand-new feature and maybe still unstable.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">This is a brand-new feature and maybe still unstable.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Docker Examples</title><link>https://rpxy.io/docs/container/docker_example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker_example/</guid><description>
 &lt;h2>Basic Example&lt;span class="hx-absolute -hx-mt-20" id="basic-example">&lt;/span>
@@ -786,12 +734,8 @@ title="Copy code"
 &lt;/div>
 &lt;p>A &lt;em>storable&lt;/em> (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code>max_cache_each_size&lt;/code> in bytes. If it is also less than or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code>max_cache_each_size&lt;/code> must be larger or equal to &lt;code>max_cache_each_size_on_memory&lt;/code>.&lt;/p>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
-ℹ️
-&lt;/div>&lt;/div>
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
-Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.
-&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.&lt;/div>
 &lt;/div>
 &lt;/div></description></item></channel></rss>
