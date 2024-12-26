@@ -40,8 +40,8 @@ layout: hextra-home
     subtitle="You can serve multiple domain names with a single instance of `rpxy`. `rpxy` routes multiple names to appropriate backend application servers while serving TLS connections."
   >}}
   {{< hextra/feature-card
-    title="Simple Configuration"
-    subtitle="`rpxy` is designed to be simple and easy to configure. You can serve your domain names with just a few lines of configuration in TOML format."
+    title="Post-Quantum Secure TLS"
+    subtitle="By default, `rpxy` supports the hybrid post-quantum secure key exchange for TLS 1.3, which is a widely-deployed IETF-draft algorithm. You can serve your domain names with the latest security features without any special setup."
   >}}
   {{< hextra/feature-card
     title="ACME Out of the Box"
@@ -50,6 +50,10 @@ layout: hextra-home
   {{< hextra/feature-card
     title="HTTP/3 Support"
     subtitle="`rpxy` supports HTTP/3, the next generation of the HTTP protocol based on QUIC. You can serve your domain names with the latest protocol."
+  >}}
+  {{< hextra/feature-card
+    title="Simple Configuration"
+    subtitle="`rpxy` is designed to be simple and easy to configure. You can serve your domain names with just a few lines of configuration in TOML format."
   >}}
   {{< hextra/feature-card
     title="And Much More..."
