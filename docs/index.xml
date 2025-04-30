@@ -325,7 +325,7 @@ title="Copy code"
 &lt;pre>&lt;code>usage: rpxy [OPTIONS] --config &amp;lt;FILE&amp;gt;
 Options:
 -c, --config &amp;lt;FILE&amp;gt; Configuration file path like ./config.toml
--w, --watch Activate dynamic reloading of the config file via continuous monitoring
+-l, --log-dir &amp;lt;LOG_DIR&amp;gt; Directory for log files. If not specified, logs are printed to stdout.
 -h, --help Print help
 -V, --version Print version&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
 &lt;button
@@ -337,6 +337,11 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
+&lt;p>If you set &lt;code>--log-dir=&amp;lt;log_dir&amp;gt;&lt;/code>, the log files are created in the specified directory. Otherwise, the log is printed to stdout.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>${log_dir}/access.log&lt;/code> for access log&lt;/li>
+&lt;li>&lt;code>${log_dir}/rpxy.log&lt;/code> for system and error log&lt;/li>
+&lt;/ul>
 &lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>Running rpxy in Docker</title><link>https://rpxy.io/docs/container/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker/</guid><description>
 &lt;h2>Environment Variables for Docker&lt;span class="hx-absolute -hx-mt-20" id="environment-variables-for-docker">&lt;/span>
 &lt;a href="#environment-variables-for-docker" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>There are several docker-specific environment variables.&lt;/p>
@@ -366,11 +371,7 @@ title="Copy code"
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>LOG_TO_FILE&lt;/code> (default: &lt;code>false&lt;/code>)&lt;/td>
-&lt;td>Enable logging to the log file &lt;code>/rpxy/log/rpxy.log&lt;/code> using &lt;code>logrotate&lt;/code>. You should mount &lt;code>/rpxy/log&lt;/code> via docker volume option if enabled.&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>WATCH&lt;/code> (default: &lt;code>false&lt;/code>)&lt;/td>
-&lt;td>Activate continuous watching of the config file if true. &lt;code>true&lt;/code> or &lt;code>false&lt;/code>&lt;/td>
+&lt;td>Enable logging to the log file &lt;code>/rpxy/log/rpxy.log&lt;/code> and &lt;code>/rpxy/log/access.log&lt;/code> using &lt;code>logrotate&lt;/code>. You should mount &lt;code>/rpxy/log&lt;/code> via docker volume option if enabled.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -384,7 +385,7 @@ title="Copy code"
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;strong>If &lt;code>WATCH=true&lt;/code>, You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to correctly track file changes&lt;/strong>. This is a docker limitation. Even if &lt;code>WATCH=false&lt;/code>, you can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;strong>You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to dynamically track file changes&lt;/strong>. This is a docker limitation. You can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
@@ -641,7 +642,6 @@ title="Copy code"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">HOST_GID=1000&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">LOG_LEVEL=debug&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">LOG_TO_FILE=true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">WATCH=true&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./config:/rpxy/config:ro &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># for config&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">./log:/rpxy/log &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># for log&lt;/span>&lt;span class="w">

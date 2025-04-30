@@ -118,7 +118,7 @@ title="Copy code"
 &lt;pre>&lt;code>usage: rpxy [OPTIONS] --config &amp;lt;FILE&amp;gt;
 Options:
 -c, --config &amp;lt;FILE&amp;gt; Configuration file path like ./config.toml
--w, --watch Activate dynamic reloading of the config file via continuous monitoring
+-l, --log-dir &amp;lt;LOG_DIR&amp;gt; Directory for log files. If not specified, logs are printed to stdout.
 -h, --help Print help
 -V, --version Print version&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
 &lt;button
@@ -130,6 +130,11 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
+&lt;p>If you set &lt;code>--log-dir=&amp;lt;log_dir&amp;gt;&lt;/code>, the log files are created in the specified directory. Otherwise, the log is printed to stdout.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>${log_dir}/access.log&lt;/code> for access log&lt;/li>
+&lt;li>&lt;code>${log_dir}/rpxy.log&lt;/code> for system and error log&lt;/li>
+&lt;/ul>
 &lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>Basic Setups</title><link>https://rpxy.io/docs/guide/basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/</guid><description>
 &lt;p>Here we explain some typical setups for &lt;code>rpxy&lt;/code>. We will start with the most basic setups.&lt;/p>
 &lt;div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 3;"> &lt;a
