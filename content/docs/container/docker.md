@@ -18,8 +18,7 @@ There are several docker-specific environment variables.
 |`HOST_UID` (default: `900`)| `UID` of `HOST_USER`.|
 |`HOST_GID` (default: `900`)| `GID` of `HOST_USER`|
 |`LOG_LEVEL` (default: `info`) | Log level, `debug`, `info`, `warn` or `error` |
-|`LOG_TO_FILE` (default: `false`) | Enable logging to the log file `/rpxy/log/rpxy.log` using `logrotate`. You should mount `/rpxy/log` via docker volume option if enabled.|
-|`WATCH` (default: `false`) | Activate continuous watching of the config file if true. `true` or `false`|
+|`LOG_TO_FILE` (default: `false`) | Enable logging to the log file `/rpxy/log/rpxy.log` and `/rpxy/log/access.log` using `logrotate`. You should mount `/rpxy/log` via docker volume option if enabled.|
 
 All you need is to mount your `config.toml` as `/etc/rpxy.toml` and certificates/private keys as you like through the docker volume option. Note that the file path of keys and certificates must be ones in your docker container.
 
@@ -28,7 +27,7 @@ For `LOG_TO_FILE` option, the log dir and file will be owned by the `HOST_USER` 
 {{< /callout >}}
 
 {{< callout type="warning" >}}
- **If `WATCH=true`, You need to mount a directory, e.g., `./rpxy-config/`, including `rpxy.toml` on `/rpxy/config` instead of a file to correctly track file changes**. This is a docker limitation. Even if `WATCH=false`, you can mount the dir onto `/rpxy/config` rather than `/etc/rpxy.toml`. A file mounted on `/etc/rpxy` is prioritized over a dir mounted on `/rpxy/config`.
+ **You need to mount a directory, e.g., `./rpxy-config/`, including `rpxy.toml` on `/rpxy/config` instead of a file to dynamically track file changes**. This is a docker limitation. You can mount the dir onto `/rpxy/config` rather than `/etc/rpxy.toml`. A file mounted on `/etc/rpxy` is prioritized over a dir mounted on `/rpxy/config`.
 {{< /callout >}}
 
 See [`docker-compose.yml`](https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml) or [the following section](/docs/container/docker_example) for examples of docker configuration.

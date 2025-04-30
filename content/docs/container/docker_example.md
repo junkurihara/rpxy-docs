@@ -51,7 +51,6 @@ services:
       - HOST_GID=1000
       - LOG_LEVEL=debug
       - LOG_TO_FILE=true
-      - WATCH=true
     volumes:
       - ./config:/rpxy/config:ro               # for config
       - ./log:/rpxy/log                   # for log
