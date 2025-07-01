@@ -1,4 +1,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Getting Started</title><link>https://rpxy.io/docs/guide/</link><description>Recent content in Getting Started on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-yellow-100 hx:bg-yellow-50 hx:text-yellow-900 hx:dark:border-yellow-200/30 hx:dark:bg-yellow-700/30 hx:dark:text-yellow-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;p>&lt;strong>Version 0.10.0 Breaking Changes&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>The non-&lt;code>watch&lt;/code> execute option has been removed. Dynamic configuration reloading is now enabled by default.&lt;/li>
+&lt;li>New &lt;code>log-dir&lt;/code> option added to specify the log directory location.&lt;/li>
+&lt;li>Log files are now separated into access logs and error logs.&lt;/li>
+&lt;/ul>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;h2>Building from Source&lt;span class="hx:absolute hx:-mt-20" id="building-from-source">&lt;/span>
 &lt;a href="#building-from-source" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>You can build an executable binary yourself by checking out this Git repository.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
@@ -89,6 +100,12 @@ title="Copy code"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>Dynamic Configuration&lt;/strong>: Since version 0.10.0, &lt;code>rpxy&lt;/code> monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is now the default behavior.&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
@@ -162,4 +179,7 @@ class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hid
 &lt;a
 class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="cache"
 >&lt;span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50">&lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>&lt;/svg>Caching&lt;/span>&lt;/a>
+&lt;a
+class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="post_quantum"
+>&lt;span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50">&lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>&lt;/svg>Post-Quantum Cryptography&lt;/span>&lt;/a>
 &lt;/div></description></item></channel></rss>

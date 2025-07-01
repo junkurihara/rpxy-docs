@@ -146,6 +146,17 @@ title="Copy code"
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.&lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-yellow-100 hx:bg-yellow-50 hx:text-yellow-900 hx:dark:border-yellow-200/30 hx:dark:bg-yellow-700/30 hx:dark:text-yellow-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;p>&lt;strong>Version 0.10.0 Breaking Changes&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>The non-&lt;code>watch&lt;/code> execute option has been removed. Dynamic configuration reloading is now enabled by default.&lt;/li>
+&lt;li>New &lt;code>log-dir&lt;/code> option added to specify the log directory location.&lt;/li>
+&lt;li>Log files are now separated into access logs and error logs.&lt;/li>
+&lt;/ul>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;h2>Building from Source&lt;span class="hx:absolute hx:-mt-20" id="building-from-source">&lt;/span>
 &lt;a href="#building-from-source" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>You can build an executable binary yourself by checking out this Git repository.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
@@ -231,6 +242,12 @@ title="Copy code"
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">If you are using self-signed certificates for the backend applications, you need to select non-&lt;code>webpki-roots&lt;/code> binaries.&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>Dynamic Configuration&lt;/strong>: Since version 0.10.0, &lt;code>rpxy&lt;/code> monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is now the default behavior.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
@@ -738,4 +755,105 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.&lt;/div>
 &lt;/div>
-&lt;/div></description></item></channel></rss>
+&lt;/div></description></item><item><title>Post-Quantum Cryptography</title><link>https://rpxy.io/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/post_quantum/</guid><description>
+&lt;h2>Overview&lt;span class="hx:absolute hx:-mt-20" id="overview">&lt;/span>
+&lt;a href="#overview" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;code>rpxy&lt;/code> provides cutting-edge security by supporting post-quantum cryptography, protecting your applications against future quantum computing threats. This feature is enabled by default and requires no special configuration.&lt;/p>
+&lt;h2>What is Post-Quantum Cryptography?&lt;span class="hx:absolute hx:-mt-20" id="what-is-post-quantum-cryptography">&lt;/span>
+&lt;a href="#what-is-post-quantum-cryptography" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Post-quantum cryptography refers to cryptographic algorithms that are secure against attacks by quantum computers. As quantum computing technology advances, traditional cryptographic methods like RSA and ECC may become vulnerable. Post-quantum algorithms are designed to remain secure even when powerful quantum computers become available.&lt;/p>
+&lt;h2>rpxy&amp;rsquo;s Implementation&lt;span class="hx:absolute hx:-mt-20" id="rpxys-implementation">&lt;/span>
+&lt;a href="#rpxys-implementation" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Technical Foundation&lt;span class="hx:absolute hx:-mt-20" id="technical-foundation">&lt;/span>
+&lt;a href="#technical-foundation" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>&lt;code>rpxy&lt;/code> enables post-quantum cryptography through the &lt;a href="https://github.com/rustls/rustls/tree/main/rustls-post-quantum" target="_blank" rel="noopener">&lt;code>rustls-post-quantum&lt;/code>&lt;/a> library, which provides post-quantum key exchange algorithms for rustls. This integration allows &lt;code>rpxy&lt;/code> to offer cutting-edge cryptographic security with minimal configuration.&lt;/p>
+&lt;h3>Hybrid Key Exchange&lt;span class="hx:absolute hx:-mt-20" id="hybrid-key-exchange">&lt;/span>
+&lt;a href="#hybrid-key-exchange" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>&lt;code>rpxy&lt;/code> implements &lt;strong>hybrid post-quantum key exchange&lt;/strong> that combines:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Classical cryptography&lt;/strong> (X25519) - Proven security for current threats&lt;/li>
+&lt;li>&lt;strong>Post-quantum cryptography&lt;/strong> (ML-KEM 768) - Protection against quantum attacks&lt;/li>
+&lt;/ul>
+&lt;p>This hybrid approach provides:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Backward compatibility&lt;/strong> with existing systems&lt;/li>
+&lt;li>&lt;strong>Future-proof security&lt;/strong> against quantum threats&lt;/li>
+&lt;li>&lt;strong>Performance optimization&lt;/strong> without sacrificing security&lt;/li>
+&lt;/ul>
+&lt;h3>Supported Algorithms&lt;span class="hx:absolute hx:-mt-20" id="supported-algorithms">&lt;/span>
+&lt;a href="#supported-algorithms" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>X25519MLKEM768&lt;/strong>: This is the hybrid key exchange algorithm supported by &lt;code>rpxy&lt;/code>, combining X25519 elliptic curve cryptography with ML-KEM 768 (formerly Kyber768) post-quantum cryptography.&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h3>Protocol Coverage&lt;span class="hx:absolute hx:-mt-20" id="protocol-coverage">&lt;/span>
+&lt;a href="#protocol-coverage" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Post-quantum cryptography is supported across all secure protocols:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>TLS 1.3&lt;/strong> - All HTTPS connections use post-quantum key exchange&lt;/li>
+&lt;li>&lt;strong>QUIC and HTTP/3&lt;/strong> - Post-quantum security for next-generation protocols&lt;/li>
+&lt;li>&lt;strong>Automatic negotiation&lt;/strong> - Clients and servers negotiate the best available algorithm&lt;/li>
+&lt;/ul>
+&lt;h2>Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration">&lt;/span>
+&lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Default Behavior&lt;span class="hx:absolute hx:-mt-20" id="default-behavior">&lt;/span>
+&lt;a href="#default-behavior" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Post-quantum cryptography is &lt;strong>enabled by default&lt;/strong> in &lt;code>rpxy&lt;/code>. No configuration changes are required:&lt;/p>
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Post-quantum TLS is automatically enabled for all applications&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="s2">&amp;#34;secure_app&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">server_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;example.com&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">reverse_proxy&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[{&lt;/span> &lt;span class="nx">upstream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[{&lt;/span> &lt;span class="nx">location&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;backend:8080&amp;#39;&lt;/span> &lt;span class="p">}]&lt;/span> &lt;span class="p">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">https_redirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span> &lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;h3>Verification&lt;span class="hx:absolute hx:-mt-20" id="verification">&lt;/span>
+&lt;a href="#verification" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>You can verify post-quantum key exchange is active by:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Checking TLS handshake logs&lt;/strong> - Look for &lt;code>MLKEM768&lt;/code> or something like that in debug output&lt;/li>
+&lt;li>&lt;strong>Using OpenSSL s_client&lt;/strong> - Examine cipher suite negotiation&lt;/li>
+&lt;li>&lt;strong>Network analysis tools&lt;/strong> - Inspect TLS handshake packets&lt;/li>
+&lt;/ol>
+&lt;h2>Security Benefits&lt;span class="hx:absolute hx:-mt-20" id="security-benefits">&lt;/span>
+&lt;a href="#security-benefits" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Current Protection&lt;span class="hx:absolute hx:-mt-20" id="current-protection">&lt;/span>
+&lt;a href="#current-protection" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Traditional threats&lt;/strong> - RSA, ECC still secure against classical computers&lt;/li>
+&lt;li>&lt;strong>Side-channel attacks&lt;/strong> - Rust&amp;rsquo;s memory safety provides additional protection&lt;/li>
+&lt;li>&lt;strong>Perfect forward secrecy&lt;/strong> - Session keys remain secure even if long-term keys are compromised&lt;/li>
+&lt;/ul>
+&lt;h3>Future Protection&lt;span class="hx:absolute hx:-mt-20" id="future-protection">&lt;/span>
+&lt;a href="#future-protection" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Quantum resistance&lt;/strong> - Algorithms designed to withstand quantum attacks&lt;/li>
+&lt;li>&lt;strong>Long-term security&lt;/strong> - Data encrypted today remains secure in the quantum era&lt;/li>
+&lt;li>&lt;strong>Cryptographic agility&lt;/strong> - Easy transition to new algorithms as standards evolve&lt;/li>
+&lt;/ul>
+&lt;h2>Performance Impact&lt;span class="hx:absolute hx:-mt-20" id="performance-impact">&lt;/span>
+&lt;a href="#performance-impact" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>Minimal Overhead&lt;/strong>: The hybrid approach ensures post-quantum security while maintaining excellent performance. Key exchange operations are optimized and cached where possible.&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h2>Industry Standards&lt;span class="hx:absolute hx:-mt-20" id="industry-standards">&lt;/span>
+&lt;a href="#industry-standards" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;code>rpxy&lt;/code>&amp;rsquo;s post-quantum implementation follows:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>IETF drafts&lt;/strong> - Implements &lt;a href="https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html" target="_blank" rel="noopener">draft-kwiatkowski-tls-ecdhe-mlkem-03&lt;/a> and &lt;a href="https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/" target="_blank" rel="noopener">draft-ietf-tls-hybrid-design&lt;/a>&lt;/li>
+&lt;li>&lt;strong>NIST standards&lt;/strong> - Uses standardized ML-KEM (FIPS 203) cryptographic primitives&lt;/li>
+&lt;li>&lt;strong>Industry adoption&lt;/strong> - Compatible with other implementations following the same IETF drafts&lt;/li>
+&lt;/ul>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>Standard Status&lt;/strong>: The X25519MLKEM768 algorithm is based on IETF draft specifications (&lt;a href="https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html" target="_blank" rel="noopener">draft-kwiatkowski-tls-ecdhe-mlkem-03&lt;/a> and &lt;a href="https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/" target="_blank" rel="noopener">draft-ietf-tls-hybrid-design&lt;/a>) while using the standardized ML-KEM (FIPS 203) post-quantum cryptographic primitives.&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h2>Compatibility&lt;span class="hx:absolute hx:-mt-20" id="compatibility">&lt;/span>
+&lt;a href="#compatibility" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Client Support&lt;span class="hx:absolute hx:-mt-20" id="client-support">&lt;/span>
+&lt;a href="#client-support" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Modern browsers and HTTP clients increasingly support post-quantum key exchange:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Chrome/Chromium&lt;/strong> - Experimental support available&lt;/li>
+&lt;li>&lt;strong>Firefox&lt;/strong> - Support in development&lt;/li>
+&lt;li>&lt;strong>OpenSSL&lt;/strong> - Recent versions support hybrid algorithms&lt;/li>
+&lt;/ul>
+&lt;h3>Fallback Behavior&lt;span class="hx:absolute hx:-mt-20" id="fallback-behavior">&lt;/span>
+&lt;a href="#fallback-behavior" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>If clients don&amp;rsquo;t support post-quantum algorithms, &lt;code>rpxy&lt;/code> automatically falls back to classical cryptography, ensuring compatibility while providing enhanced security when possible.&lt;/p></description></item></channel></rss>
