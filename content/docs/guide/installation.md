@@ -8,6 +8,13 @@ sidebar:
   open: true
 ---
 
+{{< callout type="warning" >}}
+**Version 0.10.0 Breaking Changes**: 
+- The non-`watch` execute option has been removed. Dynamic configuration reloading is now enabled by default.
+- New `log-dir` option added to specify the log directory location.
+- Log files are now separated into access logs and error logs.
+{{< /callout >}}
+
 
 ## Building from Source
 
@@ -60,6 +67,10 @@ rpxy-${ARCH}-unknown-linux-${TARGET}-${BUILD_OPT}.tar.gz
 If you are using self-signed certificates for the backend applications, you need to select non-`webpki-roots` binaries.
 {{< /callout >}}
 
+
+{{< callout type="info" >}}
+**Dynamic Configuration**: Since version 0.10.0, `rpxy` monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is now the default behavior.
+{{< /callout >}}
 
 {{< callout type="info" >}}
 Note that we do not have an option of installation via [`crates.io`](https://crates.io/), i.e., `cargo install`, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see [Container section](/docs/container/)) as the easiest way for `amd64` environment.

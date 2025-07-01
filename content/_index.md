@@ -7,7 +7,7 @@ layout: hextra-home
 
 {{< hextra/hero-badge >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>Free, open source</span>
+  <span>v0.10.0 • Free, open source</span>
   {{< icon name="arrow-circle-right" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 
@@ -41,7 +41,7 @@ layout: hextra-home
   >}}
   {{< hextra/feature-card
     title="Post-Quantum Secure TLS"
-    subtitle="By default, `rpxy` supports the hybrid post-quantum secure key exchange for TLS 1.3, which is a widely-deployed IETF-draft algorithm. You can serve your domain names with the latest security features without any special setup."
+    subtitle="Future-proof your security with hybrid post-quantum cryptography. `rpxy` supports X25519MLKEM768 for TLS 1.3 and QUIC by default, protecting against quantum computing threats without compromising performance or requiring special configuration."
   >}}
   {{< hextra/feature-card
     title="ACME Out of the Box"
