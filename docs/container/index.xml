@@ -1,5 +1,5 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Using Containers</title><link>https://rpxy.io/docs/container/</link><description>Recent content in Using Containers on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/container/index.xml" rel="self" type="application/rss+xml"/><item><title>Running rpxy in Docker</title><link>https://rpxy.io/docs/container/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker/</guid><description>
-&lt;h2>Environment Variables for Docker&lt;span class="hx-absolute -hx-mt-20" id="environment-variables-for-docker">&lt;/span>
+&lt;h2>Environment Variables for Docker&lt;span class="hx:absolute hx:-mt-20" id="environment-variables-for-docker">&lt;/span>
 &lt;a href="#environment-variables-for-docker" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>There are several docker-specific environment variables.&lt;/p>
 &lt;table>
 &lt;thead>
@@ -32,52 +32,52 @@
 &lt;/tbody>
 &lt;/table>
 &lt;p>All you need is to mount your &lt;code>config.toml&lt;/code> as &lt;code>/etc/rpxy.toml&lt;/code> and certificates/private keys as you like through the docker volume option. Note that the file path of keys and certificates must be ones in your docker container.&lt;/p>
-&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
-&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.&lt;/div>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">For &lt;code>LOG_TO_FILE&lt;/code> option, the log dir and file will be owned by the &lt;code>HOST_USER&lt;/code> with &lt;code>HOST_UID:HOST_GID&lt;/code> on the host machine. Hence, &lt;code>HOST_USER&lt;/code>, &lt;code>HOST_UID&lt;/code> and &lt;code>HOST_GID&lt;/code> should be the same as ones of the user who executes the &lt;code>rpxy&lt;/code> docker container on the host.&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-yellow-100 hx-bg-yellow-50 hx-text-yellow-900 dark:hx-border-yellow-200/30 dark:hx-bg-yellow-700/30 dark:hx-text-yellow-200">
-&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;div class="hx-select-none hx-text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
-&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
-&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">&lt;strong>You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to dynamically track file changes&lt;/strong>. This is a docker limitation. You can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-yellow-100 hx:bg-yellow-50 hx:text-yellow-900 hx:dark:border-yellow-200/30 hx:dark:bg-yellow-700/30 hx:dark:text-yellow-200">
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to dynamically track file changes&lt;/strong>. This is a docker limitation. You can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
-&lt;h2>Set custom port for HTTPS redirection in non-priviliged mode without exposure of well-known ports (80, 443)&lt;span class="hx-absolute -hx-mt-20" id="set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443">&lt;/span>
+&lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example/" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
+&lt;h2>Set custom port for HTTPS redirection in non-priviliged mode without exposure of well-known ports (80, 443)&lt;span class="hx:absolute hx:-mt-20" id="set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443">&lt;/span>
 &lt;a href="#set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>For security reasons, you may want to run &lt;code>rpxy&lt;/code> in a non-privileged mode without exposing well-known ports. In this case, you should specify custom port for HTTPS redirection.&lt;/p>
 &lt;p>When the container manager maps port A (e.g., 80/443) of the host to port B (e.g., 8080/8443) of the container for http and https, &lt;code>rpxy&lt;/code> must be configured with port B for &lt;code>listen_port&lt;/code> and &lt;code>listen_port_tls&lt;/code>.&lt;/p>
 &lt;p>However, when you want to set &lt;code>http_redirection=true&lt;/code> for some backend apps, &lt;code>rpxy&lt;/code> issues the redirection response 301 with the port B by default, which is not accessible from the outside of the container.&lt;/p>
 &lt;p>To avoid the above issue, you can set a custom port for the redirection response by specifying &lt;code>https_redirection_port&lt;/code> in &lt;code>config.toml&lt;/code>. In this case, port A should be set for &lt;code>https_redirection_port&lt;/code>, then the redirection response 301 will be issued with the port A.&lt;/p>
 &lt;p>The following is an example of relevant settings in &lt;code>config.toml&lt;/code>.&lt;/p>
-&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">8080&lt;/span> &lt;span class="c"># `rpxy` in the container listens on port 8080&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">8443&lt;/span> &lt;span class="c"># `rpxy` in the container listens on port 8443 for TLS&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https_redirection_port&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span> &lt;span class="c"># `rpxy` issues the redirection response 301 with port 443&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https_redirection_port&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span> &lt;span class="c"># `rpxy` issues the redirection response 301 with port 443&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
 &lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
 >
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;h2>Custom CAs for upstream TLS connections&lt;span class="hx-absolute -hx-mt-20" id="custom-cas-for-upstream-tls-connections">&lt;/span>
+&lt;h2>Custom CAs for upstream TLS connections&lt;span class="hx:absolute hx:-mt-20" id="custom-cas-for-upstream-tls-connections">&lt;/span>
 &lt;a href="#custom-cas-for-upstream-tls-connections" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>To add a custom certificate, you must use a non-&lt;code>webpki&lt;/code> image. Then mount &lt;code>/usr/local/share/ca-certificates&lt;/code> in the container with your desired CAs each in a file like &lt;code>myca.crt&lt;/code>. The certificates are accepted in PEM format but file extension must be &lt;code>crt&lt;/code>.&lt;/p>
 &lt;p>e.g. &lt;code>-v rpxy/ca-certificates:/usr/local/share/ca-certificates&lt;/code>&lt;/p></description></item><item><title>Docker Examples</title><link>https://rpxy.io/docs/container/docker_example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker_example/</guid><description>
-&lt;h2>Basic Example&lt;span class="hx-absolute -hx-mt-20" id="basic-example">&lt;/span>
+&lt;h2>Basic Example&lt;span class="hx:absolute hx:-mt-20" id="basic-example">&lt;/span>
 &lt;a href="#basic-example" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The following is a basic example of using &lt;code>rpxy&lt;/code> with &lt;code>docker-compose&lt;/code>, serving &lt;a href="https://github.com/jwilder/whoami" target="_blank" rel="noopener">&lt;code>whoami&lt;/code> container&lt;/a> as a backend application.&lt;/p>
 &lt;p>You can run the following commands to start the containers.&lt;/p>
-&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% docker-compose up -d -f docker-compose.yml&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">% docker-compose up -d -f docker-compose.yml&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
 &lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
 >
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
 &lt;/div>
@@ -97,8 +97,8 @@ title="Copy code"
 &lt;li>&lt;code>rpxy&lt;/code> ACME certificates and private keys are saved in &lt;code>./acme_registry&lt;/code> directory.&lt;/li>
 &lt;li>&lt;code>rpxy&lt;/code> configuration is saved as &lt;code>./config/rpxy.toml&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;h3>&lt;code>docker-compose.yml&lt;/code>&lt;span class="hx-absolute -hx-mt-20" id="docker-composeyml">&lt;/span>
-&lt;a href="#docker-composeyml" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;h3>&lt;code>docker-compose.yml&lt;/code>&lt;span class="hx:absolute hx:-mt-20" id="docker-composeyml">&lt;/span>
+&lt;a href="#docker-composeyml" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml:docker-compose.yml" data-lang="yaml:docker-compose.yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">rpxy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">jqtype/rpxy:latest&lt;/span>&lt;span class="w">
@@ -131,18 +131,18 @@ title="Copy code"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">max-size&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;10m&amp;#34;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">max-file&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;3&amp;#34;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">expose&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># expose port 8000 for rpxy (not for host and outside)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="m">8000&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="m">8000&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
 &lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
 >
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;h3>&lt;code>./config/rpxy.toml&lt;/code>&lt;span class="hx-absolute -hx-mt-20" id="configrpxytoml">&lt;/span>
-&lt;a href="#configrpxytoml" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;h3>&lt;code>./config/rpxy.toml&lt;/code>&lt;span class="hx:absolute hx:-mt-20" id="configrpxytoml">&lt;/span>
+&lt;a href="#configrpxytoml" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:./config/rpxy.toml" data-lang="toml:./config/rpxy.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c">########################################&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"># rust-rxpy configuration #&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">########################################&lt;/span>
@@ -178,13 +178,13 @@ title="Copy code"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">cache_dir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;/tmp/rpxy/cache&amp;#39;&lt;/span> &lt;span class="c"># default is &amp;#34;./cache&amp;#34; relative to the current working directory&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">acme&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">email&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;yourname@example.com&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">email&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;yourname@example.com&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
 &lt;button
-class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
 >
-&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
-&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
+&lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
 &lt;/div></description></item></channel></rss>
