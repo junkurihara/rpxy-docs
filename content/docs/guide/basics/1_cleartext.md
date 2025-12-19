@@ -70,7 +70,7 @@ In the above example, request messages are routed to backend applications over c
 ```toml:config.toml
 [apps.app_backend_https]
 server_name = "app_backend_https.example.com"
-revese_proxy = [
+reverse_proxy = [
   { location = 'app1.localdomain:8080', tls = true }
 ]
 ```
