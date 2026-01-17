@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Basic Setups</title><link>https://rpxy.io/docs/guide/basics/</link><description>Recent content in Basic Setups on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/guide/basics/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.io/docs/guide/basics/1_cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/1_cleartext/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Basic Setups</title><link>https://rpxy.net/docs/guide/basics/</link><description>Recent content in Basic Setups on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.net/docs/guide/basics/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.net/docs/guide/basics/1_cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/1_cleartext/</guid><description>
 &lt;p>Here we describe how to configure a simple reverse proxy server that forwards incoming &lt;em>cleartext&lt;/em> HTTP requests to a backend application.&lt;/p>
 &lt;h2>The Simplest Configuration&lt;span class="hx:absolute hx:-mt-20" id="the-simplest-configuration">&lt;/span>
 &lt;a href="#the-simplest-configuration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The simplest configuration of the TOML-based configuration file, say &lt;code>config.toml&lt;/code>, is given like the following.&lt;/p>
@@ -121,12 +121,12 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/2_tls/</guid><description>
+&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.net/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/2_tls/</guid><description>
 &lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme/" >the advanced section&lt;/a>.&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.net/docs/guide/advanced/acme/" >the advanced section&lt;/a>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>First of all, you need to specify a port &lt;code>listen_port_tls&lt;/code> listening the HTTPS traffic, separately from HTTP port (&lt;code>listen_port&lt;/code>) in the configuration file.&lt;/p>
@@ -165,7 +165,7 @@ title="Copy code"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.net/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx:absolute hx:-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>
@@ -181,7 +181,7 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
+&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.net/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/3_routing/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> can serves and routes incoming requests to multiple backend destination according to the path information. The routing information can be specified for each application (&lt;code>server_name&lt;/code>) as follows.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>

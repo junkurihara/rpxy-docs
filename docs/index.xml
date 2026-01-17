@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Documentation</title><link>https://rpxy.io/docs/</link><description>Recent content in Documentation on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.io/docs/guide/basics/1_cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/1_cleartext/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – Documentation</title><link>https://rpxy.net/docs/</link><description>Recent content in Documentation on rpxy</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://rpxy.net/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>1. Cleartext HTTP Reverse Proxy</title><link>https://rpxy.net/docs/guide/basics/1_cleartext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/1_cleartext/</guid><description>
 &lt;p>Here we describe how to configure a simple reverse proxy server that forwards incoming &lt;em>cleartext&lt;/em> HTTP requests to a backend application.&lt;/p>
 &lt;h2>The Simplest Configuration&lt;span class="hx:absolute hx:-mt-20" id="the-simplest-configuration">&lt;/span>
 &lt;a href="#the-simplest-configuration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The simplest configuration of the TOML-based configuration file, say &lt;code>config.toml&lt;/code>, is given like the following.&lt;/p>
@@ -121,8 +121,8 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>HTTP/3</title><link>https://rpxy.io/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/http3/</guid><description>
-&lt;p>&lt;code>rpxy&lt;/code> can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn" target="_blank" rel="noopener">&lt;code>quinn&lt;/code>&lt;/a>, &lt;a href="https://github.com/aws/s2n-quic" target="_blank" rel="noopener">&lt;code>s2n-quic&lt;/code>&lt;/a> and &lt;a href="https://github.com/hyperium/h3" target="_blank" rel="noopener">&lt;code>hyperium/h3&lt;/code>&lt;/a>. To enable this experimental feature, add an entry &lt;code>experimental.h3&lt;/code> in your &lt;code>config.toml&lt;/code> like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.io/docs/guide/advanced/client_auth/" >except for the applications with TLS client authentication&lt;/a>.&lt;/p>
+&lt;/div></description></item><item><title>HTTP/3</title><link>https://rpxy.net/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/advanced/http3/</guid><description>
+&lt;p>&lt;code>rpxy&lt;/code> can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn" target="_blank" rel="noopener">&lt;code>quinn&lt;/code>&lt;/a>, &lt;a href="https://github.com/aws/s2n-quic" target="_blank" rel="noopener">&lt;code>s2n-quic&lt;/code>&lt;/a> and &lt;a href="https://github.com/hyperium/h3" target="_blank" rel="noopener">&lt;code>hyperium/h3&lt;/code>&lt;/a>. To enable this experimental feature, add an entry &lt;code>experimental.h3&lt;/code> in your &lt;code>config.toml&lt;/code> like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.net/docs/guide/advanced/client_auth/" >except for the applications with TLS client authentication&lt;/a>.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">experimental&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">h3&lt;/span>&lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">alt_svc_max_age&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">3600&lt;/span>
@@ -145,7 +145,7 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Any values in the entry like &lt;code>alt_svc_max_age&lt;/code> are optional.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
+&lt;/div></description></item><item><title>Installation</title><link>https://rpxy.net/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/installation/</guid><description>
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-yellow-100 hx:bg-yellow-50 hx:text-yellow-900 hx:dark:border-yellow-200/30 hx:dark:bg-yellow-700/30 hx:dark:text-yellow-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">⚠️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
@@ -253,14 +253,14 @@ title="Copy code"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.io/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Note that we do not have an option of installation via &lt;a href="https://crates.io/" target="_blank" rel="noopener">&lt;code>crates.io&lt;/code>&lt;/a>, i.e., &lt;code>cargo install&lt;/code>, at this point since some dependencies are not published yet. Alternatively, you can use docker image (see &lt;a href="https://rpxy.net/docs/container/" >Container section&lt;/a>) as the easiest way for &lt;code>amd64&lt;/code> environment.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.io/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/2_tls/</guid><description>
+&lt;/div></description></item><item><title>2. Terminating TLS</title><link>https://rpxy.net/docs/guide/basics/2_tls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/2_tls/</guid><description>
 &lt;p>Here we describe how to terminate TLS in &lt;code>rpxy&lt;/code>. In the following, we show how to specify existing TLS certificates and private keys. We also show how to redirect incoming cleartext HTTP requests to HTTPS.&lt;/p>
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.io/docs/guide/advanced/acme/" >the advanced section&lt;/a>.&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">The integration with ACME (Let&amp;rsquo;s Encrypt) is described in &lt;a href="https://rpxy.net/docs/guide/advanced/acme/" >the advanced section&lt;/a>.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>First of all, you need to specify a port &lt;code>listen_port_tls&lt;/code> listening the HTTPS traffic, separately from HTTP port (&lt;code>listen_port&lt;/code>) in the configuration file.&lt;/p>
@@ -299,7 +299,7 @@ title="Copy code"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.io/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We should note that the private key specified by &lt;code>tls_cert_key_path&lt;/code> must be &lt;em>in PKCS8 format&lt;/em>. (See &lt;a href="https://rpxy.net/docs/tips/" >TIPS&lt;/a> to convert a PKCS1 formatted private key to PKCS8 one.)&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h2>Redirecting Cleartext HTTP Requests to HTTPS&lt;span class="hx:absolute hx:-mt-20" id="redirecting-cleartext-http-requests-to-https">&lt;/span>
@@ -315,13 +315,13 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>Command Line Options</title><link>https://rpxy.io/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/cmdopt/</guid><description>
+&lt;p>If it is true, &lt;code>rpxy&lt;/code> returns the status code &lt;code>301&lt;/code> to the cleartext request with new location &lt;code>https://&amp;lt;requested_host&amp;gt;/&amp;lt;requested_query_and_path&amp;gt;&lt;/code> served over TLS.&lt;/p></description></item><item><title>Command Line Options</title><link>https://rpxy.net/docs/guide/cmdopt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/cmdopt/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> always requires a configuration file in TOML format, e.g., &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml" target="_blank" rel="noopener">&lt;code>config.toml&lt;/code> on GitHub repo&lt;/a>.&lt;/p>
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200">
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2">&lt;div class="hx:select-none hx:text-xl" style="font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">ℹ️&lt;/div>&lt;/div>
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We will introduce some typical configurations in the &lt;a href="https://rpxy.io/docs/guide/basics/" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.io/docs/guide/advanced/" >Advanced Usage&lt;/a> sections.
-The detailed configuration options are described in the &lt;a href="https://rpxy.io/docs/configuration/" >Configuration Options&lt;/a> section.&lt;/div>
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">We will introduce some typical configurations in the &lt;a href="https://rpxy.net/docs/guide/basics/" >Basic Setups&lt;/a> and &lt;a href="https://rpxy.net/docs/guide/advanced/" >Advanced Usage&lt;/a> sections.
+The detailed configuration options are described in the &lt;a href="https://rpxy.net/docs/configuration/" >Configuration Options&lt;/a> section.&lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;p>You can run &lt;code>rpxy&lt;/code> with a configuration file like&lt;/p>
@@ -359,7 +359,7 @@ title="Copy code"
 &lt;li>&lt;code>${log_dir}/access.log&lt;/code> for access log&lt;/li>
 &lt;li>&lt;code>${log_dir}/rpxy.log&lt;/code> for system and error log&lt;/li>
 &lt;/ul>
-&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>Running rpxy in Docker</title><link>https://rpxy.io/docs/container/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker/</guid><description>
+&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>Running rpxy in Docker</title><link>https://rpxy.net/docs/container/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/container/docker/</guid><description>
 &lt;h2>Environment Variables for Docker&lt;span class="hx:absolute hx:-mt-20" id="environment-variables-for-docker">&lt;/span>
 &lt;a href="#environment-variables-for-docker" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>There are several docker-specific environment variables.&lt;/p>
 &lt;table>
@@ -405,7 +405,7 @@ title="Copy code"
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">&lt;strong>You need to mount a directory, e.g., &lt;code>./rpxy-config/&lt;/code>, including &lt;code>rpxy.toml&lt;/code> on &lt;code>/rpxy/config&lt;/code> instead of a file to dynamically track file changes&lt;/strong>. This is a docker limitation. You can mount the dir onto &lt;code>/rpxy/config&lt;/code> rather than &lt;code>/etc/rpxy.toml&lt;/code>. A file mounted on &lt;code>/etc/rpxy&lt;/code> is prioritized over a dir mounted on &lt;code>/rpxy/config&lt;/code>.&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.io/docs/container/docker_example/" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
+&lt;p>See &lt;a href="https://github.com/junkurihara/rust-rpxy/blob/develop/docker/docker-compose.yml" target="_blank" rel="noopener">&lt;code>docker-compose.yml&lt;/code>&lt;/a> or &lt;a href="https://rpxy.net/docs/container/docker_example/" >the following section&lt;/a> for examples of docker configuration.&lt;/p>
 &lt;h2>Set custom port for HTTPS redirection in non-priviliged mode without exposure of well-known ports (80, 443)&lt;span class="hx:absolute hx:-mt-20" id="set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443">&lt;/span>
 &lt;a href="#set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>For security reasons, you may want to run &lt;code>rpxy&lt;/code> in a non-privileged mode without exposing well-known ports. In this case, you should specify custom port for HTTPS redirection.&lt;/p>
 &lt;p>When the container manager maps port A (e.g., 80/443) of the host to port B (e.g., 8080/8443) of the container for http and https, &lt;code>rpxy&lt;/code> must be configured with port B for &lt;code>listen_port&lt;/code> and &lt;code>listen_port_tls&lt;/code>.&lt;/p>
@@ -427,7 +427,7 @@ title="Copy code"
 &lt;/div>
 &lt;h2>Custom CAs for upstream TLS connections&lt;span class="hx:absolute hx:-mt-20" id="custom-cas-for-upstream-tls-connections">&lt;/span>
 &lt;a href="#custom-cas-for-upstream-tls-connections" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>To add a custom certificate, you must use a non-&lt;code>webpki&lt;/code> image. Then mount &lt;code>/usr/local/share/ca-certificates&lt;/code> in the container with your desired CAs each in a file like &lt;code>myca.crt&lt;/code>. The certificates are accepted in PEM format but file extension must be &lt;code>crt&lt;/code>.&lt;/p>
-&lt;p>e.g. &lt;code>-v rpxy/ca-certificates:/usr/local/share/ca-certificates&lt;/code>&lt;/p></description></item><item><title>TLS Client Authentication</title><link>https://rpxy.io/docs/guide/advanced/client_auth/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/client_auth/</guid><description>
+&lt;p>e.g. &lt;code>-v rpxy/ca-certificates:/usr/local/share/ca-certificates&lt;/code>&lt;/p></description></item><item><title>TLS Client Authentication</title><link>https://rpxy.net/docs/guide/advanced/client_auth/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/advanced/client_auth/</guid><description>
 &lt;p>TLS client authentication is enabled when &lt;code>apps.&amp;quot;app_name&amp;quot;.tls.client_ca_cert_path&lt;/code> is set for the domain specified by &lt;code>&amp;quot;app_name&amp;quot;&lt;/code> like&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">apps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">localhost&lt;/span>&lt;span class="p">]&lt;/span>
@@ -447,7 +447,7 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
+&lt;/div></description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.net/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/basics/3_routing/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> can serves and routes incoming requests to multiple backend destination according to the path information. The routing information can be specified for each application (&lt;code>server_name&lt;/code>) as follows.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
@@ -561,8 +561,8 @@ title="Copy code"
 &lt;/button>
 &lt;/div>
 &lt;/div>
-&lt;p>This example configuration explains a very frequent situation of path-based routing. When a request to &lt;code>app.example.com/subappN&lt;/code> routes to &lt;code>sbappN.local&lt;/code> by replacing a path part &lt;code>/subappN&lt;/code> to &lt;code>/&lt;/code>.&lt;/p></description></item><item><title>ACME (Let's Encrypt) Integration</title><link>https://rpxy.io/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/acme/</guid><description>
-&lt;p>In addition to &lt;a href="https://rpxy.io/docs/guide/basics/2_tls/" >use static files of certificates and private keys&lt;/a>, the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">RFC8555&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
+&lt;p>This example configuration explains a very frequent situation of path-based routing. When a request to &lt;code>app.example.com/subappN&lt;/code> routes to &lt;code>sbappN.local&lt;/code> by replacing a path part &lt;code>/subappN&lt;/code> to &lt;code>/&lt;/code>.&lt;/p></description></item><item><title>ACME (Let's Encrypt) Integration</title><link>https://rpxy.net/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/advanced/acme/</guid><description>
+&lt;p>In addition to &lt;a href="https://rpxy.net/docs/guide/basics/2_tls/" >use static files of certificates and private keys&lt;/a>, the automatic issuance and renewal of certificates, i.e., ACME (Automated Certificate Management Environment) standardized as &lt;a href="https://www.rfc-editor.org/rfc/rfc8555" target="_blank" rel="noopener">RFC8555&lt;/a>, are available in &lt;code>rpxy&lt;/code>. To enable this feature, you need to specify the following entries for each application requiring ACME in the configuration file.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 &lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml:config.toml" data-lang="toml:config.toml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># TLS port, which is also used for ACME challenge.&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">listen_port_tls&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">443&lt;/span>
@@ -609,7 +609,7 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">This is a brand-new feature and maybe still unstable.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>Docker Examples</title><link>https://rpxy.io/docs/container/docker_example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/container/docker_example/</guid><description>
+&lt;/div></description></item><item><title>Docker Examples</title><link>https://rpxy.net/docs/container/docker_example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/container/docker_example/</guid><description>
 &lt;h2>Basic Example&lt;span class="hx:absolute hx:-mt-20" id="basic-example">&lt;/span>
 &lt;a href="#basic-example" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The following is a basic example of using &lt;code>rpxy&lt;/code> with &lt;code>docker-compose&lt;/code>, serving &lt;a href="https://github.com/jwilder/whoami" target="_blank" rel="noopener">&lt;code>whoami&lt;/code> container&lt;/a> as a backend application.&lt;/p>
 &lt;p>You can run the following commands to start the containers.&lt;/p>
@@ -730,7 +730,7 @@ title="Copy code"
 &lt;div class="success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4">&lt;/div>
 &lt;/button>
 &lt;/div>
-&lt;/div></description></item><item><title>Caching</title><link>https://rpxy.io/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/cache/</guid><description>
+&lt;/div></description></item><item><title>Caching</title><link>https://rpxy.net/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/advanced/cache/</guid><description>
 &lt;p>&lt;code>rpxy&lt;/code> takes an approach to cache responses in a &lt;em>hybrid&lt;/em> way of temporary files and on-memory objects.
 If &lt;code>[experimental.cache]&lt;/code> is specified in &lt;code>config.toml&lt;/code>, you can leverage the local caching feature using temporary files and on-memory objects. An example configuration is as follows.&lt;/p>
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
@@ -755,7 +755,7 @@ title="Copy code"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7">
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0">Once &lt;code>rpxy&lt;/code> restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.&lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>Post-Quantum Cryptography</title><link>https://rpxy.io/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/post_quantum/</guid><description>
+&lt;/div></description></item><item><title>Post-Quantum Cryptography</title><link>https://rpxy.net/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.net/docs/guide/advanced/post_quantum/</guid><description>
 &lt;h2>Overview&lt;span class="hx:absolute hx:-mt-20" id="overview">&lt;/span>
 &lt;a href="#overview" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;code>rpxy&lt;/code> provides cutting-edge security by supporting post-quantum cryptography, protecting your applications against future quantum computing threats. This feature is enabled by default and requires no special configuration.&lt;/p>
 &lt;h2>What is Post-Quantum Cryptography?&lt;span class="hx:absolute hx:-mt-20" id="what-is-post-quantum-cryptography">&lt;/span>
