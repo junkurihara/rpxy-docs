@@ -73,7 +73,7 @@ services:
 
 ```toml:./config/rpxy.toml
 ########################################
-#       rust-rxpy configuration        #
+#       rust-rpxy configuration        #
 ########################################
 ###################################
 #         Global settings         #

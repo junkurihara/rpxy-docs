@@ -5,9 +5,9 @@ toc: false
 layout: hextra-home
 ---
 
-{{< hextra/hero-badge >}}
+{{< hextra/hero-badge link="https://github.com/junkurihara/rust-rpxy/releases/tag/0.11.0" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>v0.10.0 • Free, open source</span>
+  <span>v0.11.0 • Free, open source</span>
   {{< icon name="arrow-circle-right" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 
@@ -24,11 +24,11 @@ layout: hextra-home
 {{< /hextra/hero-subtitle >}}
 </div>
 
-<div class="hx-mb-6">
+<div style="margin-top: 1rem; margin-bottom: 3rem;">
 {{< hextra/hero-button text="Get Started" link="docs/guide/" >}}
 </div>
 
-<div class="hx-mt-6"></div>
+<div style="margin-top: 1rem;"></div>
 
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
@@ -54,6 +54,10 @@ layout: hextra-home
   {{< hextra/feature-card
     title="Simple Configuration"
     subtitle="`rpxy` is designed to be simple and easy to configure. You can serve your domain names with just a few lines of configuration in TOML format."
+  >}}
+  {{< hextra/feature-card
+    title="PROXY Protocol Support"
+    subtitle="`rpxy` can operate behind load balancers like AWS ELB, HAProxy, or Nginx with PROXY protocol, preserving original client information through the proxy chain."
   >}}
   {{< hextra/feature-card
     title="And Much More..."

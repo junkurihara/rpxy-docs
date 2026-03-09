@@ -81,7 +81,7 @@ You can specify multiple backend locations in the `reverse_proxy` array for *loa
 
 - `round_robin`: for each request, one of the backend locations is chosen in a round-robin fashion;
 - `random`: for each request, one of the backend locations is chosen randomly;
-- `sticky`: a backend location is chosen as `round_robin` but the *session-persistance* is guaranteed using cookie.
+- `sticky`: a backend location is chosen as `round_robin` but the *session-persistence* is guaranteed using cookie.
 
 If `load_balance` is not specified, the first backend location is always chosen.
 

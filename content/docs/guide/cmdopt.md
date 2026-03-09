@@ -8,7 +8,7 @@ sidebar:
   open: true
 ---
 
-`rpxy` always requires a configuration file in TOML format, e.g., [`config.toml` on GitHub repo](https://github.com/junkurihara/rust-rpxy/blob/develop/config-example.toml).
+`rpxy` always requires a configuration file in TOML format, e.g., [`config.toml` on GitHub repo](https://github.com/junkurihara/rust-rpxy/blob/main/config-example.toml).
 
 {{< callout type="info" >}}
 We will introduce some typical configurations in the [Basic Setups](/docs/guide/basics) and [Advanced Usage](/docs/guide/advanced) sections.
@@ -21,7 +21,7 @@ You can run `rpxy` with a configuration file like
 % ./path/to/rpxy --config config.toml
 ```
 
-If you specify `-w` option along with the config file path, `rpxy` tracks the change of `config.toml` in the real-time manner and apply the change immediately without restarting the process.
+Since version 0.10.0, `rpxy` automatically monitors configuration file changes in real-time and applies them immediately without restarting the process.
 
 The full help messages are given follows.
 

@@ -39,7 +39,3 @@ registry_path = "./acme_registry"
 ```
 
 The above configuration is common to all ACME enabled domains. Note that the https port must be open to the public to prove the domain ownership.
-
-{{< callout type="warning" >}}
-This is a brand-new feature and maybe still unstable.
-{{< /callout >}}
