@@ -58,3 +58,5 @@ When enabled, `rpxy` expects all incoming TCP connections from trusted proxies t
 - Running `rpxy` behind **HAProxy** with PROXY protocol enabled
 - Running `rpxy` behind **Nginx** configured as a TCP proxy with PROXY protocol
 - Chaining with **rpxy-l4** for Layer 4 load balancing
+
+If you want a short overview of how `rpxy-l4` relates to `rpxy`, see [rpxy-l4](/docs/rpxy-l4).

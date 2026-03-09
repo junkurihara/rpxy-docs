@@ -6,4 +6,5 @@ next: docs/guide/
 {{< cards >}} {{< card link="guide/" title="Getting Started" icon="book-open" >}}
 {{< card link="container/" title="Using Containers" icon="cube" >}}
 {{< card link="configuration/" title="Configuration Options" icon="briefcase" >}}
+{{< card link="rpxy-l4/" title="rpxy-l4" icon="cube" >}}
 {{< card link="tips/" title="TIPS" icon="view-grid" >}} {{< /cards >}}
