@@ -298,7 +298,8 @@ data-copied-label="Copied!"
 &lt;li&gt;Running &lt;code&gt;rpxy&lt;/code&gt; behind &lt;strong&gt;HAProxy&lt;/strong&gt; with PROXY protocol enabled&lt;/li&gt;
 &lt;li&gt;Running &lt;code&gt;rpxy&lt;/code&gt; behind &lt;strong&gt;Nginx&lt;/strong&gt; configured as a TCP proxy with PROXY protocol&lt;/li&gt;
 &lt;li&gt;Chaining with &lt;strong&gt;rpxy-l4&lt;/strong&gt; for Layer 4 load balancing&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Upstream Options</title><link>https://rpxy.io/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/upstream_options/</guid><description>
+&lt;/ul&gt;
+&lt;p&gt;If you want a short overview of how &lt;code&gt;rpxy-l4&lt;/code&gt; relates to &lt;code&gt;rpxy&lt;/code&gt;, see &lt;a href="https://rpxy.io/docs/rpxy-l4/"&gt;rpxy-l4&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Upstream Options</title><link>https://rpxy.io/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/upstream_options/</guid><description>
 &lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; provides several options to control how request messages are forwarded to upstream backend applications. These are specified per reverse proxy entry using the &lt;code&gt;upstream_options&lt;/code&gt; array.&lt;/p&gt;
 &lt;h2&gt;Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration"&gt;&lt;/span&gt;
 &lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;

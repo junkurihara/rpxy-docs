@@ -985,7 +985,8 @@ data-copied-label="コピーしました！"
 &lt;li&gt;PROXYプロトコルが有効な&lt;strong&gt;HAProxy&lt;/strong&gt;の背後での&lt;code&gt;rpxy&lt;/code&gt;の運用&lt;/li&gt;
 &lt;li&gt;TCPプロキシとしてPROXYプロトコル付きで設定された&lt;strong&gt;Nginx&lt;/strong&gt;の背後での&lt;code&gt;rpxy&lt;/code&gt;の運用&lt;/li&gt;
 &lt;li&gt;レイヤー4ロードバランシングのための&lt;strong&gt;rpxy-l4&lt;/strong&gt;との連携&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>アップストリームオプション</title><link>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</guid><description>
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;rpxy-l4&lt;/code&gt; と &lt;code&gt;rpxy&lt;/code&gt; の関係を手短に確認したい場合は、&lt;a href="https://rpxy.io/ja/docs/rpxy-l4/"&gt;rpxy-l4&lt;/a&gt; を参照してください。&lt;/p&gt;</description></item><item><title>アップストリームオプション</title><link>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</guid><description>
 &lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は、アップストリームのバックエンドアプリケーションへのリクエストメッセージの転送方法を制御するためのいくつかのオプションを提供しています。これらはリバースプロキシエントリごとに&lt;code&gt;upstream_options&lt;/code&gt;配列で指定します。&lt;/p&gt;
 &lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
 &lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
