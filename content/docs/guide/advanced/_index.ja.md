@@ -6,7 +6,7 @@ next: /docs/guide/advanced/http3
 weight: 4
 ---
 
-このセクションでは、より複雑なユースケースに役立つ`rpxy`の高度なトピックと機能について説明します。
+ここでは、より複雑な構成や本番運用で役立つ `rpxy` の応用機能を扱います。
 
 {{< cards >}}
 {{< card link="http3" title="HTTP/3" icon="fast-forward" >}}

@@ -6,7 +6,7 @@ next: /docs/guide/installation
 weight: 1
 ---
 
-ここでは`rpxy`の基本的な使い方を説明します。インストールから始めて、段階的により高度な機能を紹介していきます。
+このセクションでは、`rpxy` の基本的な使い方を順番に紹介します。まずはインストールから始め、徐々に応用機能へ進みます。
 
 {{< cards >}}
 {{< card link="installation" title="1. インストール" icon="book-open" >}}

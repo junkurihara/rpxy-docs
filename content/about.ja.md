@@ -3,15 +3,15 @@ title: rpxyについて
 type: about
 ---
 
-`rpxy` [ahr-pik-see]は、高性能で安全かつ信頼性の高いHTTPリバースプロキシとして設計されています。[Rust](https://www.rust-lang.org/)プログラミング言語とRustエコシステムのライブラリを基盤に構築されています。`rpxy`は、パフォーマンス重視の環境において、[NGINX](https://www.nginx.com/)や[Caddy](https://caddyserver.com/)などの一般的なHTTPリバースプロキシの代替として使用できるよう設計されています。
+`rpxy` [ahr-pik-see] は、高速性・安全性・信頼性を重視して作られた HTTP リバースプロキシです。[Rust](https://www.rust-lang.org/) とそのエコシステムのライブラリを土台に実装されています。性能を重視する環境では、[NGINX](https://www.nginx.com/) や [Caddy](https://caddyserver.com/) の有力な代替として使えます。
 
-`rpxy`は、シンプルな設定、超高速なメッセージ処理、デフォルトで安全という理念のもとに構築されています。また、最小限のリソース使用量で大量の同時接続を処理できる高性能HTTPリバースプロキシとして設計されています。
+シンプルな設定で扱え、メッセージ処理は高速で、安全性も既定で確保する。`rpxy` はそんな方針で設計されています。少ないリソースで多数の同時接続をさばけるのも特長です。
 
 ## クレジット
 
-`rpxy`は以下のプロジェクトとインスピレーションなしには構築できませんでした:
+`rpxy` は、以下のプロジェクトや着想に支えられて成り立っています。
 
-- [`hyper`](https://github.com/hyperium/hyper) and [`hyperium/h3`](https://github.com/hyperium/h3)
+- [`hyper`](https://github.com/hyperium/hyper) と [`hyperium/h3`](https://github.com/hyperium/h3)
 
 - [`rustls`](https://github.com/rustls/rustls)
 

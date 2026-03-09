@@ -19,7 +19,7 @@ layout: hextra-home
 
 <div class="hx-mb-12">
 {{< hextra/hero-subtitle >}}
-  複数ドメインのTLS終端に対応した、&nbsp;<br class="sm:hx-block hx-hidden" />Rust製のシンプルで超高速なリバースプロキシ
+  Rust で書かれた、&nbsp;<br class="sm:hx-block hx-hidden" />複数ドメイン・TLS 終端対応のシンプルかつ超高速なリバースプロキシ
 {{< /hextra/hero-subtitle >}}
 </div>
 
@@ -32,35 +32,35 @@ layout: hextra-home
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
     title="超高速"
-    subtitle="Rustとそのエコシステム上に構築されたライブラリにより、`rpxy`はHTTPメッセージを超高速に処理します。実際に、`rpxy`は他の一般的なリバースプロキシと比較して速度面で優れています。"
+    subtitle="Rust の性能と周辺ライブラリの強みを活かし、`rpxy` は HTTP トラフィックを高速にさばきます。主要なリバースプロキシと比べても、高い性能を発揮します。"
   >}}
   {{< hextra/feature-card
     title="複数TLS終端"
-    subtitle="単一の`rpxy`インスタンスで複数のドメイン名を提供できます。`rpxy`はTLS接続を処理しながら、複数のドメインを適切なバックエンドアプリケーションサーバーにルーティングします。"
+    subtitle="1 つの `rpxy` インスタンスで複数ドメインをまとめて扱えます。TLS を終端しながら、各ドメインを適切なバックエンドへ振り分けます。"
   >}}
   {{< hextra/feature-card
     title="耐量子TLS"
-    subtitle="ハイブリッド耐量子暗号で将来のセキュリティを確保。`rpxy`はTLS 1.3およびQUICでX25519MLKEM768をデフォルトでサポートし、パフォーマンスや特別な設定を犠牲にすることなく量子コンピューティングの脅威から保護します。"
+    subtitle="ハイブリッド耐量子暗号により、将来の量子計算リスクにも備えられます。TLS 1.3 と QUIC では X25519MLKEM768 を標準で利用できます。"
   >}}
   {{< hextra/feature-card
     title="すぐに使えるACME"
-    subtitle="`rpxy`はACMEプロトコルを標準でサポート。TLSポートを開くだけで、自動的な証明書の発行と更新によりドメインを提供できます。"
+    subtitle="ACME に標準対応。TLS 用のポートを開けるだけで、証明書の取得と更新を自動化できます。"
   >}}
   {{< hextra/feature-card
     title="HTTP/3対応"
-    subtitle="`rpxy`はQUICベースの次世代HTTPプロトコルであるHTTP/3をサポート。最新のプロトコルでドメインを提供できます。"
+    subtitle="QUIC ベースの HTTP/3 に対応しています。最新プロトコルをそのまま使って配信できます。"
   >}}
   {{< hextra/feature-card
     title="シンプルな設定"
-    subtitle="`rpxy`はシンプルで簡単に設定できるよう設計されています。TOML形式のわずか数行の設定でドメインを提供できます。"
+    subtitle="設定は TOML で数行書くだけ。複雑な前準備なしで使い始められます。"
   >}}
   {{< hextra/feature-card
     title="PROXYプロトコル対応"
-    subtitle="`rpxy`はAWS ELB、HAProxy、NginxなどのロードバランサーのPROXYプロトコルに対応し、プロキシチェーンを通じてオリジナルのクライアント情報を保持できます。"
+    subtitle="AWS ELB、HAProxy、Nginx などの背後でも動作し、PROXY プロトコル経由で元のクライアント情報を引き継げます。"
   >}}
   {{< hextra/feature-card
     title="その他多数の機能..."
     icon="sparkles"
-    subtitle="TLSサニタイズ、キャッシュ、ロードバランシングなど。`rpxy`はニーズに合わせて拡張性と柔軟性を備えた設計です。"
+    subtitle="TLS サニタイズ、キャッシュ、ロードバランシングなどにも対応。用途に応じて柔軟に広げられます。"
   >}}
 {{< /hextra/feature-grid >}}

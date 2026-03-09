@@ -33,11 +33,13 @@ ID = 'G-L20D25S665'
 
 [[menu.main]]
 name = "Docs"
+identifier = "docs"
 weight = 1
 pageRef = "/docs"
 
 [[menu.main]]
 name = "About"
+identifier = "about"
 weight = 2
 pageRef = "about.md"
 
