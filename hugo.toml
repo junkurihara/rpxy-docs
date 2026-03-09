@@ -33,11 +33,13 @@ ID = 'G-L20D25S665'
 
 [[menu.main]]
 name = "Docs"
+identifier = "docs"
 weight = 1
 pageRef = "/docs"
 
 [[menu.main]]
 name = "About"
+identifier = "about"
 weight = 2
 pageRef = "about.md"
 
@@ -47,8 +49,13 @@ weight = 3
 params = { type = "search" }
 
 [[menu.main]]
-name = "GitHub"
+name = "Language"
 weight = 4
+params = { type = "language-switch", label = true }
+
+[[menu.main]]
+name = "GitHub"
+weight = 5
 url = "https://github.com/junkurihara/rust-rpxy"
 params = { icon = "github" }
 
