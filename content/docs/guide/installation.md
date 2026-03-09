@@ -9,7 +9,7 @@ sidebar:
 ---
 
 {{< callout type="warning" >}}
-**Version 0.10.0 Breaking Changes**: 
+**Version 0.10.0 Breaking Changes**:
 - The non-`watch` execute option has been removed. Dynamic configuration reloading is now enabled by default.
 - New `log-dir` option added to specify the log directory location.
 - Log files are now separated into access logs and error logs.

@@ -15,5 +15,7 @@ This section covers advanced topics and features of `rpxy` that are useful for m
 {{< card link="client_auth" title="TLS Client Authentication" icon="key" >}}
 {{< card link="acme" title="ACME (Let's Encrypt) Integration" icon="ticket" >}}
 {{< card link="cache" title="Caching" icon="save" >}}
+{{< card link="upstream_options" title="Upstream Options" icon="adjustments" >}}
 {{< card link="post_quantum" title="Post-Quantum Cryptography" icon="shield-check" >}}
+{{< card link="proxy_protocol" title="PROXY Protocol" icon="globe-alt" >}}
 {{< /cards >}}

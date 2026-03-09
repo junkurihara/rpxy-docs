@@ -16,7 +16,7 @@ The easiest way is to use `openssl` by
 
 ```bash
 % openssl pkcs8 -topk8 -nocrypt \
-    -in yoru_domain_from_le.key \
+    -in your_domain_from_le.key \
     -inform PEM \
     -out your_domain_pkcs8.key.pem \
     -outform PEM
