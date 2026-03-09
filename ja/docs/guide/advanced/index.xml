@@ -1,0 +1,424 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rpxy – 高度な使い方</title><link>https://rpxy.io/ja/docs/guide/advanced/</link><description>Recent content in 高度な使い方 on rpxy</description><generator>Hugo -- gohugo.io</generator><language>ja</language><atom:link href="https://rpxy.io/ja/docs/guide/advanced/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP/3</title><link>https://rpxy.io/ja/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/http3/</guid><description>
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;a href="https://github.com/quinn-rs/quinn"target="_blank" rel="noopener"&gt;&lt;code&gt;quinn&lt;/code&gt;&lt;/a&gt;、&lt;a href="https://github.com/aws/s2n-quic"target="_blank" rel="noopener"&gt;&lt;code&gt;s2n-quic&lt;/code&gt;&lt;/a&gt;、&lt;a href="https://github.com/hyperium/h3"target="_blank" rel="noopener"&gt;&lt;code&gt;hyperium/h3&lt;/code&gt;&lt;/a&gt;により、HTTP/3リクエストを処理できます。この実験的機能を有効にするには、&lt;code&gt;config.toml&lt;/code&gt;に&lt;code&gt;experimental.h3&lt;/code&gt;エントリを以下のように追加してください。すると、TLS有効なアプリケーションはHTTP/2とHTTP/1.1に加えてHTTP/3で提供されます（&lt;a href="https://rpxy.io/ja/docs/guide/advanced/client_auth/"&gt;TLSクライアント認証が有効なアプリケーション&lt;/a&gt;を除く）。&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;h3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alt_svc_max_age&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;request_max_body_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65536&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_connections&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_bidistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_unistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_idle_timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;alt_svc_max_age&lt;/code&gt;などのエントリの値はすべてオプションです。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>TLSクライアント認証</title><link>https://rpxy.io/ja/docs/guide/advanced/client_auth/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/client_auth/</guid><description>
+&lt;p&gt;TLSクライアント認証は、&lt;code&gt;&amp;quot;app_name&amp;quot;&lt;/code&gt;で指定されたドメインに対して&lt;code&gt;apps.&amp;quot;app_name&amp;quot;.tls.client_ca_cert_path&lt;/code&gt;を設定することで有効になります。&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;localhost&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;server_name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# Domain name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;https_redirection&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls_cert_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./server.crt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls_cert_key_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./server.key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;client_ca_cert_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./client_cert.ca.crt&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;現在、クライアント認証を有効にしたアプリケーションでのHTTP/3サポートには制限があります。アプリケーションにクライアント認証が設定されている場合、そのアプリケーションではHTTP/3は動作しません。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>ACME (Let's Encrypt)連携</title><link>https://rpxy.io/ja/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/acme/</guid><description>
+&lt;p&gt;&lt;a href="https://rpxy.io/ja/docs/guide/basics/2_tls/"&gt;証明書と秘密鍵の静的ファイルを使用する方法&lt;/a&gt;に加えて、証明書の自動発行と更新、つまり&lt;a href="https://www.rfc-editor.org/rfc/rfc8555"target="_blank" rel="noopener"&gt;RFC8555&lt;/a&gt;として標準化されたACME (Automated Certificate Management Environment)が&lt;code&gt;rpxy&lt;/code&gt;で利用できます。この機能を有効にするには、設定ファイルでACMEが必要な各アプリケーションに以下のエントリを指定します。&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml:config.toml" data-lang="toml:config.toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# TLSポート。ACMEチャレンジにも使用されます。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;listen_port_tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# ACME有効なドメイン名。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# acmeオプションはexperimentalセクションで指定する必要があります。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;app_with_acme&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;server_name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;example.org&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app1.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;https_redirection&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;acme&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c"&gt;# tls_cert_pathやtls_cert_key_pathは指定しないでください&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;ACMEは、ACME &lt;a href="https://www.rfc-editor.org/rfc/rfc8737"target="_blank" rel="noopener"&gt;&lt;code&gt;TLS-ALPN-01&lt;/code&gt; (RFC8737)&lt;/a&gt;プロトコルを使用して&lt;code&gt;server_name&lt;/code&gt;の証明書を取得します。したがって、TLSポート443を公開するだけで済みます。また、この場合、アプリケーションの&lt;code&gt;tls_cert_path&lt;/code&gt;と&lt;code&gt;tls_cert_key_path&lt;/code&gt;を指定する必要はありません。&lt;/p&gt;
+&lt;p&gt;ACME有効なすべてのドメインに対して、証明書と秘密鍵を取得するために以下の設定が参照されます。&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml:config.toml" data-lang="toml:config.toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# グローバルACME設定。指定しない場合、ACMEは無効です。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;acme&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# ACME登録用のメールアドレス。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;email&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;test@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# オプション: ACMEディレクトリURL。[デフォルト: &amp;#34;https://acme-v02.api.letsencrypt.org/directory&amp;#34;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;dir_url&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://acme-staging-v02.api.letsencrypt.org/directory&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# オプション: 取得した証明書と秘密鍵を保存するディレクトリ（現在の作業ディレクトリからの相対パス）。[デフォルト: &amp;#34;./acme_registry&amp;#34;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;registry_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;./acme_registry&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;上記の設定はすべてのACME有効ドメインに共通です。ドメインの所有権を証明するために、HTTPSポートを公開する必要があります。&lt;/p&gt;</description></item><item><title>キャッシュ</title><link>https://rpxy.io/ja/docs/guide/advanced/cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/cache/</guid><description>
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は、一時ファイルとオンメモリオブジェクトの&lt;em&gt;ハイブリッド&lt;/em&gt;方式でレスポンスをキャッシュするアプローチを採用しています。
+&lt;code&gt;config.toml&lt;/code&gt;で&lt;code&gt;[experimental.cache]&lt;/code&gt;を指定すると、一時ファイルとオンメモリオブジェクトを使用したローカルキャッシュ機能を利用できます。設定例は以下の通りです。&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# これを指定するとファイルキャッシュ機能が有効になります&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;cache&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;cache_dir&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./cache&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは現在の作業ディレクトリからの相対パス&amp;#34;./cache&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_entry&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは1k&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65535&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは64k&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size_on_memory&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4096&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは4k。0の場合、常にファイルキャッシュになります。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;HTTPメッセージのコンテキストにおいて&lt;em&gt;ストア可能&lt;/em&gt;なレスポンスは、サイズが&lt;code&gt;max_cache_each_size&lt;/code&gt;バイト以下の場合に保存されます。さらに&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以下の場合はオンメモリオブジェクトとして保存されます。それ以外は一時ファイルとして保存されます。&lt;code&gt;max_cache_each_size&lt;/code&gt;は&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以上である必要があります。&lt;/p&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;rpxy&lt;/code&gt;が再起動するか設定が更新されると、キャッシュはオンメモリテーブルだけでなくファイルシステムからも完全に削除されます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>耐量子暗号</title><link>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</guid><description>
+&lt;h2&gt;概要&lt;span class="hx:absolute hx:-mt-20" id="概要"&gt;&lt;/span&gt;
+&lt;a href="#%e6%a6%82%e8%a6%81" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は耐量子暗号をサポートすることで最先端のセキュリティを提供し、将来の量子コンピューティングの脅威からアプリケーションを保護します。この機能はデフォルトで有効であり、特別な設定は不要です。&lt;/p&gt;
+&lt;h2&gt;耐量子暗号とは?&lt;span class="hx:absolute hx:-mt-20" id="耐量子暗号とは"&gt;&lt;/span&gt;
+&lt;a href="#%e8%80%90%e9%87%8f%e5%ad%90%e6%9a%97%e5%8f%b7%e3%81%a8%e3%81%af" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;耐量子暗号とは、量子コンピュータによる攻撃に対して安全な暗号アルゴリズムのことです。量子コンピューティング技術の進歩に伴い、RSAやECCなどの従来の暗号方式は脆弱になる可能性があります。耐量子アルゴリズムは、強力な量子コンピュータが利用可能になっても安全であるよう設計されています。&lt;/p&gt;
+&lt;h2&gt;rpxyの実装&lt;span class="hx:absolute hx:-mt-20" id="rpxyの実装"&gt;&lt;/span&gt;
+&lt;a href="#rpxy%e3%81%ae%e5%ae%9f%e8%a3%85" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;技術的基盤&lt;span class="hx:absolute hx:-mt-20" id="技術的基盤"&gt;&lt;/span&gt;
+&lt;a href="#%e6%8a%80%e8%a1%93%e7%9a%84%e5%9f%ba%e7%9b%a4" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;a href="https://github.com/rustls/rustls/tree/main/rustls-post-quantum"target="_blank" rel="noopener"&gt;&lt;code&gt;rustls-post-quantum&lt;/code&gt;&lt;/a&gt;ライブラリを通じて耐量子暗号を実現しています。このライブラリはrustlsに耐量子鍵交換アルゴリズムを提供します。この統合により、&lt;code&gt;rpxy&lt;/code&gt;は最小限の設定で最先端の暗号セキュリティを提供できます。&lt;/p&gt;
+&lt;h3&gt;ハイブリッド鍵交換&lt;span class="hx:absolute hx:-mt-20" id="ハイブリッド鍵交換"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%8f%e3%82%a4%e3%83%96%e3%83%aa%e3%83%83%e3%83%89%e9%8d%b5%e4%ba%a4%e6%8f%9b" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は以下を組み合わせた&lt;strong&gt;ハイブリッド耐量子鍵交換&lt;/strong&gt;を実装しています:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;従来の暗号&lt;/strong&gt; (X25519) - 現在の脅威に対する実証済みのセキュリティ&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;耐量子暗号&lt;/strong&gt; (ML-KEM 768) - 量子攻撃からの保護&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このハイブリッドアプローチにより:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;既存システムとの&lt;strong&gt;後方互換性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;量子脅威に対する&lt;strong&gt;将来のセキュリティ確保&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;セキュリティを犠牲にしない&lt;strong&gt;パフォーマンス最適化&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;サポートされるアルゴリズム&lt;span class="hx:absolute hx:-mt-20" id="サポートされるアルゴリズム"&gt;&lt;/span&gt;
+&lt;a href="#%e3%82%b5%e3%83%9d%e3%83%bc%e3%83%88%e3%81%95%e3%82%8c%e3%82%8b%e3%82%a2%e3%83%ab%e3%82%b4%e3%83%aa%e3%82%ba%e3%83%a0" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;X25519MLKEM768&lt;/strong&gt;: &lt;code&gt;rpxy&lt;/code&gt;がサポートするハイブリッド鍵交換アルゴリズムで、X25519楕円曲線暗号とML-KEM 768（旧Kyber768）耐量子暗号を組み合わせたものです。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;プロトコルカバレッジ&lt;span class="hx:absolute hx:-mt-20" id="プロトコルカバレッジ"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%97%e3%83%ad%e3%83%88%e3%82%b3%e3%83%ab%e3%82%ab%e3%83%90%e3%83%ac%e3%83%83%e3%82%b8" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;耐量子暗号はすべてのセキュアプロトコルでサポートされています:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TLS 1.3&lt;/strong&gt; - すべてのHTTPS接続で耐量子鍵交換を使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;QUICとHTTP/3&lt;/strong&gt; - 次世代プロトコルでの耐量子セキュリティ&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自動ネゴシエーション&lt;/strong&gt; - クライアントとサーバーが利用可能な最適なアルゴリズムをネゴシエーション&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
+&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;デフォルトの動作&lt;span class="hx:absolute hx:-mt-20" id="デフォルトの動作"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%87%e3%83%95%e3%82%a9%e3%83%ab%e3%83%88%e3%81%ae%e5%8b%95%e4%bd%9c" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;耐量子暗号は&lt;code&gt;rpxy&lt;/code&gt;で&lt;strong&gt;デフォルトで有効&lt;/strong&gt;です。設定変更は不要です:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# 耐量子TLSはすべてのアプリケーションで自動的に有効になります&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;secure_app&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;server_name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;example.com&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;https_redirection&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;確認方法&lt;span class="hx:absolute hx:-mt-20" id="確認方法"&gt;&lt;/span&gt;
+&lt;a href="#%e7%a2%ba%e8%aa%8d%e6%96%b9%e6%b3%95" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;耐量子鍵交換がアクティブであることを以下の方法で確認できます:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;TLSハンドシェイクログの確認&lt;/strong&gt; - デバッグ出力で&lt;code&gt;MLKEM768&lt;/code&gt;等を探す&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenSSL s_clientの使用&lt;/strong&gt; - 暗号スイートのネゴシエーションを調べる&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ネットワーク分析ツール&lt;/strong&gt; - TLSハンドシェイクパケットを検査する&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;セキュリティの利点&lt;span class="hx:absolute hx:-mt-20" id="セキュリティの利点"&gt;&lt;/span&gt;
+&lt;a href="#%e3%82%bb%e3%82%ad%e3%83%a5%e3%83%aa%e3%83%86%e3%82%a3%e3%81%ae%e5%88%a9%e7%82%b9" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;現在の保護&lt;span class="hx:absolute hx:-mt-20" id="現在の保護"&gt;&lt;/span&gt;
+&lt;a href="#%e7%8f%be%e5%9c%a8%e3%81%ae%e4%bf%9d%e8%ad%b7" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;従来の脅威&lt;/strong&gt; - RSA、ECCは古典的コンピュータに対して依然として安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;サイドチャネル攻撃&lt;/strong&gt; - Rustのメモリ安全性が追加の保護を提供&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;完全前方秘匿性&lt;/strong&gt; - 長期鍵が漏洩してもセッション鍵は安全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;将来の保護&lt;span class="hx:absolute hx:-mt-20" id="将来の保護"&gt;&lt;/span&gt;
+&lt;a href="#%e5%b0%86%e6%9d%a5%e3%81%ae%e4%bf%9d%e8%ad%b7" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;量子耐性&lt;/strong&gt; - 量子攻撃に耐えるよう設計されたアルゴリズム&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;長期的なセキュリティ&lt;/strong&gt; - 今日暗号化されたデータが量子時代でも安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;暗号の俊敏性&lt;/strong&gt; - 標準の進化に合わせた新しいアルゴリズムへの容易な移行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;パフォーマンスへの影響&lt;span class="hx:absolute hx:-mt-20" id="パフォーマンスへの影響"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9%e3%81%b8%e3%81%ae%e5%bd%b1%e9%9f%bf" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;最小限のオーバーヘッド&lt;/strong&gt;: ハイブリッドアプローチにより、優れたパフォーマンスを維持しながら耐量子セキュリティを確保します。鍵交換操作は最適化され、可能な場合はキャッシュされます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;業界標準&lt;span class="hx:absolute hx:-mt-20" id="業界標準"&gt;&lt;/span&gt;
+&lt;a href="#%e6%a5%ad%e7%95%8c%e6%a8%99%e6%ba%96" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;の耐量子実装は以下に準拠しています:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IETFドラフト&lt;/strong&gt; - &lt;a href="https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html"target="_blank" rel="noopener"&gt;draft-kwiatkowski-tls-ecdhe-mlkem-03&lt;/a&gt;および&lt;a href="https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/"target="_blank" rel="noopener"&gt;draft-ietf-tls-hybrid-design&lt;/a&gt;を実装&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NIST標準&lt;/strong&gt; - 標準化されたML-KEM (FIPS 203)暗号プリミティブを使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;業界での採用&lt;/strong&gt; - 同じIETFドラフトに従う他の実装と互換&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;標準の状況&lt;/strong&gt;: X25519MLKEM768アルゴリズムはIETFドラフト仕様（&lt;a href="https://www.ietf.org/archive/id/draft-kwiatkowski-tls-ecdhe-mlkem-03.html"target="_blank" rel="noopener"&gt;draft-kwiatkowski-tls-ecdhe-mlkem-03&lt;/a&gt;および&lt;a href="https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/"target="_blank" rel="noopener"&gt;draft-ietf-tls-hybrid-design&lt;/a&gt;）に基づきながら、標準化されたML-KEM (FIPS 203)耐量子暗号プリミティブを使用しています。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;互換性&lt;span class="hx:absolute hx:-mt-20" id="互換性"&gt;&lt;/span&gt;
+&lt;a href="#%e4%ba%92%e6%8f%9b%e6%80%a7" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;クライアントサポート&lt;span class="hx:absolute hx:-mt-20" id="クライアントサポート"&gt;&lt;/span&gt;
+&lt;a href="#%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%b5%e3%83%9d%e3%83%bc%e3%83%88" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;モダンブラウザやHTTPクライアントは耐量子鍵交換のサポートを進めています:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chrome/Chromium&lt;/strong&gt; - 実験的サポートあり&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Firefox&lt;/strong&gt; - 開発中のサポート&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenSSL&lt;/strong&gt; - 最新バージョンでハイブリッドアルゴリズムをサポート&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;フォールバック動作&lt;span class="hx:absolute hx:-mt-20" id="フォールバック動作"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%95%e3%82%a9%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af%e5%8b%95%e4%bd%9c" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;クライアントが耐量子アルゴリズムをサポートしていない場合、&lt;code&gt;rpxy&lt;/code&gt;は自動的に従来の暗号にフォールバックし、可能な場合はセキュリティを強化しつつ互換性を確保します。&lt;/p&gt;</description></item><item><title>PROXYプロトコル</title><link>https://rpxy.io/ja/docs/guide/advanced/proxy_protocol/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/proxy_protocol/</guid><description>
+&lt;h2&gt;PROXYプロトコルとは?&lt;span class="hx:absolute hx:-mt-20" id="proxyプロトコルとは"&gt;&lt;/span&gt;
+&lt;a href="#proxy%e3%83%97%e3%83%ad%e3%83%88%e3%82%b3%e3%83%ab%e3%81%a8%e3%81%af" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;リバースプロキシやロードバランサーがクライアントとバックエンドサーバーの間に存在する場合、バックエンドサーバーにはプロキシのIPアドレスがソースとして見え、元のクライアントのアドレスは見えません。&lt;a href="https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt"target="_blank" rel="noopener"&gt;PROXYプロトコル&lt;/a&gt;は、&lt;strong&gt;TCPレイヤー&lt;/strong&gt;でこの問題を解決します。上流のプロキシが各TCP接続の先頭に、元のクライアントのIPアドレスとポートを含む小さなヘッダーを付加します。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;や&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーなどのHTTPレベルのソリューションとは異なり、PROXYプロトコルはTCPベースのあらゆるプロトコルに対して透過的に動作し、アプリケーションレベルのクライアントによるなりすましができません。&lt;/p&gt;
+&lt;h2&gt;rpxyでの動作&lt;span class="hx:absolute hx:-mt-20" id="rpxyでの動作"&gt;&lt;/span&gt;
+&lt;a href="#rpxy%e3%81%a7%e3%81%ae%e5%8b%95%e4%bd%9c" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;strong&gt;受信&lt;/strong&gt;TCP接続でのPROXYプロトコルv1/v2ヘッダーの受信をサポートしています。これにより、&lt;code&gt;rpxy&lt;/code&gt;はPROXYプロトコルに対応したL4ロードバランサーやプロキシ（AWS ELB、HAProxy、Nginx、&lt;a href="https://github.com/junkurihara/rpxy-l4"target="_blank" rel="noopener"&gt;rpxy-l4&lt;/a&gt;など）の背後に配置でき、&lt;code&gt;rpxy&lt;/code&gt;はPROXYヘッダーから元のクライアントのソースIPとポートを復元します。&lt;/p&gt;
+&lt;p&gt;一般的なデプロイ構成は以下の通りです:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client --&amp;gt; L4 Load Balancer (PROXY protocol) --&amp;gt; rpxy --&amp;gt; Backend App&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;PROXYプロトコルがない場合、&lt;code&gt;rpxy&lt;/code&gt;にはロードバランサーのIPのみがクライアントアドレスとして見えます。PROXYプロトコルを有効にすると、&lt;code&gt;rpxy&lt;/code&gt;は付加されたヘッダーを解析し、ログと転送に実際のクライアントIPを使用します。&lt;/p&gt;
+&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
+&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;PROXYプロトコルサポートはデフォルトビルドに含まれています。有効にするには、設定ファイルに&lt;code&gt;[experimental.tcp_recv_proxy_protocol]&lt;/code&gt;セクションを追加します:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tcp_recv_proxy_protocol&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;127.0.0.1/32&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;10.0.0.0/8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# 必須、空でないCIDRリスト（IPv4および/またはIPv6）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="c"&gt;# オプション、ミリ秒。デフォルト: 50ms。0 = 5sにフォールバック。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;パラメータ&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;trusted_proxies&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;必須&lt;/strong&gt;。信頼されたプロキシソースを指定するCIDR範囲の空でないリスト。例: &lt;code&gt;[&amp;quot;127.0.0.1/32&amp;quot;, &amp;quot;::1/128&amp;quot;]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;timeout&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;オプション。PROXYヘッダー受信のタイムアウト（ミリ秒）。デフォルトは50ms。0に設定すると5sにフォールバック（非推奨）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;有効にすると、&lt;code&gt;rpxy&lt;/code&gt;は信頼されたプロキシからのすべての受信TCP接続にPROXYプロトコルヘッダーが含まれることを期待し、そこから元のクライアントアドレス情報を抽出します。&lt;/p&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-red-200 hx:bg-red-100 hx:text-red-900 hx:dark:border-red-200/30 hx:dark:bg-red-900/30 hx:dark:text-red-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;セキュリティ警告&lt;/strong&gt;: PROXYヘッダーは認証されません。設定時は、&lt;strong&gt;すべてのTCP接続がリストされた信頼されたプロキシから送信される必要があります&lt;/strong&gt;。クライアントアドレスのなりすましを防ぐため、ファイアウォールルールでアクセスを制限してください。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;制限事項&lt;span class="hx:absolute hx:-mt-20" id="制限事項"&gt;&lt;/span&gt;
+&lt;a href="#%e5%88%b6%e9%99%90%e4%ba%8b%e9%a0%85" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;QUICの基盤となるUDPはコネクションレスであるため、PROXYプロトコルで&lt;strong&gt;HTTP/3 (QUIC)はサポートされていません&lt;/strong&gt;。PROXYプロトコルサポートはTCP上のHTTP/1.1およびHTTP/2にのみ適用されます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;ユースケース&lt;span class="hx:absolute hx:-mt-20" id="ユースケース"&gt;&lt;/span&gt;
+&lt;a href="#%e3%83%a6%e3%83%bc%e3%82%b9%e3%82%b1%e3%83%bc%e3%82%b9" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;**AWS Elastic Load Balancer (ELB)**の背後での&lt;code&gt;rpxy&lt;/code&gt;の運用&lt;/li&gt;
+&lt;li&gt;PROXYプロトコルが有効な&lt;strong&gt;HAProxy&lt;/strong&gt;の背後での&lt;code&gt;rpxy&lt;/code&gt;の運用&lt;/li&gt;
+&lt;li&gt;TCPプロキシとしてPROXYプロトコル付きで設定された&lt;strong&gt;Nginx&lt;/strong&gt;の背後での&lt;code&gt;rpxy&lt;/code&gt;の運用&lt;/li&gt;
+&lt;li&gt;レイヤー4ロードバランシングのための&lt;strong&gt;rpxy-l4&lt;/strong&gt;との連携&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>アップストリームオプション</title><link>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</guid><description>
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は、アップストリームのバックエンドアプリケーションへのリクエストメッセージの転送方法を制御するためのいくつかのオプションを提供しています。これらはリバースプロキシエントリごとに&lt;code&gt;upstream_options&lt;/code&gt;配列で指定します。&lt;/p&gt;
+&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
+&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;利用可能なオプション&lt;span class="hx:absolute hx:-mt-20" id="利用可能なオプション"&gt;&lt;/span&gt;
+&lt;a href="#%e5%88%a9%e7%94%a8%e5%8f%af%e8%83%bd%e3%81%aa%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;&lt;code&gt;keep_original_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="keep_original_host"&gt;&lt;/span&gt;
+&lt;a href="#keep_original_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;クライアントリクエストの元の&lt;code&gt;Host&lt;/code&gt;ヘッダーを保持します。これが&lt;strong&gt;デフォルトの動作&lt;/strong&gt;であり、&lt;code&gt;set_upstream_host&lt;/code&gt;と両方指定された場合はこちらが優先されます。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;set_upstream_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="set_upstream_host"&gt;&lt;/span&gt;
+&lt;a href="#set_upstream_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Host&lt;/code&gt;ヘッダーをアップストリームのホスト名（例: &lt;code&gt;backend.local:8080&lt;/code&gt;）で上書きします。&lt;code&gt;keep_original_host&lt;/code&gt;も指定されている場合は無視されます。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;upgrade_insecure_requests&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="upgrade_insecure_requests"&gt;&lt;/span&gt;
+&lt;a href="#upgrade_insecure_requests" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;転送リクエストに&lt;code&gt;Upgrade-Insecure-Requests: 1&lt;/code&gt;ヘッダーが存在しない場合に追加します。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http11_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http11_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http11_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/1.1を強制します。&lt;code&gt;force_http2_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http2_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http2_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http2_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/2を強制します。&lt;code&gt;force_http11_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;forwarded_header&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="forwarded_header"&gt;&lt;/span&gt;
+&lt;a href="#forwarded_header" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;標準の&lt;a href="https://www.rfc-editor.org/rfc/rfc7239"target="_blank" rel="noopener"&gt;&lt;code&gt;Forwarded&lt;/code&gt;ヘッダー (RFC 7239)&lt;/a&gt;を生成して転送リクエストに追加します。&lt;/p&gt;
+&lt;p&gt;デフォルトでは、&lt;code&gt;rpxy&lt;/code&gt;は設定なしで以下の転送ヘッダーをすべてのリクエストに自動的に追加します:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;ヘッダー&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;クライアントのIPアドレスが追加されます。既に存在する場合、新しいIPはカンマ区切りで追加されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;受信接続に基づいて&lt;code&gt;https&lt;/code&gt;または&lt;code&gt;http&lt;/code&gt;に設定されます。既に存在しない場合のみ追加されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Port&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;リッスンポートに設定されます。既に存在しない場合のみ追加されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-SSL&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;受信接続に基づいて&lt;code&gt;on&lt;/code&gt;または&lt;code&gt;off&lt;/code&gt;に設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Real-IP&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;クライアントのIPアドレスに設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Original-URI&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元のリクエストURIに設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;forwarded_header&lt;/code&gt;オプションは、これらのデフォルトヘッダー&lt;strong&gt;に加えて&lt;/strong&gt;RFC 7239の&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーを追加します:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Forwarded: for=192.0.2.1;proto=https;host=app1.example.com&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;受信リクエストに既に&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーが含まれている場合、&lt;code&gt;rpxy&lt;/code&gt;は&lt;code&gt;forwarded_header&lt;/code&gt;オプションがなくても整合性のために更新します。このオプションは、&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーがまだ存在しない場合に&lt;strong&gt;新しく生成する&lt;/strong&gt;かどうかを制御します。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;例&lt;span class="hx:absolute hx:-mt-20" id="例"&gt;&lt;/span&gt;
+&lt;a href="#%e4%be%8b" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;round_robin&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;force_http11_upstream&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;api.internal:3000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;upgrade_insecure_requests&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
