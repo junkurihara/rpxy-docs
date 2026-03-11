@@ -57,7 +57,9 @@ upstream = [
 | `tcp_listen_backlog` | いいえ | 内部デフォルト | HTTP/1.1 および HTTP/2 リスナーの TCP listen backlog です。 |
 | `max_concurrent_streams` | いいえ | 内部デフォルト | 接続ごとの HTTP/2 同時ストリーム数上限です。 |
 | `max_clients` | いいえ | 内部デフォルト | HTTP/1.1、HTTP/2、HTTP/3 を合算した同時クライアント数の上限です。 |
-| `listen_ipv6` | いいえ | `false` | `true` にすると IPv4 ではなく IPv6 の listen address に bind します。 |
+| `listen_address_v4` | いいえ | `0.0.0.0` | リスナーをバインドする IPv4 アドレスです。 |
+| `listen_address_v6` | いいえ | なし | リスナーをバインドする IPv6 アドレスです。例: `[::]`。省略時に `listen_ipv6 = true` であれば `[::]` にバインドします。省略時に `listen_ipv6` が `false` または未設定であれば IPv6 は無効です。 |
+| `listen_ipv6` | いいえ | `false` | `true` にすると `listen_address_v6` が未指定の場合に `[::]` にバインドします。 |
 | `default_app` | いいえ | なし | 平文 HTTP で `server_name` に一致しないリクエストを処理するフォールバックアプリ名です。HTTPS では TLS の server name を選べないため、不明なホストは拒否されます。 |
 
 ## アプリケーション定義

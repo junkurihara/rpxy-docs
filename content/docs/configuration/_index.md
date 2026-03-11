@@ -60,7 +60,9 @@ upstream = [
 | `tcp_listen_backlog` | No | Internal default | TCP listen backlog for HTTP/1.1 and HTTP/2 listeners. |
 | `max_concurrent_streams` | No | Internal default | HTTP/2 concurrent stream limit per connection. |
 | `max_clients` | No | Internal default | Total concurrent client limit across HTTP/1.1, HTTP/2, and HTTP/3. |
-| `listen_ipv6` | No | `false` | If `true`, bind to IPv6 listen addresses instead of IPv4. |
+| `listen_address_v4` | No | `0.0.0.0` | IPv4 address to bind listeners to. |
+| `listen_address_v6` | No | None | IPv6 address to bind listeners to, for example `[::]`. If omitted and `listen_ipv6 = true`, binds to `[::]`. If omitted and `listen_ipv6` is `false` or unset, IPv6 is disabled. |
+| `listen_ipv6` | No | `false` | If `true`, bind to `[::]` when `listen_address_v6` is not specified. |
 | `default_app` | No | None | Fallback app name for unmatched plaintext HTTP requests. This applies only to HTTP. Unknown HTTPS requests are still rejected because no TLS server name can be selected. |
 
 ## Application Definition
