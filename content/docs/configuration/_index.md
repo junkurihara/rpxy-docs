@@ -57,11 +57,11 @@ upstream = [
 | `listen_port` | No | None | TCP port for plaintext HTTP. At least one of `listen_port` or `listen_port_tls` must be specified. |
 | `listen_port_tls` | No | None | TCP port for HTTPS/TLS. Required if you serve TLS, use ACME, or enable HTTP/3. |
 | `https_redirection_port` | No | Same as `listen_port_tls` when TLS is enabled | External HTTPS port used in `301` redirects and `Alt-Svc` headers when the public HTTPS port differs from `listen_port_tls`, for example behind container port mapping or firewall redirection. |
-| `tcp_listen_backlog` | No | Internal default | TCP listen backlog for HTTP/1.1 and HTTP/2 listeners. |
-| `max_concurrent_streams` | No | Internal default | HTTP/2 concurrent stream limit per connection. |
-| `max_clients` | No | Internal default | Total concurrent client limit across HTTP/1.1, HTTP/2, and HTTP/3. |
-| `listen_address_v4` | No | `0.0.0.0` | IPv4 address to bind listeners to. |
-| `listen_address_v6` | No | None | IPv6 address to bind listeners to, for example `[::]`. If omitted and `listen_ipv6 = true`, binds to `[::]`. If omitted and `listen_ipv6` is `false` or unset, IPv6 is disabled. |
+| `tcp_listen_backlog` | No | `1024` | TCP listen backlog for HTTP/1.1 and HTTP/2 listeners. |
+| `max_concurrent_streams` | No | `64` | HTTP/2 concurrent stream limit per connection. |
+| `max_clients` | No | `512` | Total concurrent client limit across HTTP/1.1, HTTP/2, and HTTP/3. |
+| `listen_address_v4` | No | `0.0.0.0` | IPv4 address(es) to bind listeners to. Accepts a single string or an array of strings for binding to multiple interfaces, for example `['192.168.1.1', '10.0.0.1']`. When multiple addresses are specified, the wildcard `0.0.0.0` must not be included. Duplicate addresses are silently ignored. |
+| `listen_address_v6` | No | None | IPv6 address(es) to bind listeners to. Accepts a single string or an array of strings, for example `'[::]'` or `['::1', 'fe80::1']`. If omitted and `listen_ipv6 = true`, binds to `[::]`. If omitted and `listen_ipv6` is `false` or unset, IPv6 is disabled. When multiple addresses are specified, the wildcard `::` must not be included. Duplicate addresses are silently ignored. |
 | `listen_ipv6` | No | `false` | If `true`, bind to `[::]` when `listen_address_v6` is not specified. |
 | `default_app` | No | None | Fallback app name for unmatched plaintext HTTP requests. This applies only to HTTP. Unknown HTTPS requests are still rejected because no TLS server name can be selected. |
 
@@ -140,12 +140,12 @@ Add this table to enable HTTP/3 support. See [HTTP/3](/docs/guide/advanced/http3
 
 | Option | Required | Default | Description |
 | --- | --- | --- | --- |
-| `alt_svc_max_age` | No | Internal default | `Alt-Svc` max-age in seconds. |
-| `request_max_body_size` | No | Internal default | Maximum HTTP/3 request body size in bytes. |
-| `max_concurrent_connections` | No | Internal default | Concurrent QUIC connection limit. |
-| `max_concurrent_bidistream` | No | Internal default | Bidirectional QUIC stream limit. |
-| `max_concurrent_unistream` | No | Internal default | Unidirectional QUIC stream limit. |
-| `max_idle_timeout` | No | Internal default | QUIC idle timeout in seconds. `0` means infinite timeout. |
+| `alt_svc_max_age` | No | `3600` | `Alt-Svc` max-age in seconds. |
+| `request_max_body_size` | No | `268435456` (256 MB) | Maximum HTTP/3 request body size in bytes. |
+| `max_concurrent_connections` | No | `4096` | Concurrent QUIC connection limit. |
+| `max_concurrent_bidistream` | No | `64` | Bidirectional QUIC stream limit. |
+| `max_concurrent_unistream` | No | `64` | Unidirectional QUIC stream limit. |
+| `max_idle_timeout` | No | `10` | QUIC idle timeout in seconds. `0` means infinite timeout. |
 
 ### `[experimental.cache]`
 

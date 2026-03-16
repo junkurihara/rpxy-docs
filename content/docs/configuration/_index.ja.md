@@ -54,11 +54,11 @@ upstream = [
 | `listen_port` | いいえ | なし | 平文 HTTP を待ち受ける TCP ポートです。`listen_port` と `listen_port_tls` の少なくとも一方は必須です。 |
 | `listen_port_tls` | いいえ | なし | HTTPS/TLS を待ち受ける TCP ポートです。TLS を使う場合、ACME を使う場合、HTTP/3 を有効にする場合に必要です。 |
 | `https_redirection_port` | いいえ | TLS 有効時は `listen_port_tls` と同じ | `301` リダイレクトや `Alt-Svc` ヘッダに載せる外向けの HTTPS ポートです。コンテナのポートマッピングやファイアウォール越しで公開ポートが `listen_port_tls` と異なる場合に使います。 |
-| `tcp_listen_backlog` | いいえ | 内部デフォルト | HTTP/1.1 および HTTP/2 リスナーの TCP listen backlog です。 |
-| `max_concurrent_streams` | いいえ | 内部デフォルト | 接続ごとの HTTP/2 同時ストリーム数上限です。 |
-| `max_clients` | いいえ | 内部デフォルト | HTTP/1.1、HTTP/2、HTTP/3 を合算した同時クライアント数の上限です。 |
-| `listen_address_v4` | いいえ | `0.0.0.0` | リスナーをバインドする IPv4 アドレスです。 |
-| `listen_address_v6` | いいえ | なし | リスナーをバインドする IPv6 アドレスです。例: `[::]`。省略時に `listen_ipv6 = true` であれば `[::]` にバインドします。省略時に `listen_ipv6` が `false` または未設定であれば IPv6 は無効です。 |
+| `tcp_listen_backlog` | いいえ | `1024` | HTTP/1.1 および HTTP/2 リスナーの TCP listen backlog です。 |
+| `max_concurrent_streams` | いいえ | `64` | 接続ごとの HTTP/2 同時ストリーム数上限です。 |
+| `max_clients` | いいえ | `512` | HTTP/1.1、HTTP/2、HTTP/3 を合算した同時クライアント数の上限です。 |
+| `listen_address_v4` | いいえ | `0.0.0.0` | リスナーをバインドする IPv4 アドレスです。単一の文字列または文字列の配列を指定でき、複数のインターフェースにバインドできます。例: `['192.168.1.1', '10.0.0.1']`。複数アドレス指定時にワイルドカード `0.0.0.0` は含められません。重複アドレスは自動的に無視されます。 |
+| `listen_address_v6` | いいえ | なし | リスナーをバインドする IPv6 アドレスです。単一の文字列または文字列の配列を指定できます。例: `'[::]'` や `['::1', 'fe80::1']`。省略時に `listen_ipv6 = true` であれば `[::]` にバインドします。省略時に `listen_ipv6` が `false` または未設定であれば IPv6 は無効です。複数アドレス指定時にワイルドカード `::` は含められません。重複アドレスは自動的に無視されます。 |
 | `listen_ipv6` | いいえ | `false` | `true` にすると `listen_address_v6` が未指定の場合に `[::]` にバインドします。 |
 | `default_app` | いいえ | なし | 平文 HTTP で `server_name` に一致しないリクエストを処理するフォールバックアプリ名です。HTTPS では TLS の server name を選べないため、不明なホストは拒否されます。 |
 
@@ -137,12 +137,12 @@ upstream = [
 
 | オプション | 必須 | デフォルト | 説明 |
 | --- | --- | --- | --- |
-| `alt_svc_max_age` | いいえ | 内部デフォルト | `Alt-Svc` の max-age 秒数です。 |
-| `request_max_body_size` | いいえ | 内部デフォルト | HTTP/3 リクエストボディの最大サイズです。 |
-| `max_concurrent_connections` | いいえ | 内部デフォルト | QUIC の同時接続数上限です。 |
-| `max_concurrent_bidistream` | いいえ | 内部デフォルト | 双方向 QUIC ストリーム数上限です。 |
-| `max_concurrent_unistream` | いいえ | 内部デフォルト | 単方向 QUIC ストリーム数上限です。 |
-| `max_idle_timeout` | いいえ | 内部デフォルト | QUIC のアイドルタイムアウト秒数です。`0` は無制限を意味します。 |
+| `alt_svc_max_age` | いいえ | `3600` | `Alt-Svc` の max-age 秒数です。 |
+| `request_max_body_size` | いいえ | `268435456` (256 MB) | HTTP/3 リクエストボディの最大サイズ（バイト単位）です。 |
+| `max_concurrent_connections` | いいえ | `4096` | QUIC の同時接続数上限です。 |
+| `max_concurrent_bidistream` | いいえ | `64` | 双方向 QUIC ストリーム数上限です。 |
+| `max_concurrent_unistream` | いいえ | `64` | 単方向 QUIC ストリーム数上限です。 |
+| `max_idle_timeout` | いいえ | `10` | QUIC のアイドルタイムアウト秒数です。`0` は無制限を意味します。 |
 
 ### `[experimental.cache]`
 
