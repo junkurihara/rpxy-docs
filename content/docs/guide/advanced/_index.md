@@ -18,4 +18,5 @@ This section covers advanced topics and features of `rpxy` that are useful for m
 {{< card link="upstream_options" title="Upstream Options" icon="adjustments" >}}
 {{< card link="post_quantum" title="Post-Quantum Cryptography" icon="shield-check" >}}
 {{< card link="proxy_protocol" title="PROXY Protocol" icon="globe-alt" >}}
+{{< card link="health_check" title="Active Health Check" icon="heart" >}}
 {{< /cards >}}

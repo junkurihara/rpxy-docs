@@ -26,6 +26,7 @@ This page is intentionally dictionary-like. Detailed behavior and deployment exa
 - [Reverse Proxy Rules](#reverse-proxy-rules)
 - [Upstream Entries](#upstream-entries)
 - [Upstream Option Values](#upstream-option-values)
+- [Health Check Options](#health-check-options)
 - [Experimental Settings](#experimental-settings)
   - [`[experimental]`](#experimental)
   - [`[experimental.h3]`](#experimentalh3)
@@ -98,8 +99,9 @@ Each app can contain one or more `[[apps.<app_name>.reverse_proxy]]` entries.
 | `path` | No | None | Path prefix to match, such as `"/api"` or `"/static"`. Longest-prefix match wins. |
 | `replace_path` | No | Preserve original path | Rewritten prefix forwarded upstream. |
 | `upstream` | Yes | None | List of backend destinations. |
-| `load_balance` | No | `none` | Backend selection strategy. Supported values are `none`, `round_robin`, `random`, and `sticky`. |
+| `load_balance` | No | `none` | Backend selection strategy. Supported values are `none`, `round_robin`, `random`, `sticky`, and `primary_backup`. |
 | `upstream_options` | No | None | List of request-forwarding behaviors. See [Upstream Options](/docs/guide/advanced/upstream_options). |
+| `health_check` | No | None | Active health check configuration. Set `true` for TCP check with defaults, or use a table for full configuration. See [Active Health Check](/docs/guide/advanced/health_check). |
 
 ## Upstream Entries
 
@@ -122,6 +124,20 @@ See [Upstream Options](/docs/guide/advanced/upstream_options) for detailed expla
 | `force_http11_upstream` | Force HTTP/1.1 for upstream connections. |
 | `force_http2_upstream` | Force HTTP/2 for upstream connections. |
 | `forwarded_header` | Generate the RFC 7239 `Forwarded` header in addition to the default `X-Forwarded-*` headers. |
+
+## Health Check Options
+
+These options live under `apps.<app_name>.reverse_proxy.health_check`. Alternatively, set `health_check = true` for a TCP check with all defaults. See [Active Health Check](/docs/guide/advanced/health_check) for detailed usage.
+
+| Option | Required | Default | Description |
+| --- | --- | --- | --- |
+| `type` | No | `"tcp"` | Check type: `"tcp"` or `"http"`. |
+| `interval` | No | `10` | Seconds between health check probes. |
+| `timeout` | No | `5` | Timeout in seconds per check attempt. Must be less than `interval`. |
+| `unhealthy_threshold` | No | `3` | Consecutive failures before marking an upstream unhealthy. |
+| `healthy_threshold` | No | `2` | Consecutive successes before marking an upstream healthy again. |
+| `path` | Yes for `"http"` | None | HTTP check endpoint path. Must start with `/`. |
+| `expected_status` | No | `200` | Expected HTTP status code for HTTP checks. |
 
 ## Experimental Settings
 
@@ -186,4 +202,5 @@ Add this table to accept inbound HAProxy PROXY protocol headers from a trusted L
 - [HTTP/3](/docs/guide/advanced/http3)
 - [Caching](/docs/guide/advanced/cache)
 - [ACME (Let's Encrypt) Integration](/docs/guide/advanced/acme)
+- [Active Health Check](/docs/guide/advanced/health_check)
 - [PROXY Protocol](/docs/guide/advanced/proxy_protocol)

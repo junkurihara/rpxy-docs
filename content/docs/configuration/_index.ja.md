@@ -23,6 +23,7 @@ weight: 30
 - [リバースプロキシ設定](#リバースプロキシ設定)
 - [Upstream エントリ](#upstream-エントリ)
 - [`upstream_options` の値](#upstream_options-の値)
+- [ヘルスチェックオプション](#ヘルスチェックオプション)
 - [Experimental 設定](#experimental-設定)
   - [`[experimental]`](#experimental)
   - [`[experimental.h3]`](#experimentalh3)
@@ -95,8 +96,9 @@ upstream = [
 | `path` | いいえ | なし | `"/api"` や `"/static"` のようなパス接頭辞です。最長一致で選ばれます。 |
 | `replace_path` | いいえ | 元のパスを保持 | upstream へ転送する際に置き換えるパス接頭辞です。 |
 | `upstream` | はい | なし | バックエンド転送先の一覧です。 |
-| `load_balance` | いいえ | `none` | バックエンド選択方式です。`none`、`round_robin`、`random`、`sticky` が使えます。 |
+| `load_balance` | いいえ | `none` | バックエンド選択方式です。`none`、`round_robin`、`random`、`sticky`、`primary_backup`が使えます。 |
 | `upstream_options` | いいえ | なし | リクエスト転送時の挙動を制御するオプション一覧です。詳細は [Upstream Options](/docs/guide/advanced/upstream_options) を参照してください。 |
+| `health_check` | いいえ | なし | アクティブヘルスチェックの設定です。デフォルトのTCPチェックには`true`を設定するか、テーブルで詳細設定できます。詳細は[アクティブヘルスチェック](/docs/guide/advanced/health_check)を参照してください。 |
 
 ## Upstream エントリ
 
@@ -119,6 +121,20 @@ upstream = [
 | `force_http11_upstream` | upstream 接続を HTTP/1.1 に固定します。 |
 | `force_http2_upstream` | upstream 接続を HTTP/2 に固定します。 |
 | `forwarded_header` | デフォルトの `X-Forwarded-*` ヘッダに加えて、RFC 7239 の `Forwarded` ヘッダを生成します。 |
+
+## ヘルスチェックオプション
+
+これらのオプションは`apps.<app_name>.reverse_proxy.health_check`に書きます。または`health_check = true`でデフォルトのTCPチェックを有効にできます。詳細は[アクティブヘルスチェック](/docs/guide/advanced/health_check)を参照してください。
+
+| オプション | 必須 | デフォルト | 説明 |
+| --- | --- | --- | --- |
+| `type` | いいえ | `"tcp"` | チェックタイプ: `"tcp"`または`"http"`。 |
+| `interval` | いいえ | `10` | ヘルスチェックプローブ間の秒数。 |
+| `timeout` | いいえ | `5` | チェック1回あたりのタイムアウト秒数。`interval`より小さい値にする必要があります。 |
+| `unhealthy_threshold` | いいえ | `3` | アップストリームを異常と判定するまでの連続失敗回数。 |
+| `healthy_threshold` | いいえ | `2` | アップストリームを正常と判定するまでの連続成功回数。 |
+| `path` | `"http"`の場合は必須 | なし | HTTPチェックのエンドポイントパス。`/`で始まる必要があります。 |
+| `expected_status` | いいえ | `200` | HTTPチェックで期待するHTTPステータスコード。 |
 
 ## Experimental 設定
 
@@ -183,4 +199,5 @@ upstream = [
 - [HTTP/3](/docs/guide/advanced/http3)
 - [キャッシュ](/docs/guide/advanced/cache)
 - [ACME (Let's Encrypt) 連携](/docs/guide/advanced/acme)
+- [アクティブヘルスチェック](/docs/guide/advanced/health_check)
 - [PROXY Protocol](/docs/guide/advanced/proxy_protocol)

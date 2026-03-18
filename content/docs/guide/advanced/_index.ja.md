@@ -16,4 +16,5 @@ weight: 4
 {{< card link="upstream_options" title="アップストリームオプション" icon="adjustments" >}}
 {{< card link="post_quantum" title="耐量子暗号" icon="shield-check" >}}
 {{< card link="proxy_protocol" title="PROXYプロトコル" icon="globe-alt" >}}
+{{< card link="health_check" title="アクティブヘルスチェック" icon="heart" >}}
 {{< /cards >}}

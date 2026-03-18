@@ -5,9 +5,9 @@ toc: false
 layout: hextra-home
 ---
 
-{{< hextra/hero-badge link="https://github.com/junkurihara/rust-rpxy/releases/tag/0.11.1" >}}
+{{< hextra/hero-badge link="https://github.com/junkurihara/rust-rpxy/releases/tag/0.11.3" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>v0.11.2</span>
+  <span>v0.11.3</span>
   {{< icon name="arrow-circle-right" attributes="height=14" >}}
 {{< /hextra/hero-badge >}}
 
