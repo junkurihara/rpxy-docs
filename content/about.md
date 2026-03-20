@@ -22,3 +22,7 @@ type: about
 - [`s2n-quic`](https://github.com/aws/s2n-quic)
 
 - [`rustls-acme`](https://github.com/FlorianUekermann/rustls-acme)
+
+## Supporters
+
+If you would like to support the development of `rpxy`, please consider sponsoring via [GitHub Sponsors](https://github.com/sponsors/junkurihara).
