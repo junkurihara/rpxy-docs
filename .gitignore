@@ -3,3 +3,6 @@
 public/
 obsolete/
 isableFastRender/
+.tmp
+.claude
+.vscode
