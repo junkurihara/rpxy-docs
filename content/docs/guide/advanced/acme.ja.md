@@ -1,7 +1,8 @@
 ---
 title: ACME (Let's Encrypt)連携
 type: docs
-prev: /docs/guide/advanced/cache
+prev: /docs/guide/advanced/client_auth
+next: /docs/guide/advanced/cache
 weight: 3
 sidebar:
   open: true

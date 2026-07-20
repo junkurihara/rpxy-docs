@@ -8,14 +8,6 @@ sidebar:
   open: true
 ---
 
-{{< callout type="warning" >}}
-**Version 0.10.0 Breaking Changes**:
-- The non-`watch` execute option has been removed. Dynamic configuration reloading is now enabled by default.
-- New `log-dir` option added to specify the log directory location.
-- Log files are now separated into access logs and error logs.
-{{< /callout >}}
-
-
 ## Building from Source
 
 You can build an executable binary yourself by checking out this Git repository.
@@ -69,7 +61,7 @@ If you are using self-signed certificates for the backend applications, you need
 
 
 {{< callout type="info" >}}
-**Dynamic Configuration**: Since version 0.10.0, `rpxy` monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is now the default behavior.
+**Dynamic Configuration**: `rpxy` monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is the default behavior.
 {{< /callout >}}
 
 {{< callout type="info" >}}

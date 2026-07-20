@@ -2,7 +2,8 @@
 title: PROXY Protocol
 type: docs
 prev: /docs/guide/advanced/post_quantum
-weight: 6
+next: /docs/guide/advanced/health_check
+weight: 8
 sidebar:
   open: true
 ---

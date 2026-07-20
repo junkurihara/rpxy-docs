@@ -63,6 +63,10 @@ In the above setting, by specifying `default_app` entry, any *cleartext HTTP* re
 Any *HTTPS* request with no matched `server_name` will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.
 {{< /callout >}}
 
+{{< callout type="warning" >}}
+On the `default_app` fallback path, `rpxy` force-overwrites the outgoing `Host` header with the default app's configured `server_name`, and the untrusted original host is exposed only in `X-Forwarded-Host` / `Forwarded: host=`. Backends must treat those values as untrusted observational data.
+{{< /callout >}}
+
 ## Upstream Connection over HTTPS to Backend Application
 
 In the above example, request messages are routed to backend applications over cleartext HTTP. If a backend channel to an app needs to established over TLS, e.g., requests forwarded to `https://app1.localdomain:8080`, you need to enable a `tls` option for the `location` requiring HTTPS connection.
@@ -71,30 +75,37 @@ In the above example, request messages are routed to backend applications over c
 [apps.app_backend_https]
 server_name = "app_backend_https.example.com"
 reverse_proxy = [
-  { location = 'app1.localdomain:8080', tls = true }
+  { upstream = [{ location = 'app1.localdomain:8080', tls = true }] }
 ]
 ```
 
 ## Load Balancing with Multiple Backend Locations
 
-You can specify multiple backend locations in the `reverse_proxy` array for *load-balancing* with an appropriate `load_balance` option. Currently it works with the following options:
+You can specify multiple backend locations in the `upstream` array for *load-balancing* with an appropriate `load_balance` option. Currently it works with the following options:
 
 - `round_robin`: for each request, one of the backend locations is chosen in a round-robin fashion;
 - `random`: for each request, one of the backend locations is chosen randomly;
-- `sticky`: a backend location is chosen as `round_robin` but the *session-persistence* is guaranteed using cookie.
+- `sticky`: a backend location is chosen as `round_robin` but the *session-persistence* is guaranteed using cookie;
+- `primary_backup`: always routes to the first healthy backend location; requires [active health check](/docs/guide/advanced/health_check) to be enabled.
 
-If `load_balance` is not specified, the first backend location is always chosen.
+If `load_balance` is not specified (`none`), the first backend location is always chosen; when the health check is enabled, the first healthy one is picked.
 
 ```toml
 [apps."app_name"]
 server_name = 'app1.example.com'
-reverse_proxy = [
+
+[[apps."app_name".reverse_proxy]]
+upstream = [
   { location = 'app1.local:8080' },
-  { location = 'app2.local:8000' }
+  { location = 'app2.local:8000' },
 ]
-load_balance = 'round_robin' # or 'random' or 'sticky'
+load_balance = 'round_robin' # or 'random' or 'sticky' or 'primary_backup'
 ```
 
 {{< callout type="info" >}}
-Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.
+Using `sticky` requires the global `sticky_cookie_secret` option: a 32-byte secret encoded as unpadded base64url, used to seal the sticky-session cookie (`rpxy_sticky_token`) as an opaque AEAD blob. Generate one with `openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'`.
+{{< /callout >}}
+
+{{< callout type="info" >}}
+With the [active health check](/docs/guide/advanced/health_check) enabled, `rpxy` periodically probes the backend locations and removes unhealthy ones from the load balancing pool.
 {{< /callout >}}

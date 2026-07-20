@@ -14,6 +14,7 @@ weight: 4
 {{< card link="acme" title="ACME (Let's Encrypt)連携" icon="ticket" >}}
 {{< card link="cache" title="キャッシュ" icon="save" >}}
 {{< card link="upstream_options" title="アップストリームオプション" icon="adjustments" >}}
+{{< card link="trusted_proxies" title="Trusted Forwarded Proxies" icon="shield-exclamation" >}}
 {{< card link="post_quantum" title="耐量子暗号" icon="shield-check" >}}
 {{< card link="proxy_protocol" title="PROXYプロトコル" icon="globe-alt" >}}
 {{< card link="health_check" title="アクティブヘルスチェック" icon="heart" >}}

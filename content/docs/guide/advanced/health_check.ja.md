@@ -2,7 +2,7 @@
 title: アクティブヘルスチェック
 type: docs
 prev: /docs/guide/advanced/proxy_protocol
-weight: 7
+weight: 9
 sidebar:
   open: true
 ---

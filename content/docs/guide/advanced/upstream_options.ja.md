@@ -2,8 +2,8 @@
 title: アップストリームオプション
 type: docs
 prev: /docs/guide/advanced/cache
-next: /docs/guide/advanced/post_quantum
-weight: 45
+next: /docs/guide/advanced/trusted_proxies
+weight: 5
 sidebar:
   open: true
 ---
@@ -49,16 +49,21 @@ upstream_options = [
 
 標準の[`Forwarded`ヘッダー (RFC 7239)](https://www.rfc-editor.org/rfc/rfc7239)を生成して転送リクエストに追加します。
 
-デフォルトでは、`rpxy`は設定なしで以下の転送ヘッダーをすべてのリクエストに自動的に追加します:
+デフォルトでは、`rpxy`は設定なしで以下の転送ヘッダーをすべてのリクエストで自動的に再構築します:
 
 | ヘッダー | 説明 |
 | --- | --- |
-| `X-Forwarded-For` | クライアントのIPアドレスが追加されます。既に存在する場合、新しいIPはカンマ区切りで追加されます。 |
-| `X-Forwarded-Proto` | 受信接続に基づいて`https`または`http`に設定されます。既に存在しない場合のみ追加されます。 |
-| `X-Forwarded-Port` | リッスンポートに設定されます。既に存在しない場合のみ追加されます。 |
+| `X-Forwarded-For` | 転送チェーンから再構築されます。デフォルト（`trusted_forwarded_proxies`未設定）では受信した値は無視され、直接の接続元IPアドレスのみが載ります。直接の接続元が信頼されたプロキシの場合は、受信したチェーンが保持・正規化されます。 |
+| `X-Forwarded-Proto` | 受信接続に基づいて`https`または`http`で上書きされます。 |
+| `X-Forwarded-Port` | リッスンポートで上書きされます。 |
+| `X-Forwarded-Host` | 元の（クライアントから見た）ホスト名で上書きされます。クライアントが指定した値がそのまま転送されることはありません。参考情報としてのみ扱ってください。 |
 | `X-Forwarded-SSL` | 受信接続に基づいて`on`または`off`に設定されます。 |
 | `X-Real-IP` | クライアントのIPアドレスに設定されます。 |
 | `X-Original-URI` | 元のリクエストURIに設定されます。 |
+
+{{< callout type="warning" >}}
+v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。`rpxy`の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション`trusted_forwarded_proxies`を設定してください。詳細は[Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies)を参照してください。
+{{< /callout >}}
 
 `forwarded_header`オプションは、これらのデフォルトヘッダー**に加えて**RFC 7239の`Forwarded`ヘッダーを追加します:
 
@@ -67,7 +72,7 @@ Forwarded: for=192.0.2.1;proto=https;host=app1.example.com
 ```
 
 {{< callout type="info" >}}
-受信リクエストに既に`Forwarded`ヘッダーが含まれている場合、`rpxy`は`forwarded_header`オプションがなくても整合性のために更新します。このオプションは、`Forwarded`ヘッダーがまだ存在しない場合に**新しく生成する**かどうかを制御します。
+受信リクエストに既に`Forwarded`ヘッダーが含まれている場合、`rpxy`は`forwarded_header`オプションがなくても（`trusted_forwarded_proxies`に従って）整合性のために更新します。このオプションは、`Forwarded`ヘッダーがまだ存在しない場合に**新しく生成する**かどうかを制御します。
 {{< /callout >}}
 
 ## 例

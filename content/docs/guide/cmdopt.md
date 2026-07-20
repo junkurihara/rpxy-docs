@@ -21,7 +21,7 @@ You can run `rpxy` with a configuration file like
 % ./path/to/rpxy --config config.toml
 ```
 
-Since version 0.10.0, `rpxy` automatically monitors configuration file changes in real-time and applies them immediately without restarting the process.
+`rpxy` automatically monitors configuration file changes in real-time and applies them immediately without restarting the process.
 
 The full help messages are given follows.
 

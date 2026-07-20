@@ -63,6 +63,10 @@ reverse_proxy = [{ upstream = [{ location = 'app2.local:8888' }] }]
 `server_name`に一致しない*HTTPS*リクエストは拒否されます。これは、不明なサーバー名（サーバー証明書のCommon Name）に対してセキュア接続を確立できないためです。
 {{< /callout >}}
 
+{{< callout type="warning" >}}
+`default_app`へのフォールバック経路では、`rpxy`は送出する`Host`ヘッダーをデフォルトアプリに設定された`server_name`で強制的に上書きし、元のホスト名は`X-Forwarded-Host` / `Forwarded: host=`にのみ載ります。バックエンドはこれらの値を信頼できない参考情報として扱う必要があります。
+{{< /callout >}}
+
 ## バックエンドアプリケーションへのHTTPS接続
 
 上記の例では、リクエストメッセージは平文HTTPでバックエンドアプリケーションにルーティングされます。アプリへのバックエンドチャネルをTLS経由で確立する必要がある場合（例: `https://app1.localdomain:8080`へのリクエスト転送）、HTTPS接続が必要な`location`に対して`tls`オプションを有効にする必要があります。
@@ -71,30 +75,37 @@ reverse_proxy = [{ upstream = [{ location = 'app2.local:8888' }] }]
 [apps.app_backend_https]
 server_name = "app_backend_https.example.com"
 reverse_proxy = [
-  { location = 'app1.localdomain:8080', tls = true }
+  { upstream = [{ location = 'app1.localdomain:8080', tls = true }] }
 ]
 ```
 
 ## 複数バックエンドによるロードバランシング
 
-適切な`load_balance`オプションを指定して、`reverse_proxy`配列に複数のバックエンドロケーションを指定することで*ロードバランシング*が可能です。現在、以下のオプションが利用できます:
+適切な`load_balance`オプションを指定して、`upstream`配列に複数のバックエンドロケーションを指定することで*ロードバランシング*が可能です。現在、以下のオプションが利用できます:
 
 - `round_robin`: リクエストごとに、バックエンドロケーションがラウンドロビン方式で選択されます;
 - `random`: リクエストごとに、バックエンドロケーションがランダムに選択されます;
-- `sticky`: `round_robin`と同様にバックエンドロケーションが選択されますが、Cookieを使用した*セッション永続性*が保証されます。
+- `sticky`: `round_robin`と同様にバックエンドロケーションが選択されますが、Cookieを使用した*セッション永続性*が保証されます;
+- `primary_backup`: 常に最初の正常なバックエンドロケーションにルーティングします。[アクティブヘルスチェック](/docs/guide/advanced/health_check)の有効化が必要です。
 
-`load_balance`が指定されていない場合、最初のバックエンドロケーションが常に選択されます。
+`load_balance`が指定されていない場合（`none`）、最初のバックエンドロケーションが常に選択されます。ヘルスチェックが有効な場合は、最初の正常なロケーションが選択されます。
 
 ```toml
 [apps."app_name"]
 server_name = 'app1.example.com'
-reverse_proxy = [
+
+[[apps."app_name".reverse_proxy]]
+upstream = [
   { location = 'app1.local:8080' },
-  { location = 'app2.local:8000' }
+  { location = 'app2.local:8000' },
 ]
-load_balance = 'round_robin' # or 'random' or 'sticky'
+load_balance = 'round_robin' # または 'random'、'sticky'、'primary_backup'
 ```
 
 {{< callout type="info" >}}
-現在、ヘルスチェック機能は実装されていません。バックエンドロケーションがダウンしている場合、そのロケーションへのリクエストは失敗します。
+`sticky`を使う場合は、グローバルオプション`sticky_cookie_secret`が必須です。パディングなしbase64urlでエンコードされた32バイトの秘密鍵で、stickyセッションのクッキー（`rpxy_sticky_token`）を不透明なAEAD暗号文として封印するために使われます。`openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'`で生成できます。
+{{< /callout >}}
+
+{{< callout type="info" >}}
+[アクティブヘルスチェック](/docs/guide/advanced/health_check)を有効にすると、`rpxy`はバックエンドロケーションを定期的に監視し、異常なロケーションをロードバランシングの対象から除外します。
 {{< /callout >}}
