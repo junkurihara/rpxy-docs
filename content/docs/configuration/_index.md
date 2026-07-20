@@ -63,12 +63,18 @@ upstream = [
 | `max_clients` | No | `512` | Shared cap for accepted HTTP/1.1 and HTTP/2 TCP connections. A slot is reserved right after TCP accept and held through PROXY protocol parsing, the TLS handshake, and the whole connection lifetime. `0` rejects every HTTP/1.1 and HTTP/2 connection. HTTP/3 is not counted here; it has its own per-endpoint limit under [`[experimental.h3]`](#experimentalh3). |
 | `request_max_body_size` | No | `268435456` (256 MiB) | Maximum inbound request body size shared by HTTP/1.1, HTTP/2, and HTTP/3. Accepts an integer in bytes or a string with a binary suffix such as `"256k"`, `"10m"`, or `"1g"`. Requests whose `Content-Length` exceeds the limit are rejected with `413` before any upstream contact; oversize chunked/streamed bodies are detected mid-flight. Set `0` or `"unlimited"` to disable the limit. |
 | `trusted_forwarded_proxies` | No | None (no proxy trusted) | List of proxies whose incoming `X-Forwarded-*` / `Forwarded` headers are trusted. Accepts CIDR blocks and the built-in aliases `"cloudflare"`, `"fastly"`, and `"cloudfront"`. If omitted or empty, forwarding headers from preceding peers are ignored and rebuilt from the immediate peer address. See [Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies). |
-| `sticky_cookie_secret` | Required when `load_balance = "sticky"` is used | None | 32-byte secret encoded as unpadded base64url, used to seal sticky-session cookies as opaque AEAD blobs. Generate with `openssl rand -base64 32 \| tr '+/' '-_' \| tr -d '=\n'`. Rotating the secret resets sticky-session affinity. |
+| `sticky_cookie_secret` | Required when `load_balance = "sticky"` is used | None | 32-byte secret encoded as unpadded base64url, used to seal sticky-session cookies as opaque AEAD blobs. Rotating the secret resets sticky-session affinity. A generation command is shown below the table. |
 | `redact_query_in_access_log` | No | `false` | If `true`, query-string values in the access log are masked as `<redacted>` while parameter keys and the path are kept, so URLs carrying tokens or PII are not logged verbatim. |
 | `listen_address_v4` | No | `0.0.0.0` | IPv4 address(es) to bind listeners to. Accepts a single string or an array of strings for binding to multiple interfaces, for example `['192.168.1.1', '10.0.0.1']`. When multiple addresses are specified, the wildcard `0.0.0.0` must not be included. Duplicate addresses are silently ignored. |
 | `listen_address_v6` | No | None | IPv6 address(es) to bind listeners to. Accepts a single string or an array of strings, for example `'[::]'` or `['::1', 'fe80::1']`. If omitted and `listen_ipv6 = true`, binds to `[::]`. If omitted and `listen_ipv6` is `false` or unset, IPv6 is disabled. When multiple addresses are specified, the wildcard `::` must not be included. Duplicate addresses are silently ignored. |
 | `listen_ipv6` | No | `false` | If `true`, bind to `[::]` when `listen_address_v6` is not specified. |
 | `default_app` | No | None | Fallback app name for unmatched plaintext HTTP requests. This applies only to HTTP; HTTPS requests with an unknown server name are rejected unconditionally. On this fallback path, the outgoing `Host` header is force-overwritten with the default app's `server_name` (winning over `keep_original_host` / `set_upstream_host`), and the untrusted original host is exposed only in `X-Forwarded-Host` / `Forwarded: host=`. Backends must treat those values as untrusted observational data. |
+
+A `sticky_cookie_secret` value can be generated as follows:
+
+```bash
+openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'
+```
 
 ## Application Definition
 

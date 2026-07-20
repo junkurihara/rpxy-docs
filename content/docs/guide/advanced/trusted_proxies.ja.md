@@ -1,5 +1,5 @@
 ---
-title: Trusted Forwarded Proxies
+title: 信頼する転送プロキシ
 type: docs
 prev: /docs/guide/advanced/upstream_options
 next: /docs/guide/advanced/post_quantum

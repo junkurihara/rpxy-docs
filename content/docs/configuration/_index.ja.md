@@ -59,13 +59,19 @@ upstream = [
 | `max_concurrent_streams` | いいえ | `64` | 接続ごとの HTTP/2 同時ストリーム数上限です。 |
 | `max_clients` | いいえ | `512` | 受け入れた HTTP/1.1 および HTTP/2 の TCP 接続数の共有上限です。TCP accept 直後にスロットが確保され、PROXY protocol の解析、TLS ハンドシェイク、接続の終了までの間保持されます。`0` を指定すると HTTP/1.1 と HTTP/2 の接続をすべて拒否します。HTTP/3 はこの上限には含まれず、[`[experimental.h3]`](#experimentalh3) の独立した上限が適用されます。 |
 | `request_max_body_size` | いいえ | `268435456` (256 MiB) | HTTP/1.1、HTTP/2、HTTP/3 に共通で適用されるリクエストボディの最大サイズです。バイト単位の整数か、`"256k"`、`"10m"`、`"1g"` のような接尾辞付き文字列を指定できます。`Content-Length` が上限を超えるリクエストは upstream に接続する前に `413` で拒否され、チャンク転送やストリーミングボディの超過は転送中に検出されます。`0` または `"unlimited"` で無制限になります。 |
-| `trusted_forwarded_proxies` | いいえ | なし（どのプロキシも信頼しない） | 受信した `X-Forwarded-*` / `Forwarded` ヘッダを信頼するプロキシの一覧です。CIDR ブロックと組み込みエイリアス `"cloudflare"`、`"fastly"`、`"cloudfront"` を指定できます。省略または空の場合、前段からの転送ヘッダは無視され、直接の接続元アドレスから再構築されます。詳細は [Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies) を参照してください。 |
-| `sticky_cookie_secret` | `load_balance = "sticky"` 利用時は必須 | なし | sticky セッションのクッキーを不透明な AEAD 暗号文として封印するための、パディングなし base64url でエンコードされた 32 バイトの秘密鍵です。`openssl rand -base64 32 \| tr '+/' '-_' \| tr -d '=\n'` で生成できます。秘密鍵をローテーションすると sticky セッションの割り当てはリセットされます。 |
+| `trusted_forwarded_proxies` | いいえ | なし（どのプロキシも信頼しない） | 受信した `X-Forwarded-*` / `Forwarded` ヘッダを信頼するプロキシの一覧です。CIDR ブロックと組み込みエイリアス `"cloudflare"`、`"fastly"`、`"cloudfront"` を指定できます。省略または空の場合、前段からの転送ヘッダは無視され、直接の接続元アドレスから再構築されます。詳細は [信頼する転送プロキシ](/docs/guide/advanced/trusted_proxies) を参照してください。 |
+| `sticky_cookie_secret` | `load_balance = "sticky"` 利用時は必須 | なし | sticky セッションのクッキーを不透明な AEAD 暗号文として封印するための、パディングなし base64url でエンコードされた 32 バイトの秘密鍵です。秘密鍵をローテーションすると sticky セッションの割り当てはリセットされます。生成コマンドは表の下に記載しています。 |
 | `redact_query_in_access_log` | いいえ | `false` | `true` にすると、アクセスログ中のクエリ文字列の値が `<redacted>` にマスクされます（パラメータのキーとパスは残ります）。トークンや PII を含む URL がログにそのまま残らないようにできます。 |
 | `listen_address_v4` | いいえ | `0.0.0.0` | リスナーをバインドする IPv4 アドレスです。単一の文字列または文字列の配列を指定でき、複数のインターフェースにバインドできます。例: `['192.168.1.1', '10.0.0.1']`。複数アドレス指定時にワイルドカード `0.0.0.0` は含められません。重複アドレスは自動的に無視されます。 |
 | `listen_address_v6` | いいえ | なし | リスナーをバインドする IPv6 アドレスです。単一の文字列または文字列の配列を指定できます。例: `'[::]'` や `['::1', 'fe80::1']`。省略時に `listen_ipv6 = true` であれば `[::]` にバインドします。省略時に `listen_ipv6` が `false` または未設定であれば IPv6 は無効です。複数アドレス指定時にワイルドカード `::` は含められません。重複アドレスは自動的に無視されます。 |
 | `listen_ipv6` | いいえ | `false` | `true` にすると `listen_address_v6` が未指定の場合に `[::]` にバインドします。 |
 | `default_app` | いいえ | なし | 平文 HTTP で `server_name` に一致しないリクエストを処理するフォールバックアプリ名です。平文 HTTP のみに適用され、不明な server name への HTTPS リクエストは無条件に拒否されます。このフォールバック経路では、送出する `Host` ヘッダはデフォルトアプリの `server_name` で強制的に上書きされ（`keep_original_host` / `set_upstream_host` より優先）、元のホスト名は `X-Forwarded-Host` / `Forwarded: host=` にのみ載ります。バックエンドはこれらの値を信頼できない参考情報として扱う必要があります。 |
+
+`sticky_cookie_secret` の値は次のコマンドで生成できます。
+
+```bash
+openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'
+```
 
 ## アプリケーション定義
 
@@ -203,7 +209,7 @@ HTTP/3 の接続数上限はグローバルの `max_clients`（HTTP/1.1 と HTTP
 - [コマンドラインオプション](/docs/guide/cmdopt)
 - [基本設定](/docs/guide/basics)
 - [Upstream Options](/docs/guide/advanced/upstream_options)
-- [Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies)
+- [信頼する転送プロキシ](/docs/guide/advanced/trusted_proxies)
 - [クライアント認証](/docs/guide/advanced/client_auth)
 - [HTTP/3](/docs/guide/advanced/http3)
 - [キャッシュ](/docs/guide/advanced/cache)

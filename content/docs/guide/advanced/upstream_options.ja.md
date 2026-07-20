@@ -62,7 +62,7 @@ upstream_options = [
 | `X-Original-URI` | 元のリクエストURIに設定されます。 |
 
 {{< callout type="warning" >}}
-v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。`rpxy`の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション`trusted_forwarded_proxies`を設定してください。詳細は[Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies)を参照してください。
+v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。`rpxy`の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション`trusted_forwarded_proxies`を設定してください。詳細は[信頼する転送プロキシ](/docs/guide/advanced/trusted_proxies)を参照してください。
 {{< /callout >}}
 
 `forwarded_header`オプションは、これらのデフォルトヘッダー**に加えて**RFC 7239の`Forwarded`ヘッダーを追加します:
