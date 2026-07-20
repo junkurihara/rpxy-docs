@@ -2,12 +2,11 @@
 &lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;a href="https://github.com/quinn-rs/quinn"target="_blank" rel="noopener"&gt;&lt;code&gt;quinn&lt;/code&gt;&lt;/a&gt;、&lt;a href="https://github.com/aws/s2n-quic"target="_blank" rel="noopener"&gt;&lt;code&gt;s2n-quic&lt;/code&gt;&lt;/a&gt;、&lt;a href="https://github.com/hyperium/h3"target="_blank" rel="noopener"&gt;&lt;code&gt;hyperium/h3&lt;/code&gt;&lt;/a&gt;により、HTTP/3リクエストを処理できます。この実験的機能を有効にするには、&lt;code&gt;config.toml&lt;/code&gt;に&lt;code&gt;experimental.h3&lt;/code&gt;エントリを以下のように追加してください。すると、TLS有効なアプリケーションはHTTP/2とHTTP/1.1に加えてHTTP/3で提供されます（&lt;a href="https://rpxy.io/ja/docs/guide/advanced/client_auth/"&gt;TLSクライアント認証が有効なアプリケーション&lt;/a&gt;を除く）。&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;h3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alt_svc_max_age&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;request_max_body_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65536&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_connections&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_bidistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_unistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_idle_timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alt_svc_max_age&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt; &lt;span class="c"&gt;# 秒&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_connections&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="c"&gt;# エンドポイント/リスナーごとのH3接続数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_bidistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="c"&gt;# H3接続ごとの双方向ストリーム数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_unistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="c"&gt;# H3接続ごとの単方向ストリーム数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_idle_timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="c"&gt;# 秒。0は無制限。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="コードをコピー"
@@ -23,6 +22,14 @@ data-copied-label="コピーしました！"
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;alt_svc_max_age&lt;/code&gt;などのエントリの値はすべてオプションです。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;HTTP/3の接続数上限は、HTTP/1.1とHTTP/2のみを対象とするグローバルオプション&lt;code&gt;max_clients&lt;/code&gt;とは独立しています。&lt;code&gt;max_concurrent_connections&lt;/code&gt;は、設定されたH3エンドポイント/リスナーごとにHTTP/3 (QUIC)接続数を個別に制限します。&lt;/p&gt;
+&lt;p&gt;HTTP/3のリクエストボディサイズ上限は、HTTP/1.1・HTTP/2と共通のトップレベルオプション&lt;code&gt;request_max_body_size&lt;/code&gt;で指定します。&lt;/p&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;[experimental.h3]&lt;/code&gt;配下のHTTP/3専用&lt;code&gt;request_max_body_size&lt;/code&gt;キーはv0.14.0で削除されました。このキーを含む設定は読み込みエラーになります。代わりにトップレベルの&lt;code&gt;request_max_body_size&lt;/code&gt;を使用してください。&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description></item><item><title>TLSクライアント認証</title><link>https://rpxy.io/ja/docs/guide/advanced/client_auth/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/client_auth/</guid><description>
 &lt;p&gt;TLSクライアント認証は、&lt;code&gt;&amp;quot;app_name&amp;quot;&lt;/code&gt;で指定されたドメインに対して&lt;code&gt;apps.&amp;quot;app_name&amp;quot;.tls.client_ca_cert_path&lt;/code&gt;を設定することで有効になります。&lt;/p&gt;
@@ -46,7 +53,15 @@ data-copied-label="コピーしました！"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;現在、クライアント認証を有効にしたアプリケーションでのHTTP/3サポートには制限があります。アプリケーションにクライアント認証が設定されている場合、そのアプリケーションではHTTP/3は動作しません。&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>ACME (Let's Encrypt)連携</title><link>https://rpxy.io/ja/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/acme/</guid><description>
+&lt;/div&gt;
+&lt;h2&gt;セキュリティ上の挙動&lt;span class="hx:absolute hx:-mt-20" id="セキュリティ上の挙動"&gt;&lt;/span&gt;
+&lt;a href="#%e3%82%bb%e3%82%ad%e3%83%a5%e3%83%aa%e3%83%86%e3%82%a3%e4%b8%8a%e3%81%ae%e6%8c%99%e5%8b%95" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;クライアント認証を有効にしたアプリケーションには、次のような保護的挙動が適用されます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;平文リクエストはクライアント認証アプリに決して転送されません。&lt;/strong&gt;&lt;code&gt;https_redirection&lt;/code&gt;が有効（デフォルト）の場合、平文リクエストには通常どおり&lt;code&gt;301&lt;/code&gt;リダイレクトが返ります。&lt;code&gt;https_redirection = false&lt;/code&gt;を明示的に設定した場合、そのアプリに解決された平文リクエストは、平文の&lt;code&gt;default_app&lt;/code&gt;フォールバック経由を含めて、upstreamに接続する前にステータスコード&lt;code&gt;421&lt;/code&gt;で拒否されます。（v0.14.0以降）&lt;/li&gt;
+&lt;li&gt;**&lt;code&gt;ignore_sni_consistency&lt;/code&gt;の緩和は適用されません。**別のserver nameで確立されたTLSセッション経由でクライアント認証アプリに到達したリクエストは、&lt;code&gt;experimental.ignore_sni_consistency&lt;/code&gt;の設定にかかわらず、転送前に常に拒否されます。（v0.13.3以降）&lt;/li&gt;
+&lt;li&gt;**クライアント認証アプリではTLSセッションは再開されません。**mTLS接続のたびにクライアント証明書の検証が実行されます。これはmutual TLSでセッション再開を無効化する業界慣行に沿った挙動です。（v0.13.1以降）&lt;/li&gt;
+&lt;li&gt;**ハンドシェイク失敗は監査ログに記録されます。**クライアント証明書の検証失敗を含むTLSハンドシェイクの失敗は、接続元IP、SNI、&lt;code&gt;client_cert&lt;/code&gt;などの失敗カテゴリを含む構造化レコードとしてログに記録されます。（v0.12.0以降）&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>ACME (Let's Encrypt)連携</title><link>https://rpxy.io/ja/docs/guide/advanced/acme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/acme/</guid><description>
 &lt;p&gt;&lt;a href="https://rpxy.io/ja/docs/guide/basics/2_tls/"&gt;証明書と秘密鍵の静的ファイルを使用する方法&lt;/a&gt;に加えて、証明書の自動発行と更新、つまり&lt;a href="https://www.rfc-editor.org/rfc/rfc8555"target="_blank" rel="noopener"&gt;RFC8555&lt;/a&gt;として標準化されたACME (Automated Certificate Management Environment)が&lt;code&gt;rpxy&lt;/code&gt;で利用できます。この機能を有効にするには、設定ファイルでACMEが必要な各アプリケーションに以下のエントリを指定します。&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml:config.toml" data-lang="toml:config.toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# TLSポート。ACMEチャレンジにも使用されます。&lt;/span&gt;
@@ -100,7 +115,8 @@ data-copied-label="コピーしました！"
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;cache_dir&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./cache&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは現在の作業ディレクトリからの相対パス&amp;#34;./cache&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_entry&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは1k&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65535&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは64k&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size_on_memory&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4096&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは4k。0の場合、常にファイルキャッシュになります。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size_on_memory&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65535&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは64k（max_cache_each_sizeと同じ）。0の場合、常にファイルキャッシュになります。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_total_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;1g&amp;#34;&lt;/span&gt; &lt;span class="c"&gt;# オプション。デフォルトは1 GiB。バイト単位の整数、接尾辞付き文字列（&amp;#34;256m&amp;#34;、&amp;#34;1g&amp;#34;）、または&amp;#34;unlimited&amp;#34;を指定できます。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="コードをコピー"
@@ -112,20 +128,200 @@ data-copied-label="コピーしました！"
 &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;HTTPメッセージのコンテキストにおいて&lt;em&gt;ストア可能&lt;/em&gt;なレスポンスは、サイズが&lt;code&gt;max_cache_each_size&lt;/code&gt;バイト以下の場合に保存されます。さらに&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以下の場合はオンメモリオブジェクトとして保存されます。それ以外は一時ファイルとして保存されます。&lt;code&gt;max_cache_each_size&lt;/code&gt;は&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以上である必要があります。&lt;/p&gt;
+&lt;p&gt;HTTPメッセージのコンテキストにおいて&lt;em&gt;ストア可能&lt;/em&gt;なレスポンスは、サイズが&lt;code&gt;max_cache_each_size&lt;/code&gt;バイト以下の場合に保存されます。さらに&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以下の場合はオンメモリオブジェクトとして保存されます。それ以外は一時ファイルとして保存されます。&lt;code&gt;max_cache_each_size&lt;/code&gt;は&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;以上である必要があります。&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;のデフォルトは&lt;code&gt;max_cache_each_size&lt;/code&gt;と同じ値のため、デフォルト設定ではキャッシュ可能なオブジェクトはすべてメモリから配信され、&lt;code&gt;max_cache_each_size&lt;/code&gt;をこの値より大きくした場合にファイル層が使われます。最悪ケースのメモリ使用量は&lt;code&gt;max_cache_entry&lt;/code&gt;×&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;です。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;max_cache_total_size&lt;/code&gt;は、メモリ層とファイル層を合わせてキャッシュが保持する総バイト数の上限です（デフォルト1 GiB）。新しいレスポンスの保存によって上限を超える場合は、レスポンスが収まるまで最も使われていないエントリから追い出されます。&lt;code&gt;&amp;quot;unlimited&amp;quot;&lt;/code&gt;で上限を無効化できます。なお&lt;code&gt;0&lt;/code&gt;も容量ゼロではなく無制限を意味します。&lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;では&lt;code&gt;0&lt;/code&gt;が逆の意味（常にファイルキャッシュ）を持つため、文字列での指定を推奨します。&lt;/p&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;キャッシュはupstreamへ転送されるリクエストURIをキーとして保存されます。元の（クライアントから見た）ホスト・スキーム・URIによって内容が変わるバックエンド、たとえば&lt;code&gt;set_upstream_host&lt;/code&gt;や&lt;code&gt;default_app&lt;/code&gt;で複数の仮想ホストを1つのupstreamに集約している場合は、キャッシュ可能なレスポンスに適切な&lt;code&gt;Vary&lt;/code&gt;ヘッダを付けるか、キャッシュ不可としてマークする必要があります。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;rpxy&lt;/code&gt;が再起動するか設定が更新されると、キャッシュはオンメモリテーブルだけでなくファイルシステムからも完全に削除されます。&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>耐量子暗号</title><link>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</guid><description>
+&lt;/div&gt;</description></item><item><title>アップストリームオプション</title><link>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</guid><description>
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は、アップストリームのバックエンドアプリケーションへのリクエストメッセージの転送方法を制御するためのいくつかのオプションを提供しています。これらはリバースプロキシエントリごとに&lt;code&gt;upstream_options&lt;/code&gt;配列で指定します。&lt;/p&gt;
+&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
+&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;利用可能なオプション&lt;span class="hx:absolute hx:-mt-20" id="利用可能なオプション"&gt;&lt;/span&gt;
+&lt;a href="#%e5%88%a9%e7%94%a8%e5%8f%af%e8%83%bd%e3%81%aa%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;&lt;code&gt;keep_original_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="keep_original_host"&gt;&lt;/span&gt;
+&lt;a href="#keep_original_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;クライアントリクエストの元の&lt;code&gt;Host&lt;/code&gt;ヘッダーを保持します。これが&lt;strong&gt;デフォルトの動作&lt;/strong&gt;であり、&lt;code&gt;set_upstream_host&lt;/code&gt;と両方指定された場合はこちらが優先されます。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;set_upstream_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="set_upstream_host"&gt;&lt;/span&gt;
+&lt;a href="#set_upstream_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Host&lt;/code&gt;ヘッダーをアップストリームのホスト名（例: &lt;code&gt;backend.local:8080&lt;/code&gt;）で上書きします。&lt;code&gt;keep_original_host&lt;/code&gt;も指定されている場合は無視されます。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;upgrade_insecure_requests&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="upgrade_insecure_requests"&gt;&lt;/span&gt;
+&lt;a href="#upgrade_insecure_requests" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;転送リクエストに&lt;code&gt;Upgrade-Insecure-Requests: 1&lt;/code&gt;ヘッダーが存在しない場合に追加します。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http11_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http11_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http11_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/1.1を強制します。&lt;code&gt;force_http2_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http2_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http2_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http2_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/2を強制します。&lt;code&gt;force_http11_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;forwarded_header&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="forwarded_header"&gt;&lt;/span&gt;
+&lt;a href="#forwarded_header" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;標準の&lt;a href="https://www.rfc-editor.org/rfc/rfc7239"target="_blank" rel="noopener"&gt;&lt;code&gt;Forwarded&lt;/code&gt;ヘッダー (RFC 7239)&lt;/a&gt;を生成して転送リクエストに追加します。&lt;/p&gt;
+&lt;p&gt;デフォルトでは、&lt;code&gt;rpxy&lt;/code&gt;は設定なしで以下の転送ヘッダーをすべてのリクエストで自動的に再構築します:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;ヘッダー&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;転送チェーンから再構築されます。デフォルト（&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;未設定）では受信した値は無視され、直接の接続元IPアドレスのみが載ります。直接の接続元が信頼されたプロキシの場合は、受信したチェーンが保持・正規化されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;受信接続に基づいて&lt;code&gt;https&lt;/code&gt;または&lt;code&gt;http&lt;/code&gt;で上書きされます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Port&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;リッスンポートで上書きされます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Host&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元の（クライアントから見た）ホスト名で上書きされます。クライアントが指定した値がそのまま転送されることはありません。参考情報としてのみ扱ってください。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-SSL&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;受信接続に基づいて&lt;code&gt;on&lt;/code&gt;または&lt;code&gt;off&lt;/code&gt;に設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Real-IP&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;クライアントのIPアドレスに設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Original-URI&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元のリクエストURIに設定されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。&lt;code&gt;rpxy&lt;/code&gt;の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;を設定してください。詳細は&lt;a href="https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/"&gt;Trusted Forwarded Proxies&lt;/a&gt;を参照してください。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;forwarded_header&lt;/code&gt;オプションは、これらのデフォルトヘッダー&lt;strong&gt;に加えて&lt;/strong&gt;RFC 7239の&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーを追加します:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Forwarded: for=192.0.2.1;proto=https;host=app1.example.com&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;受信リクエストに既に&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーが含まれている場合、&lt;code&gt;rpxy&lt;/code&gt;は&lt;code&gt;forwarded_header&lt;/code&gt;オプションがなくても（&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;に従って）整合性のために更新します。このオプションは、&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーがまだ存在しない場合に&lt;strong&gt;新しく生成する&lt;/strong&gt;かどうかを制御します。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;例&lt;span class="hx:absolute hx:-mt-20" id="例"&gt;&lt;/span&gt;
+&lt;a href="#%e4%be%8b" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;round_robin&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;force_http11_upstream&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;api.internal:3000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;upgrade_insecure_requests&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Trusted Forwarded Proxies</title><link>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</guid><description>
+&lt;h2&gt;概要&lt;span class="hx:absolute hx:-mt-20" id="概要"&gt;&lt;/span&gt;
+&lt;a href="#%e6%a6%82%e8%a6%81" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;が別のロードバランサー、リバースプロキシ、CDNの背後で動作する場合、元のクライアント情報（IPアドレスやプロトコルスキーム）は&lt;code&gt;X-Forwarded-For&lt;/code&gt;や&lt;code&gt;Forwarded&lt;/code&gt;などの転送ヘッダーで届きます。これらのヘッダーはクライアントが簡単に偽装できるため、実際に管理・信頼しているプロキシから届いた場合にのみ信頼すべきものです。&lt;/p&gt;
+&lt;p&gt;v0.12.0以降、&lt;strong&gt;デフォルトではどのプロキシも信頼されません&lt;/strong&gt;。&lt;code&gt;rpxy&lt;/code&gt;は受信した転送ヘッダーを無視し、&lt;code&gt;X-Forwarded-For&lt;/code&gt;、&lt;code&gt;Forwarded&lt;/code&gt;および関連ヘッダーを直接の接続元アドレスのみから再構築します。信頼できる前段プロキシがある構成では、グローバルオプション&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;でチェーンを保持できます。&lt;/p&gt;
+&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
+&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# 前段プロキシのCIDRブロック&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;10.0.0.0/8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;192.168.0.0/16&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# 組み込みのプロバイダーエイリアスはCIDRと混在できます&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;cloudflare&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;10.0.0.0/8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# すべてのIPv4プロキシを信頼（非推奨）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;0.0.0.0/0&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# デュアルスタックですべて信頼する場合は&amp;#34;0.0.0.0/0&amp;#34;と&amp;#34;::/0&amp;#34;の両方を指定します。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="コードをコピー"
+aria-label="コードをコピー"
+data-copied-label="コピーしました！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;受信接続の直接の接続元が信頼された範囲内にある場合、&lt;code&gt;rpxy&lt;/code&gt;は信頼されたプロキシ経由で得た転送情報を保持・正規化し、正規化されたチェーンから送出する&lt;code&gt;X-Forwarded-For&lt;/code&gt;および関連ヘッダーを再構築します。受信した転送情報が不正または矛盾している場合は、直接の接続元のみの情報に安全にフォールバックします。&lt;/p&gt;
+&lt;h3&gt;組み込みのプロバイダーエイリアス&lt;span class="hx:absolute hx:-mt-20" id="組み込みのプロバイダーエイリアス"&gt;&lt;/span&gt;
+&lt;a href="#%e7%b5%84%e3%81%bf%e8%be%bc%e3%81%bf%e3%81%ae%e3%83%97%e3%83%ad%e3%83%90%e3%82%a4%e3%83%80%e3%83%bc%e3%82%a8%e3%82%a4%e3%83%aa%e3%82%a2%e3%82%b9" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;エイリアス&lt;code&gt;&amp;quot;cloudflare&amp;quot;&lt;/code&gt;、&lt;code&gt;&amp;quot;fastly&amp;quot;&lt;/code&gt;、&lt;code&gt;&amp;quot;cloudfront&amp;quot;&lt;/code&gt;は、各プロバイダーが公開しているIPレンジに展開されます。レンジは設定読み込み時に解決される組み込みの静的スナップショットであり、&lt;code&gt;rpxy&lt;/code&gt;が実行時にプロバイダーのIPリストを取得することはありません。そのため、起動が外部ネットワークの到達性に依存することもありません。スナップショットは&lt;a href="https://github.com/junkurihara/rust-rpxy/tree/main/rpxy-trusted-proxies"target="_blank" rel="noopener"&gt;rust-rpxyリポジトリ&lt;/a&gt;の&lt;code&gt;rpxy-trusted-proxies&lt;/code&gt;アップデーターで明示的に更新できます。&lt;/p&gt;
+&lt;h2&gt;運用上の要件&lt;span class="hx:absolute hx:-mt-20" id="運用上の要件"&gt;&lt;/span&gt;
+&lt;a href="#%e9%81%8b%e7%94%a8%e4%b8%8a%e3%81%ae%e8%a6%81%e4%bb%b6" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;に列挙するプロキシは、クライアントが指定した値を追記するのではなく、受信した&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;（および関連ヘッダー）を&lt;strong&gt;上書きまたは正規化&lt;/strong&gt;しなければなりません。たとえばNginxでは&lt;code&gt;proxy_set_header X-Forwarded-Proto $scheme;&lt;/code&gt;とします。そうでない場合、信頼されたプロキシのさらに前段にいる攻撃者がスキームやチェーンを偽装できてしまいます。AWS ALBとCloudFrontはデフォルトでこの要件を満たします。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Stickyセッションとの関係&lt;span class="hx:absolute hx:-mt-20" id="stickyセッションとの関係"&gt;&lt;/span&gt;
+&lt;a href="#sticky%e3%82%bb%e3%83%83%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%a8%e3%81%ae%e9%96%a2%e4%bf%82" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Stickyセッション（&lt;code&gt;load_balance = &amp;quot;sticky&amp;quot;&lt;/code&gt;）のクッキーの&lt;code&gt;Secure&lt;/code&gt;属性は、クライアントから見たリクエストのスキームがHTTPSの場合に付与されます。&lt;code&gt;rpxy&lt;/code&gt;自身がTLSを終端する場合は自動的に付与されます。&lt;code&gt;rpxy&lt;/code&gt;が外部のTLS終端（ALB、CloudFront、Nginx、HAProxyなど）の背後で動作する場合、&lt;code&gt;rpxy&lt;/code&gt;は信頼されたピアからの&lt;code&gt;X-Forwarded-Proto: https&lt;/code&gt;（または&lt;code&gt;Forwarded: proto=https&lt;/code&gt;）のみを受け入れるため、&lt;code&gt;Secure&lt;/code&gt;を付与するにはその終端のアドレスを&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;に列挙する必要があります。&lt;/p&gt;
+&lt;h2&gt;PROXYプロトコルとの関係&lt;span class="hx:absolute hx:-mt-20" id="proxyプロトコルとの関係"&gt;&lt;/span&gt;
+&lt;a href="#proxy%e3%83%97%e3%83%ad%e3%83%88%e3%82%b3%e3%83%ab%e3%81%a8%e3%81%ae%e9%96%a2%e4%bf%82" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;は&lt;strong&gt;HTTPレベル&lt;/strong&gt;の転送ヘッダーの信頼を制御します。L4プロキシから&lt;strong&gt;TCPレベル&lt;/strong&gt;で元のクライアントアドレスを復元するには、&lt;a href="https://rpxy.io/ja/docs/guide/advanced/proxy_protocol/"&gt;PROXYプロトコル&lt;/a&gt;サポート（&lt;code&gt;[experimental.tcp_recv_proxy_protocol]&lt;/code&gt;）を使用してください。こちらは独立した&lt;code&gt;trusted_proxies&lt;/code&gt;リストを持ちます。&lt;/p&gt;</description></item><item><title>耐量子暗号</title><link>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/post_quantum/</guid><description>
 &lt;h2&gt;概要&lt;span class="hx:absolute hx:-mt-20" id="概要"&gt;&lt;/span&gt;
 &lt;a href="#%e6%a6%82%e8%a6%81" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は耐量子暗号をサポートすることで最先端のセキュリティを提供し、将来の量子コンピューティングの脅威からアプリケーションを保護します。この機能はデフォルトで有効であり、特別な設定は不要です。&lt;/p&gt;
 &lt;h2&gt;耐量子暗号とは?&lt;span class="hx:absolute hx:-mt-20" id="耐量子暗号とは"&gt;&lt;/span&gt;
 &lt;a href="#%e8%80%90%e9%87%8f%e5%ad%90%e6%9a%97%e5%8f%b7%e3%81%a8%e3%81%af" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;耐量子暗号とは、量子コンピュータによる攻撃に対して安全な暗号アルゴリズムのことです。量子コンピューティング技術の進歩に伴い、RSAやECCなどの従来の暗号方式は脆弱になる可能性があります。耐量子アルゴリズムは、強力な量子コンピュータが利用可能になっても安全であるよう設計されています。&lt;/p&gt;
 &lt;h2&gt;rpxyの実装&lt;span class="hx:absolute hx:-mt-20" id="rpxyの実装"&gt;&lt;/span&gt;
 &lt;a href="#rpxy%e3%81%ae%e5%ae%9f%e8%a3%85" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;技術的基盤&lt;span class="hx:absolute hx:-mt-20" id="技術的基盤"&gt;&lt;/span&gt;
-&lt;a href="#%e6%8a%80%e8%a1%93%e7%9a%84%e5%9f%ba%e7%9b%a4" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;a href="https://github.com/rustls/rustls/tree/main/rustls-post-quantum"target="_blank" rel="noopener"&gt;&lt;code&gt;rustls-post-quantum&lt;/code&gt;&lt;/a&gt;ライブラリを通じて耐量子暗号を実現しています。このライブラリはrustlsに耐量子鍵交換アルゴリズムを提供します。この統合により、&lt;code&gt;rpxy&lt;/code&gt;は最小限の設定で最先端の暗号セキュリティを提供できます。&lt;/p&gt;
+&lt;a href="#%e6%8a%80%e8%a1%93%e7%9a%84%e5%9f%ba%e7%9b%a4" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は&lt;a href="https://github.com/rustls/rustls"target="_blank" rel="noopener"&gt;rustls&lt;/a&gt;に組み込みの耐量子鍵交換サポート（&lt;code&gt;aws-lc-rs&lt;/code&gt;プロバイダーの&lt;code&gt;prefer-post-quantum&lt;/code&gt;フィーチャー）を通じて耐量子暗号を実現しています。これによりデフォルトの鍵交換グループ順で&lt;code&gt;X25519MLKEM768&lt;/code&gt;が最優先になります。この統合により、&lt;code&gt;rpxy&lt;/code&gt;は最小限の設定で最先端の暗号セキュリティを提供できます。&lt;/p&gt;
 &lt;h3&gt;ハイブリッド鍵交換&lt;span class="hx:absolute hx:-mt-20" id="ハイブリッド鍵交換"&gt;&lt;/span&gt;
 &lt;a href="#%e3%83%8f%e3%82%a4%e3%83%96%e3%83%aa%e3%83%83%e3%83%89%e9%8d%b5%e4%ba%a4%e6%8f%9b" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は以下を組み合わせた&lt;strong&gt;ハイブリッド耐量子鍵交換&lt;/strong&gt;を実装しています:&lt;/p&gt;
 &lt;ul&gt;
@@ -501,128 +697,4 @@ data-copied-label="コピーしました！"
 &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;この設定では、&lt;code&gt;rpxy&lt;/code&gt;は&lt;code&gt;primary.internal:8080&lt;/code&gt;が正常な限り、常にそこにトラフィックを送信します。プライマリが2回連続でヘルスチェックに失敗すると、トラフィックは&lt;code&gt;backup.internal:8080&lt;/code&gt;に切り替わります。プライマリが1回ヘルスチェックに合格すると、トラフィックはプライマリに戻ります。&lt;/p&gt;</description></item><item><title>アップストリームオプション</title><link>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/upstream_options/</guid><description>
-&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;は、アップストリームのバックエンドアプリケーションへのリクエストメッセージの転送方法を制御するためのいくつかのオプションを提供しています。これらはリバースプロキシエントリごとに&lt;code&gt;upstream_options&lt;/code&gt;配列で指定します。&lt;/p&gt;
-&lt;h2&gt;設定&lt;span class="hx:absolute hx:-mt-20" id="設定"&gt;&lt;/span&gt;
-&lt;a href="#%e8%a8%ad%e5%ae%9a" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="コードをコピー"
-aria-label="コードをコピー"
-data-copied-label="コピーしました！"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2&gt;利用可能なオプション&lt;span class="hx:absolute hx:-mt-20" id="利用可能なオプション"&gt;&lt;/span&gt;
-&lt;a href="#%e5%88%a9%e7%94%a8%e5%8f%af%e8%83%bd%e3%81%aa%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;&lt;code&gt;keep_original_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="keep_original_host"&gt;&lt;/span&gt;
-&lt;a href="#keep_original_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;クライアントリクエストの元の&lt;code&gt;Host&lt;/code&gt;ヘッダーを保持します。これが&lt;strong&gt;デフォルトの動作&lt;/strong&gt;であり、&lt;code&gt;set_upstream_host&lt;/code&gt;と両方指定された場合はこちらが優先されます。&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;set_upstream_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="set_upstream_host"&gt;&lt;/span&gt;
-&lt;a href="#set_upstream_host" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Host&lt;/code&gt;ヘッダーをアップストリームのホスト名（例: &lt;code&gt;backend.local:8080&lt;/code&gt;）で上書きします。&lt;code&gt;keep_original_host&lt;/code&gt;も指定されている場合は無視されます。&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;upgrade_insecure_requests&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="upgrade_insecure_requests"&gt;&lt;/span&gt;
-&lt;a href="#upgrade_insecure_requests" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;転送リクエストに&lt;code&gt;Upgrade-Insecure-Requests: 1&lt;/code&gt;ヘッダーが存在しない場合に追加します。&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;force_http11_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http11_upstream"&gt;&lt;/span&gt;
-&lt;a href="#force_http11_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/1.1を強制します。&lt;code&gt;force_http2_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;force_http2_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http2_upstream"&gt;&lt;/span&gt;
-&lt;a href="#force_http2_upstream" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;アップストリーム接続にHTTP/2を強制します。&lt;code&gt;force_http11_upstream&lt;/code&gt;と排他的です。&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;forwarded_header&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="forwarded_header"&gt;&lt;/span&gt;
-&lt;a href="#forwarded_header" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;標準の&lt;a href="https://www.rfc-editor.org/rfc/rfc7239"target="_blank" rel="noopener"&gt;&lt;code&gt;Forwarded&lt;/code&gt;ヘッダー (RFC 7239)&lt;/a&gt;を生成して転送リクエストに追加します。&lt;/p&gt;
-&lt;p&gt;デフォルトでは、&lt;code&gt;rpxy&lt;/code&gt;は設定なしで以下の転送ヘッダーをすべてのリクエストに自動的に追加します:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;ヘッダー&lt;/th&gt;
-&lt;th&gt;説明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;クライアントのIPアドレスが追加されます。既に存在する場合、新しいIPはカンマ区切りで追加されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;受信接続に基づいて&lt;code&gt;https&lt;/code&gt;または&lt;code&gt;http&lt;/code&gt;に設定されます。既に存在しない場合のみ追加されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-Port&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;リッスンポートに設定されます。既に存在しない場合のみ追加されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-SSL&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;受信接続に基づいて&lt;code&gt;on&lt;/code&gt;または&lt;code&gt;off&lt;/code&gt;に設定されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Real-IP&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;クライアントのIPアドレスに設定されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Original-URI&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;元のリクエストURIに設定されます。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;code&gt;forwarded_header&lt;/code&gt;オプションは、これらのデフォルトヘッダー&lt;strong&gt;に加えて&lt;/strong&gt;RFC 7239の&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーを追加します:&lt;/p&gt;
-&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Forwarded: for=192.0.2.1;proto=https;host=app1.example.com&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="コードをコピー"
-aria-label="コードをコピー"
-data-copied-label="コピーしました！"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
-&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
-&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;受信リクエストに既に&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーが含まれている場合、&lt;code&gt;rpxy&lt;/code&gt;は&lt;code&gt;forwarded_header&lt;/code&gt;オプションがなくても整合性のために更新します。このオプションは、&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーがまだ存在しない場合に&lt;strong&gt;新しく生成する&lt;/strong&gt;かどうかを制御します。&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2&gt;例&lt;span class="hx:absolute hx:-mt-20" id="例"&gt;&lt;/span&gt;
-&lt;a href="#%e4%be%8b" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;round_robin&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;force_http11_upstream&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;api.internal:3000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;upgrade_insecure_requests&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="コードをコピー"
-aria-label="コードをコピー"
-data-copied-label="コピーしました！"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;p&gt;この設定では、&lt;code&gt;rpxy&lt;/code&gt;は&lt;code&gt;primary.internal:8080&lt;/code&gt;が正常な限り、常にそこにトラフィックを送信します。プライマリが2回連続でヘルスチェックに失敗すると、トラフィックは&lt;code&gt;backup.internal:8080&lt;/code&gt;に切り替わります。プライマリが1回ヘルスチェックに合格すると、トラフィックはプライマリに戻ります。&lt;/p&gt;</description></item></channel></rss>

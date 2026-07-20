@@ -82,13 +82,19 @@ data-copied-label="Copied!"
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Any &lt;em&gt;HTTPS&lt;/em&gt; request with no matched &lt;code&gt;server_name&lt;/code&gt; will be rejected since the secure connection cannot be established for the unknown server name, i.e., Common Name of the server certificate.&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;On the &lt;code&gt;default_app&lt;/code&gt; fallback path, &lt;code&gt;rpxy&lt;/code&gt; force-overwrites the outgoing &lt;code&gt;Host&lt;/code&gt; header with the default app&amp;rsquo;s configured &lt;code&gt;server_name&lt;/code&gt;, and the untrusted original host is exposed only in &lt;code&gt;X-Forwarded-Host&lt;/code&gt; / &lt;code&gt;Forwarded: host=&lt;/code&gt;. Backends must treat those values as untrusted observational data.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;h2&gt;Upstream Connection over HTTPS to Backend Application&lt;span class="hx:absolute hx:-mt-20" id="upstream-connection-over-https-to-backend-application"&gt;&lt;/span&gt;
 &lt;a href="#upstream-connection-over-https-to-backend-application" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In the above example, request messages are routed to backend applications over cleartext HTTP. If a backend channel to an app needs to established over TLS, e.g., requests forwarded to &lt;code&gt;https://app1.localdomain:8080&lt;/code&gt;, you need to enable a &lt;code&gt;tls&lt;/code&gt; option for the &lt;code&gt;location&lt;/code&gt; requiring HTTPS connection.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml:config.toml" data-lang="toml:config.toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app_backend_https&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;server_name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;app_backend_https.example.com&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app1.localdomain:8080&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app1.localdomain:8080&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;}]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
@@ -102,21 +108,24 @@ data-copied-label="Copied!"
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2&gt;Load Balancing with Multiple Backend Locations&lt;span class="hx:absolute hx:-mt-20" id="load-balancing-with-multiple-backend-locations"&gt;&lt;/span&gt;
-&lt;a href="#load-balancing-with-multiple-backend-locations" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You can specify multiple backend locations in the &lt;code&gt;reverse_proxy&lt;/code&gt; array for &lt;em&gt;load-balancing&lt;/em&gt; with an appropriate &lt;code&gt;load_balance&lt;/code&gt; option. Currently it works with the following options:&lt;/p&gt;
+&lt;a href="#load-balancing-with-multiple-backend-locations" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You can specify multiple backend locations in the &lt;code&gt;upstream&lt;/code&gt; array for &lt;em&gt;load-balancing&lt;/em&gt; with an appropriate &lt;code&gt;load_balance&lt;/code&gt; option. Currently it works with the following options:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;round_robin&lt;/code&gt;: for each request, one of the backend locations is chosen in a round-robin fashion;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;random&lt;/code&gt;: for each request, one of the backend locations is chosen randomly;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sticky&lt;/code&gt;: a backend location is chosen as &lt;code&gt;round_robin&lt;/code&gt; but the &lt;em&gt;session-persistence&lt;/em&gt; is guaranteed using cookie.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sticky&lt;/code&gt;: a backend location is chosen as &lt;code&gt;round_robin&lt;/code&gt; but the &lt;em&gt;session-persistence&lt;/em&gt; is guaranteed using cookie;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;primary_backup&lt;/code&gt;: always routes to the first healthy backend location; requires &lt;a href="https://rpxy.io/docs/guide/advanced/health_check/"&gt;active health check&lt;/a&gt; to be enabled.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If &lt;code&gt;load_balance&lt;/code&gt; is not specified, the first backend location is always chosen.&lt;/p&gt;
+&lt;p&gt;If &lt;code&gt;load_balance&lt;/code&gt; is not specified (&lt;code&gt;none&lt;/code&gt;), the first backend location is always chosen; when the health check is enabled, the first healthy one is picked.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;app_name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;server_name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app1.example.com&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;app_name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app1.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app2.local:8000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app2.local:8000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;round_robin&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# or &amp;#39;random&amp;#39; or &amp;#39;sticky&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;round_robin&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# or &amp;#39;random&amp;#39; or &amp;#39;sticky&amp;#39; or &amp;#39;primary_backup&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
@@ -131,18 +140,23 @@ data-copied-label="Copied!"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Currently, no health-checking mechanism is implemented. If a backend location is down, the request to the location will be failed.&lt;/div&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Using &lt;code&gt;sticky&lt;/code&gt; requires the global &lt;code&gt;sticky_cookie_secret&lt;/code&gt; option: a 32-byte secret encoded as unpadded base64url, used to seal the sticky-session cookie (&lt;code&gt;rpxy_sticky_token&lt;/code&gt;) as an opaque AEAD blob. Generate one with &lt;code&gt;openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'&lt;/code&gt;.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;With the &lt;a href="https://rpxy.io/docs/guide/advanced/health_check/"&gt;active health check&lt;/a&gt; enabled, &lt;code&gt;rpxy&lt;/code&gt; periodically probes the backend locations and removes unhealthy ones from the load balancing pool.&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description></item><item><title>HTTP/3</title><link>https://rpxy.io/docs/guide/advanced/http3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/http3/</guid><description>
 &lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; can serve HTTP/3 requests thanks to &lt;a href="https://github.com/quinn-rs/quinn"target="_blank" rel="noopener"&gt;&lt;code&gt;quinn&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://github.com/aws/s2n-quic"target="_blank" rel="noopener"&gt;&lt;code&gt;s2n-quic&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://github.com/hyperium/h3"target="_blank" rel="noopener"&gt;&lt;code&gt;hyperium/h3&lt;/code&gt;&lt;/a&gt;. To enable this experimental feature, add an entry &lt;code&gt;experimental.h3&lt;/code&gt; in your &lt;code&gt;config.toml&lt;/code&gt; like follows. Then, any TLS-enabled application can be served with HTTP/3 in addition to HTTP/2 and HTTP/1.1 &lt;a href="https://rpxy.io/docs/guide/advanced/client_auth/"&gt;except for the applications with TLS client authentication&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;experimental&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;h3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alt_svc_max_age&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;request_max_body_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65536&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_connections&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_bidistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_unistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_idle_timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alt_svc_max_age&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3600&lt;/span&gt; &lt;span class="c"&gt;# sec&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_connections&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt; &lt;span class="c"&gt;# H3 connections per endpoint/listener&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_bidistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="c"&gt;# bidirectional streams per H3 connection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_concurrent_unistream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt; &lt;span class="c"&gt;# unidirectional streams per H3 connection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_idle_timeout&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="c"&gt;# sec. 0 means an infinite timeout.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
@@ -159,18 +173,15 @@ data-copied-label="Copied!"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Any values in the entry like &lt;code&gt;alt_svc_max_age&lt;/code&gt; are optional.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
+&lt;/div&gt;
+&lt;p&gt;The HTTP/3 connection limit is independent of the global &lt;code&gt;max_clients&lt;/code&gt; option, which covers HTTP/1.1 and HTTP/2 only: &lt;code&gt;max_concurrent_connections&lt;/code&gt; caps HTTP/3 (QUIC) connections separately for each configured H3 endpoint/listener.&lt;/p&gt;
+&lt;p&gt;The request body size limit for HTTP/3 is the top-level &lt;code&gt;request_max_body_size&lt;/code&gt; option, shared with HTTP/1.1 and HTTP/2.&lt;/p&gt;
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;p&gt;&lt;strong&gt;Version 0.10.0 Breaking Changes&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The non-&lt;code&gt;watch&lt;/code&gt; execute option has been removed. Dynamic configuration reloading is now enabled by default.&lt;/li&gt;
-&lt;li&gt;New &lt;code&gt;log-dir&lt;/code&gt; option added to specify the log directory location.&lt;/li&gt;
-&lt;li&gt;Log files are now separated into access logs and error logs.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;The HTTP/3-specific &lt;code&gt;request_max_body_size&lt;/code&gt; key under &lt;code&gt;[experimental.h3]&lt;/code&gt; was removed in v0.14.0. A configuration containing it now fails to load; use the top-level &lt;code&gt;request_max_body_size&lt;/code&gt; instead.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Installation</title><link>https://rpxy.io/docs/guide/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/installation/</guid><description>
 &lt;h2&gt;Building from Source&lt;span class="hx:absolute hx:-mt-20" id="building-from-source"&gt;&lt;/span&gt;
 &lt;a href="#building-from-source" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You can build an executable binary yourself by checking out this Git repository.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
@@ -267,7 +278,7 @@ data-copied-label="Copied!"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;Dynamic Configuration&lt;/strong&gt;: Since version 0.10.0, &lt;code&gt;rpxy&lt;/code&gt; monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is now the default behavior.&lt;/div&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;&lt;strong&gt;Dynamic Configuration&lt;/strong&gt;: &lt;code&gt;rpxy&lt;/code&gt; monitors configuration file changes and automatically reloads the configuration without requiring a restart. This is the default behavior.&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
@@ -364,7 +375,7 @@ data-copied-label="Copied!"
 &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Since version 0.10.0, &lt;code&gt;rpxy&lt;/code&gt; automatically monitors configuration file changes in real-time and applies them immediately without restarting the process.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; automatically monitors configuration file changes in real-time and applies them immediately without restarting the process.&lt;/p&gt;
 &lt;p&gt;The full help messages are given follows.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;pre&gt;&lt;code&gt;usage: rpxy [OPTIONS] --config &amp;lt;FILE&amp;gt;
@@ -439,13 +450,13 @@ data-copied-label="Copied!"
 &lt;h2&gt;Set custom port for HTTPS redirection in non-priviliged mode without exposure of well-known ports (80, 443)&lt;span class="hx:absolute hx:-mt-20" id="set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443"&gt;&lt;/span&gt;
 &lt;a href="#set-custom-port-for-https-redirection-in-non-priviliged-mode-without-exposure-of-well-known-ports-80-443" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;For security reasons, you may want to run &lt;code&gt;rpxy&lt;/code&gt; in a non-privileged mode without exposing well-known ports. In this case, you should specify custom port for HTTPS redirection.&lt;/p&gt;
 &lt;p&gt;When the container manager maps port A (e.g., 80/443) of the host to port B (e.g., 8080/8443) of the container for http and https, &lt;code&gt;rpxy&lt;/code&gt; must be configured with port B for &lt;code&gt;listen_port&lt;/code&gt; and &lt;code&gt;listen_port_tls&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;However, when you want to set &lt;code&gt;http_redirection=true&lt;/code&gt; for some backend apps, &lt;code&gt;rpxy&lt;/code&gt; issues the redirection response 301 with the port B by default, which is not accessible from the outside of the container.&lt;/p&gt;
-&lt;p&gt;To avoid the above issue, you can set a custom port for the redirection response by specifying &lt;code&gt;https_redirection_port&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. In this case, port A should be set for &lt;code&gt;https_redirection_port&lt;/code&gt;, then the redirection response 301 will be issued with the port A.&lt;/p&gt;
+&lt;p&gt;However, when you want to set &lt;code&gt;https_redirection = true&lt;/code&gt; for some backend apps, &lt;code&gt;rpxy&lt;/code&gt; issues the redirection response 301 with the port B by default, which is not accessible from the outside of the container.&lt;/p&gt;
+&lt;p&gt;To avoid the above issue, you can set a custom port for the redirection response by specifying &lt;code&gt;public_https_port&lt;/code&gt; (named &lt;code&gt;https_redirection_port&lt;/code&gt; before v0.13.0) in &lt;code&gt;config.toml&lt;/code&gt;. In this case, port A should be set for &lt;code&gt;public_https_port&lt;/code&gt;, then the redirection response 301 will be issued with the port A. This port is also used for the HTTP/3 &lt;code&gt;Alt-Svc&lt;/code&gt; advertisement.&lt;/p&gt;
 &lt;p&gt;The following is an example of relevant settings in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;listen_port&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8080&lt;/span&gt; &lt;span class="c"&gt;# `rpxy` in the container listens on port 8080&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;listen_port_tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8443&lt;/span&gt; &lt;span class="c"&gt;# `rpxy` in the container listens on port 8443 for TLS&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;https_redirection_port&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt; &lt;span class="c"&gt;# `rpxy` issues the redirection response 301 with port 443&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;public_https_port&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt; &lt;span class="c"&gt;# `rpxy` issues the redirection response 301 with port 443&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
@@ -481,7 +492,15 @@ data-copied-label="Copied!"
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Currently we have a limitation on HTTP/3 support for applications that enables client authentication. If an application is set with client authentication, HTTP/3 doesn&amp;rsquo;t work for the application.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
+&lt;/div&gt;
+&lt;h2&gt;Security Behaviors&lt;span class="hx:absolute hx:-mt-20" id="security-behaviors"&gt;&lt;/span&gt;
+&lt;a href="#security-behaviors" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Client-authentication apps are subject to the following hardening behaviors:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cleartext requests are never forwarded to a client-authentication app.&lt;/strong&gt; With &lt;code&gt;https_redirection&lt;/code&gt; enabled (the default), cleartext requests receive the normal &lt;code&gt;301&lt;/code&gt; redirect. If &lt;code&gt;https_redirection = false&lt;/code&gt; is explicitly set, cleartext requests resolved to the app — including through the plaintext &lt;code&gt;default_app&lt;/code&gt; fallback — fail closed with status code &lt;code&gt;421&lt;/code&gt; before any upstream contact. (Since v0.14.0)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The &lt;code&gt;ignore_sni_consistency&lt;/code&gt; relaxation never applies.&lt;/strong&gt; A request that reaches a client-authentication app over a TLS session established for a different server name is always rejected before forwarding, regardless of the &lt;code&gt;experimental.ignore_sni_consistency&lt;/code&gt; setting. (Since v0.13.3)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TLS sessions are never resumed for client-authentication apps.&lt;/strong&gt; Client-certificate verification runs on every mTLS connection, matching the industry practice of disabling session resumption for mutual TLS. (Since v0.13.1)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Handshake failures are audit-logged.&lt;/strong&gt; TLS handshake failures, including client-certificate verification failures, are logged as structured records carrying the source IP, the SNI, and a stable failure category such as &lt;code&gt;client_cert&lt;/code&gt;. (Since v0.12.0)&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>3. Path-based Flexible Routing</title><link>https://rpxy.io/docs/guide/basics/3_routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/basics/3_routing/</guid><description>
 &lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; can serves and routes incoming requests to multiple backend destination according to the path information. The routing information can be specified for each application (&lt;code&gt;server_name&lt;/code&gt;) as follows.&lt;/p&gt;
 &lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
 &lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;listen_port_tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;443&lt;/span&gt;
@@ -789,7 +808,8 @@ If &lt;code&gt;[experimental.cache]&lt;/code&gt; is specified in &lt;code&gt;con
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;cache_dir&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;./cache&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# optional. default is &amp;#34;./cache&amp;#34; relative to the current working directory&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_entry&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="c"&gt;# optional. default is 1k&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65535&lt;/span&gt; &lt;span class="c"&gt;# optional. default is 64k&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size_on_memory&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4096&lt;/span&gt; &lt;span class="c"&gt;# optional. default is 4k if 0, it is always file cache.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_each_size_on_memory&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;65535&lt;/span&gt; &lt;span class="c"&gt;# optional. default is 64k, same as max_cache_each_size. if 0, it is always file cache.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;max_cache_total_size&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;1g&amp;#34;&lt;/span&gt; &lt;span class="c"&gt;# optional. default is 1 GiB. accepts an integer (bytes) or a suffixed string (&amp;#34;256m&amp;#34;, &amp;#34;1g&amp;#34;), or &amp;#34;unlimited&amp;#34;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
 &lt;button
 class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
 title="Copy code"
@@ -801,20 +821,200 @@ data-copied-label="Copied!"
 &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;A &lt;em&gt;storable&lt;/em&gt; (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code&gt;max_cache_each_size&lt;/code&gt; in bytes. If it is also less than or equal to &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code&gt;max_cache_each_size&lt;/code&gt; must be larger or equal to &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A &lt;em&gt;storable&lt;/em&gt; (in the context of an HTTP message) response is stored if its size is less than or equal to &lt;code&gt;max_cache_each_size&lt;/code&gt; in bytes. If it is also less than or equal to &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;, it is stored as an on-memory object. Otherwise, it is stored as a temporary file. Note that &lt;code&gt;max_cache_each_size&lt;/code&gt; must be larger or equal to &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;. Since &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt; defaults to the same value as &lt;code&gt;max_cache_each_size&lt;/code&gt;, every cacheable object is served from memory by default; the file tier engages when you raise &lt;code&gt;max_cache_each_size&lt;/code&gt; beyond it. The worst-case on-memory footprint is &lt;code&gt;max_cache_entry&lt;/code&gt; × &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;max_cache_total_size&lt;/code&gt; caps the total bytes retained by the cache across the on-memory and file tiers (default 1 GiB). When storing a new response would exceed the ceiling, the least recently used entries are evicted until the response fits. Set &lt;code&gt;&amp;quot;unlimited&amp;quot;&lt;/code&gt; to disable the ceiling. Note that &lt;code&gt;0&lt;/code&gt; also means unlimited, not zero capacity; the string form is recommended since &lt;code&gt;0&lt;/code&gt; has the opposite meaning (&amp;ldquo;always file cache&amp;rdquo;) for &lt;code&gt;max_cache_each_size_on_memory&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Cached responses are keyed on the request URI forwarded upstream. A backend that varies content by the original client-facing host, scheme, or URI — for example, multiple virtual hosts flattened onto one upstream via &lt;code&gt;set_upstream_host&lt;/code&gt; or &lt;code&gt;default_app&lt;/code&gt; — must emit an appropriate &lt;code&gt;Vary&lt;/code&gt; header on cacheable responses or mark them non-cacheable.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
 &lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Once &lt;code&gt;rpxy&lt;/code&gt; restarts or the config is updated, the cache is totally eliminated not only from the on-memory table but also from the file system.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Post-Quantum Cryptography</title><link>https://rpxy.io/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/post_quantum/</guid><description>
+&lt;/div&gt;</description></item><item><title>Upstream Options</title><link>https://rpxy.io/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/upstream_options/</guid><description>
+&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; provides several options to control how request messages are forwarded to upstream backend applications. These are specified per reverse proxy entry using the &lt;code&gt;upstream_options&lt;/code&gt; array.&lt;/p&gt;
+&lt;h2&gt;Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration"&gt;&lt;/span&gt;
+&lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Available Options&lt;span class="hx:absolute hx:-mt-20" id="available-options"&gt;&lt;/span&gt;
+&lt;a href="#available-options" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;&lt;code&gt;keep_original_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="keep_original_host"&gt;&lt;/span&gt;
+&lt;a href="#keep_original_host" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Preserve the original &lt;code&gt;Host&lt;/code&gt; header from the client request. This is the &lt;strong&gt;default behavior&lt;/strong&gt; and takes priority over &lt;code&gt;set_upstream_host&lt;/code&gt; if both are specified.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;set_upstream_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="set_upstream_host"&gt;&lt;/span&gt;
+&lt;a href="#set_upstream_host" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Overwrite the &lt;code&gt;Host&lt;/code&gt; header with the upstream hostname (e.g., &lt;code&gt;backend.local:8080&lt;/code&gt;). Ignored if &lt;code&gt;keep_original_host&lt;/code&gt; is also specified.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;upgrade_insecure_requests&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="upgrade_insecure_requests"&gt;&lt;/span&gt;
+&lt;a href="#upgrade_insecure_requests" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Add the &lt;code&gt;Upgrade-Insecure-Requests: 1&lt;/code&gt; header to the forwarded request if not already present.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http11_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http11_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http11_upstream" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Force HTTP/1.1 for the upstream connection. Mutually exclusive with &lt;code&gt;force_http2_upstream&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;force_http2_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http2_upstream"&gt;&lt;/span&gt;
+&lt;a href="#force_http2_upstream" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Force HTTP/2 for the upstream connection. Mutually exclusive with &lt;code&gt;force_http11_upstream&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;forwarded_header&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="forwarded_header"&gt;&lt;/span&gt;
+&lt;a href="#forwarded_header" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Generate and add the standard &lt;a href="https://www.rfc-editor.org/rfc/rfc7239"target="_blank" rel="noopener"&gt;&lt;code&gt;Forwarded&lt;/code&gt; header (RFC 7239)&lt;/a&gt; to the forwarded request.&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;rpxy&lt;/code&gt; automatically rebuilds the following forwarding headers on every request without any configuration:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Header&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Rebuilt from the forwarding chain. By default (no &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; configured), incoming values are ignored and the header carries only the immediate peer&amp;rsquo;s IP address. When the immediate peer is a trusted proxy, the incoming chain is preserved and normalized.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Overwritten with &lt;code&gt;https&lt;/code&gt; or &lt;code&gt;http&lt;/code&gt; based on the incoming connection.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Port&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Overwritten with the listening port.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-Host&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Overwritten with the original client-visible host. A client-supplied value is never forwarded as-is; treat it as observational data only.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Forwarded-SSL&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Set to &lt;code&gt;on&lt;/code&gt; or &lt;code&gt;off&lt;/code&gt; based on the incoming connection.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Real-IP&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Set to the client&amp;rsquo;s IP address.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;X-Original-URI&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Set to the original request URI.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Since v0.12.0, no proxy is trusted by default: forwarding headers received from the preceding peer are discarded and rebuilt from the immediate peer address. To preserve the chain built by a trusted load balancer or CDN in front of &lt;code&gt;rpxy&lt;/code&gt;, configure the global &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; option. See &lt;a href="https://rpxy.io/docs/guide/advanced/trusted_proxies/"&gt;Trusted Forwarded Proxies&lt;/a&gt;.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;forwarded_header&lt;/code&gt; option adds the RFC 7239 &lt;code&gt;Forwarded&lt;/code&gt; header &lt;strong&gt;in addition to&lt;/strong&gt; these default headers:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Forwarded: for=192.0.2.1;proto=https;host=app1.example.com&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;If the incoming request already contains a &lt;code&gt;Forwarded&lt;/code&gt; header, &lt;code&gt;rpxy&lt;/code&gt; will update it for consistency (according to &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;) even without the &lt;code&gt;forwarded_header&lt;/code&gt; option. The option controls whether to &lt;strong&gt;generate a new&lt;/strong&gt; &lt;code&gt;Forwarded&lt;/code&gt; header when one does not already exist.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Example&lt;span class="hx:absolute hx:-mt-20" id="example"&gt;&lt;/span&gt;
+&lt;a href="#example" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;round_robin&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;force_http11_upstream&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;api.internal:3000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;upgrade_insecure_requests&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Trusted Forwarded Proxies</title><link>https://rpxy.io/docs/guide/advanced/trusted_proxies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/trusted_proxies/</guid><description>
+&lt;h2&gt;Overview&lt;span class="hx:absolute hx:-mt-20" id="overview"&gt;&lt;/span&gt;
+&lt;a href="#overview" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When &lt;code&gt;rpxy&lt;/code&gt; runs behind another load balancer, reverse proxy, or CDN, the original client information (IP address, protocol scheme) arrives through forwarding headers such as &lt;code&gt;X-Forwarded-For&lt;/code&gt; and &lt;code&gt;Forwarded&lt;/code&gt;. These headers are trivially spoofable by clients, so they must be trusted only when they come from a proxy you actually control or trust.&lt;/p&gt;
+&lt;p&gt;Since v0.12.0, &lt;strong&gt;no proxy is trusted by default&lt;/strong&gt;: &lt;code&gt;rpxy&lt;/code&gt; ignores incoming forwarding headers and rebuilds &lt;code&gt;X-Forwarded-For&lt;/code&gt;, &lt;code&gt;Forwarded&lt;/code&gt;, and related headers from the immediate peer address only. The global &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; option restores the chain for deployments with a trusted front proxy.&lt;/p&gt;
+&lt;h2&gt;Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration"&gt;&lt;/span&gt;
+&lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# CIDR blocks of your front proxies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;10.0.0.0/8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;192.168.0.0/16&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# Built-in provider aliases can be mixed with CIDRs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;cloudflare&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;10.0.0.0/8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# Trust all IPv4 proxies (NOT recommended)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;trusted_forwarded_proxies&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;0.0.0.0/0&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# For full dual-stack trust-all, specify both &amp;#34;0.0.0.0/0&amp;#34; and &amp;#34;::/0&amp;#34;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="Copy code"
+aria-label="Copy code"
+data-copied-label="Copied!"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;When the immediate peer of an incoming connection is within the trusted ranges, &lt;code&gt;rpxy&lt;/code&gt; preserves and normalizes the forwarding information learned through the trusted proxies, rewrites the outgoing &lt;code&gt;X-Forwarded-For&lt;/code&gt; and related headers from that normalized chain, and falls back safely to the immediate-peer-only view when the incoming forwarding view is malformed or inconsistent.&lt;/p&gt;
+&lt;h3&gt;Built-in Provider Aliases&lt;span class="hx:absolute hx:-mt-20" id="built-in-provider-aliases"&gt;&lt;/span&gt;
+&lt;a href="#built-in-provider-aliases" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The aliases &lt;code&gt;&amp;quot;cloudflare&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;fastly&amp;quot;&lt;/code&gt;, and &lt;code&gt;&amp;quot;cloudfront&amp;quot;&lt;/code&gt; expand to the corresponding provider&amp;rsquo;s published IP ranges. The ranges are built-in static snapshots resolved at configuration load; &lt;code&gt;rpxy&lt;/code&gt; never fetches provider IP lists at runtime, so startup does not depend on external network reachability. The snapshots can be refreshed explicitly with the &lt;code&gt;rpxy-trusted-proxies&lt;/code&gt; updater in the &lt;a href="https://github.com/junkurihara/rust-rpxy/tree/main/rpxy-trusted-proxies"target="_blank" rel="noopener"&gt;rust-rpxy repository&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Operator Requirement&lt;span class="hx:absolute hx:-mt-20" id="operator-requirement"&gt;&lt;/span&gt;
+&lt;a href="#operator-requirement" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
+&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;Any proxy listed in &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; must &lt;strong&gt;overwrite or normalize&lt;/strong&gt; the incoming &lt;code&gt;X-Forwarded-Proto&lt;/code&gt; (and related headers) rather than appending client-supplied values — for example, Nginx &lt;code&gt;proxy_set_header X-Forwarded-Proto $scheme;&lt;/code&gt;. Otherwise an attacker upstream of the trusted proxy can spoof the forwarded scheme or chain. AWS ALB and CloudFront satisfy this by default.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;Interaction with Sticky Sessions&lt;span class="hx:absolute hx:-mt-20" id="interaction-with-sticky-sessions"&gt;&lt;/span&gt;
+&lt;a href="#interaction-with-sticky-sessions" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;Secure&lt;/code&gt; attribute of the sticky-session cookie (&lt;code&gt;load_balance = &amp;quot;sticky&amp;quot;&lt;/code&gt;) is applied when the client-visible request scheme is HTTPS. When &lt;code&gt;rpxy&lt;/code&gt; itself terminates TLS this is automatic. When &lt;code&gt;rpxy&lt;/code&gt; runs behind an external TLS terminator (ALB, CloudFront, Nginx, HAProxy, etc.), the terminator&amp;rsquo;s address must be listed in &lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; for &lt;code&gt;Secure&lt;/code&gt; to be applied, since &lt;code&gt;rpxy&lt;/code&gt; honors &lt;code&gt;X-Forwarded-Proto: https&lt;/code&gt; (or &lt;code&gt;Forwarded: proto=https&lt;/code&gt;) only from trusted peers.&lt;/p&gt;
+&lt;h2&gt;Relation to PROXY Protocol&lt;span class="hx:absolute hx:-mt-20" id="relation-to-proxy-protocol"&gt;&lt;/span&gt;
+&lt;a href="#relation-to-proxy-protocol" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt; governs trust in &lt;strong&gt;HTTP-level&lt;/strong&gt; forwarding headers. To recover the original client address at the &lt;strong&gt;TCP level&lt;/strong&gt; from an L4 proxy, use the &lt;a href="https://rpxy.io/docs/guide/advanced/proxy_protocol/"&gt;PROXY protocol&lt;/a&gt; support (&lt;code&gt;[experimental.tcp_recv_proxy_protocol]&lt;/code&gt;), which has its own independent &lt;code&gt;trusted_proxies&lt;/code&gt; list.&lt;/p&gt;</description></item><item><title>Post-Quantum Cryptography</title><link>https://rpxy.io/docs/guide/advanced/post_quantum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/post_quantum/</guid><description>
 &lt;h2&gt;Overview&lt;span class="hx:absolute hx:-mt-20" id="overview"&gt;&lt;/span&gt;
 &lt;a href="#overview" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; provides cutting-edge security by supporting post-quantum cryptography, protecting your applications against future quantum computing threats. This feature is enabled by default and requires no special configuration.&lt;/p&gt;
 &lt;h2&gt;What is Post-Quantum Cryptography?&lt;span class="hx:absolute hx:-mt-20" id="what-is-post-quantum-cryptography"&gt;&lt;/span&gt;
 &lt;a href="#what-is-post-quantum-cryptography" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Post-quantum cryptography refers to cryptographic algorithms that are secure against attacks by quantum computers. As quantum computing technology advances, traditional cryptographic methods like RSA and ECC may become vulnerable. Post-quantum algorithms are designed to remain secure even when powerful quantum computers become available.&lt;/p&gt;
 &lt;h2&gt;rpxy&amp;rsquo;s Implementation&lt;span class="hx:absolute hx:-mt-20" id="rpxys-implementation"&gt;&lt;/span&gt;
 &lt;a href="#rpxys-implementation" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Technical Foundation&lt;span class="hx:absolute hx:-mt-20" id="technical-foundation"&gt;&lt;/span&gt;
-&lt;a href="#technical-foundation" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; enables post-quantum cryptography through the &lt;a href="https://github.com/rustls/rustls/tree/main/rustls-post-quantum"target="_blank" rel="noopener"&gt;&lt;code&gt;rustls-post-quantum&lt;/code&gt;&lt;/a&gt; library, which provides post-quantum key exchange algorithms for rustls. This integration allows &lt;code&gt;rpxy&lt;/code&gt; to offer cutting-edge cryptographic security with minimal configuration.&lt;/p&gt;
+&lt;a href="#technical-foundation" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; enables post-quantum cryptography through &lt;a href="https://github.com/rustls/rustls"target="_blank" rel="noopener"&gt;rustls&lt;/a&gt;&amp;rsquo;s built-in post-quantum key exchange support (the &lt;code&gt;prefer-post-quantum&lt;/code&gt; feature of the &lt;code&gt;aws-lc-rs&lt;/code&gt; provider), which keeps &lt;code&gt;X25519MLKEM768&lt;/code&gt; first in the default key-exchange group order. This integration allows &lt;code&gt;rpxy&lt;/code&gt; to offer cutting-edge cryptographic security with minimal configuration.&lt;/p&gt;
 &lt;h3&gt;Hybrid Key Exchange&lt;span class="hx:absolute hx:-mt-20" id="hybrid-key-exchange"&gt;&lt;/span&gt;
 &lt;a href="#hybrid-key-exchange" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; implements &lt;strong&gt;hybrid post-quantum key exchange&lt;/strong&gt; that combines:&lt;/p&gt;
 &lt;ul&gt;
@@ -1190,128 +1390,4 @@ data-copied-label="Copied!"
 &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;In this configuration, &lt;code&gt;rpxy&lt;/code&gt; always sends traffic to &lt;code&gt;primary.internal:8080&lt;/code&gt; as long as it is healthy. If the primary fails two consecutive health checks, traffic switches to &lt;code&gt;backup.internal:8080&lt;/code&gt;. Once the primary passes one health check again, traffic returns to it.&lt;/p&gt;</description></item><item><title>Upstream Options</title><link>https://rpxy.io/docs/guide/advanced/upstream_options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/docs/guide/advanced/upstream_options/</guid><description>
-&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt; provides several options to control how request messages are forwarded to upstream backend applications. These are specified per reverse proxy entry using the &lt;code&gt;upstream_options&lt;/code&gt; array.&lt;/p&gt;
-&lt;h2&gt;Configuration&lt;span class="hx:absolute hx:-mt-20" id="configuration"&gt;&lt;/span&gt;
-&lt;a href="#configuration" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;backend.local:8080&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="Copy code"
-aria-label="Copy code"
-data-copied-label="Copied!"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2&gt;Available Options&lt;span class="hx:absolute hx:-mt-20" id="available-options"&gt;&lt;/span&gt;
-&lt;a href="#available-options" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;&lt;code&gt;keep_original_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="keep_original_host"&gt;&lt;/span&gt;
-&lt;a href="#keep_original_host" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Preserve the original &lt;code&gt;Host&lt;/code&gt; header from the client request. This is the &lt;strong&gt;default behavior&lt;/strong&gt; and takes priority over &lt;code&gt;set_upstream_host&lt;/code&gt; if both are specified.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;set_upstream_host&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="set_upstream_host"&gt;&lt;/span&gt;
-&lt;a href="#set_upstream_host" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Overwrite the &lt;code&gt;Host&lt;/code&gt; header with the upstream hostname (e.g., &lt;code&gt;backend.local:8080&lt;/code&gt;). Ignored if &lt;code&gt;keep_original_host&lt;/code&gt; is also specified.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;upgrade_insecure_requests&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="upgrade_insecure_requests"&gt;&lt;/span&gt;
-&lt;a href="#upgrade_insecure_requests" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Add the &lt;code&gt;Upgrade-Insecure-Requests: 1&lt;/code&gt; header to the forwarded request if not already present.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;force_http11_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http11_upstream"&gt;&lt;/span&gt;
-&lt;a href="#force_http11_upstream" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Force HTTP/1.1 for the upstream connection. Mutually exclusive with &lt;code&gt;force_http2_upstream&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;force_http2_upstream&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="force_http2_upstream"&gt;&lt;/span&gt;
-&lt;a href="#force_http2_upstream" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Force HTTP/2 for the upstream connection. Mutually exclusive with &lt;code&gt;force_http11_upstream&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;forwarded_header&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="forwarded_header"&gt;&lt;/span&gt;
-&lt;a href="#forwarded_header" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Generate and add the standard &lt;a href="https://www.rfc-editor.org/rfc/rfc7239"target="_blank" rel="noopener"&gt;&lt;code&gt;Forwarded&lt;/code&gt; header (RFC 7239)&lt;/a&gt; to the forwarded request.&lt;/p&gt;
-&lt;p&gt;By default, &lt;code&gt;rpxy&lt;/code&gt; automatically adds the following forwarding headers to every request without any configuration:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Header&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-For&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Appended with the client&amp;rsquo;s IP address. If already present, the new IP is comma-appended.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-Proto&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Set to &lt;code&gt;https&lt;/code&gt; or &lt;code&gt;http&lt;/code&gt; based on the incoming connection. Added only if not already present.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-Port&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Set to the listening port. Added only if not already present.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Forwarded-SSL&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Set to &lt;code&gt;on&lt;/code&gt; or &lt;code&gt;off&lt;/code&gt; based on the incoming connection.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Real-IP&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Set to the client&amp;rsquo;s IP address.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;X-Original-URI&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Set to the original request URI.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The &lt;code&gt;forwarded_header&lt;/code&gt; option adds the RFC 7239 &lt;code&gt;Forwarded&lt;/code&gt; header &lt;strong&gt;in addition to&lt;/strong&gt; these default headers:&lt;/p&gt;
-&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Forwarded: for=192.0.2.1;proto=https;host=app1.example.com&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="Copy code"
-aria-label="Copy code"
-data-copied-label="Copied!"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200"&gt;
-&lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/&gt;&lt;/svg&gt;&lt;/div&gt;
-&lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;If the incoming request already contains a &lt;code&gt;Forwarded&lt;/code&gt; header, &lt;code&gt;rpxy&lt;/code&gt; will update it for consistency even without the &lt;code&gt;forwarded_header&lt;/code&gt; option. The option controls whether to &lt;strong&gt;generate a new&lt;/strong&gt; &lt;code&gt;Forwarded&lt;/code&gt; header when one does not already exist.&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2&gt;Example&lt;span class="hx:absolute hx:-mt-20" id="example"&gt;&lt;/span&gt;
-&lt;a href="#example" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
-&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;www.example.org&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;tls&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;load_balance&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;round_robin&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;set_upstream_host&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;forwarded_header&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;force_http11_upstream&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;app1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reverse_proxy&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace_path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;api.internal:3000&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;upstream_options&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;upgrade_insecure_requests&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
-&lt;button
-class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-title="Copy code"
-aria-label="Copy code"
-data-copied-label="Copied!"
-&gt;
-&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
-&lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;p&gt;In this configuration, &lt;code&gt;rpxy&lt;/code&gt; always sends traffic to &lt;code&gt;primary.internal:8080&lt;/code&gt; as long as it is healthy. If the primary fails two consecutive health checks, traffic switches to &lt;code&gt;backup.internal:8080&lt;/code&gt;. Once the primary passes one health check again, traffic returns to it.&lt;/p&gt;</description></item></channel></rss>
