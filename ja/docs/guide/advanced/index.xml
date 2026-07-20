@@ -219,7 +219,7 @@ data-copied-label="コピーしました！"
 &lt;div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 hx:ltr:pr-4 hx:rtl:pl-4 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-amber-200 hx:bg-amber-100 hx:text-amber-900 hx:dark:border-amber-200/30 hx:dark:bg-amber-900/30 hx:dark:text-amber-200"&gt;
 &lt;div class="hx:ltr:pl-3 hx:ltr:pr-2 hx:rtl:pr-3 hx:rtl:pl-2"&gt;&lt;svg height=1.2em class="hx:inline-block hx:align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
 &lt;div class="hx:w-full hx:min-w-0 hx:leading-7"&gt;
-&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。&lt;code&gt;rpxy&lt;/code&gt;の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;を設定してください。詳細は&lt;a href="https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/"&gt;Trusted Forwarded Proxies&lt;/a&gt;を参照してください。&lt;/div&gt;
+&lt;div class="hx:mt-6 hx:leading-7 hx:first:mt-0"&gt;v0.12.0以降、デフォルトではどのプロキシも信頼されません。前段から受信した転送ヘッダーは破棄され、直接の接続元アドレスから再構築されます。&lt;code&gt;rpxy&lt;/code&gt;の前段にある信頼できるロードバランサーやCDNが構築したチェーンを保持するには、グローバルオプション&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;を設定してください。詳細は&lt;a href="https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/"&gt;信頼する転送プロキシ&lt;/a&gt;を参照してください。&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;code&gt;forwarded_header&lt;/code&gt;オプションは、これらのデフォルトヘッダー&lt;strong&gt;に加えて&lt;/strong&gt;RFC 7239の&lt;code&gt;Forwarded&lt;/code&gt;ヘッダーを追加します:&lt;/p&gt;
@@ -275,7 +275,7 @@ data-copied-label="コピーしました！"
 &lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
 &lt;/button&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Trusted Forwarded Proxies</title><link>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</guid><description>
+&lt;/div&gt;</description></item><item><title>信頼する転送プロキシ</title><link>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://rpxy.io/ja/docs/guide/advanced/trusted_proxies/</guid><description>
 &lt;h2&gt;概要&lt;span class="hx:absolute hx:-mt-20" id="概要"&gt;&lt;/span&gt;
 &lt;a href="#%e6%a6%82%e8%a6%81" class="subheading-anchor" aria-label="このセクションへのパーマリンク"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rpxy&lt;/code&gt;が別のロードバランサー、リバースプロキシ、CDNの背後で動作する場合、元のクライアント情報（IPアドレスやプロトコルスキーム）は&lt;code&gt;X-Forwarded-For&lt;/code&gt;や&lt;code&gt;Forwarded&lt;/code&gt;などの転送ヘッダーで届きます。これらのヘッダーはクライアントが簡単に偽装できるため、実際に管理・信頼しているプロキシから届いた場合にのみ信頼すべきものです。&lt;/p&gt;
 &lt;p&gt;v0.12.0以降、&lt;strong&gt;デフォルトではどのプロキシも信頼されません&lt;/strong&gt;。&lt;code&gt;rpxy&lt;/code&gt;は受信した転送ヘッダーを無視し、&lt;code&gt;X-Forwarded-For&lt;/code&gt;、&lt;code&gt;Forwarded&lt;/code&gt;および関連ヘッダーを直接の接続元アドレスのみから再構築します。信頼できる前段プロキシがある構成では、グローバルオプション&lt;code&gt;trusted_forwarded_proxies&lt;/code&gt;でチェーンを保持できます。&lt;/p&gt;
