@@ -1,8 +1,8 @@
 ---
 title: ACME (Let's Encrypt) Integration
 type: docs
-prev: /docs/guide/advanced/cache
-# next: /docs/guide/advanced/acme
+prev: /docs/guide/advanced/client_auth
+next: /docs/guide/advanced/cache
 weight: 3
 sidebar:
   open: true

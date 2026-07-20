@@ -2,8 +2,8 @@
 title: Upstream Options
 type: docs
 prev: /docs/guide/advanced/cache
-next: /docs/guide/advanced/post_quantum
-weight: 45
+next: /docs/guide/advanced/trusted_proxies
+weight: 5
 sidebar:
   open: true
 ---
@@ -49,16 +49,21 @@ Force HTTP/2 for the upstream connection. Mutually exclusive with `force_http11_
 
 Generate and add the standard [`Forwarded` header (RFC 7239)](https://www.rfc-editor.org/rfc/rfc7239) to the forwarded request.
 
-By default, `rpxy` automatically adds the following forwarding headers to every request without any configuration:
+By default, `rpxy` automatically rebuilds the following forwarding headers on every request without any configuration:
 
 | Header | Description |
 | --- | --- |
-| `X-Forwarded-For` | Appended with the client's IP address. If already present, the new IP is comma-appended. |
-| `X-Forwarded-Proto` | Set to `https` or `http` based on the incoming connection. Added only if not already present. |
-| `X-Forwarded-Port` | Set to the listening port. Added only if not already present. |
+| `X-Forwarded-For` | Rebuilt from the forwarding chain. By default (no `trusted_forwarded_proxies` configured), incoming values are ignored and the header carries only the immediate peer's IP address. When the immediate peer is a trusted proxy, the incoming chain is preserved and normalized. |
+| `X-Forwarded-Proto` | Overwritten with `https` or `http` based on the incoming connection. |
+| `X-Forwarded-Port` | Overwritten with the listening port. |
+| `X-Forwarded-Host` | Overwritten with the original client-visible host. A client-supplied value is never forwarded as-is; treat it as observational data only. |
 | `X-Forwarded-SSL` | Set to `on` or `off` based on the incoming connection. |
 | `X-Real-IP` | Set to the client's IP address. |
 | `X-Original-URI` | Set to the original request URI. |
+
+{{< callout type="warning" >}}
+Since v0.12.0, no proxy is trusted by default: forwarding headers received from the preceding peer are discarded and rebuilt from the immediate peer address. To preserve the chain built by a trusted load balancer or CDN in front of `rpxy`, configure the global `trusted_forwarded_proxies` option. See [Trusted Forwarded Proxies](/docs/guide/advanced/trusted_proxies).
+{{< /callout >}}
 
 The `forwarded_header` option adds the RFC 7239 `Forwarded` header **in addition to** these default headers:
 
@@ -67,7 +72,7 @@ Forwarded: for=192.0.2.1;proto=https;host=app1.example.com
 ```
 
 {{< callout type="info" >}}
-If the incoming request already contains a `Forwarded` header, `rpxy` will update it for consistency even without the `forwarded_header` option. The option controls whether to **generate a new** `Forwarded` header when one does not already exist.
+If the incoming request already contains a `Forwarded` header, `rpxy` will update it for consistency (according to `trusted_forwarded_proxies`) even without the `forwarded_header` option. The option controls whether to **generate a new** `Forwarded` header when one does not already exist.
 {{< /callout >}}
 
 ## Example

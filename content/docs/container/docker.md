@@ -38,16 +38,16 @@ For security reasons, you may want to run `rpxy` in a non-privileged mode withou
 
 When the container manager maps port A (e.g., 80/443) of the host to port B (e.g., 8080/8443) of the container for http and https, `rpxy` must be configured with port B for `listen_port` and `listen_port_tls`.
 
-However, when you want to set `http_redirection=true` for some backend apps, `rpxy` issues the redirection response 301 with the port B by default, which is not accessible from the outside of the container.
+However, when you want to set `https_redirection = true` for some backend apps, `rpxy` issues the redirection response 301 with the port B by default, which is not accessible from the outside of the container.
 
-To avoid the above issue, you can set a custom port for the redirection response by specifying `https_redirection_port` in `config.toml`. In this case, port A should be set for `https_redirection_port`, then the redirection response 301 will be issued with the port A.
+To avoid the above issue, you can set a custom port for the redirection response by specifying `public_https_port` (named `https_redirection_port` before v0.13.0) in `config.toml`. In this case, port A should be set for `public_https_port`, then the redirection response 301 will be issued with the port A. This port is also used for the HTTP/3 `Alt-Svc` advertisement.
 
 The following is an example of relevant settings in `config.toml`.
 
 ```toml
-listen_port = 8080            # `rpxy` in the container listens on port 8080
-listen_port_tls = 8443        # `rpxy` in the container listens on port 8443 for TLS
-https_redirection_port = 443  # `rpxy` issues the redirection response 301 with port 443
+listen_port = 8080        # `rpxy` in the container listens on port 8080
+listen_port_tls = 8443    # `rpxy` in the container listens on port 8443 for TLS
+public_https_port = 443   # `rpxy` issues the redirection response 301 with port 443
 ```
 
 ## Custom CAs for upstream TLS connections

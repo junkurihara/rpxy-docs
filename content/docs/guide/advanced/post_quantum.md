@@ -1,9 +1,9 @@
 ---
 title: Post-Quantum Cryptography
 type: docs
-prev: /docs/guide/advanced/cache
-# next: /docs/guide/advanced/cache
-weight: 5
+prev: /docs/guide/advanced/trusted_proxies
+next: /docs/guide/advanced/proxy_protocol
+weight: 7
 sidebar:
   open: true
 ---
@@ -20,7 +20,7 @@ Post-quantum cryptography refers to cryptographic algorithms that are secure aga
 
 ### Technical Foundation
 
-`rpxy` enables post-quantum cryptography through the [`rustls-post-quantum`](https://github.com/rustls/rustls/tree/main/rustls-post-quantum) library, which provides post-quantum key exchange algorithms for rustls. This integration allows `rpxy` to offer cutting-edge cryptographic security with minimal configuration.
+`rpxy` enables post-quantum cryptography through [rustls](https://github.com/rustls/rustls)'s built-in post-quantum key exchange support (the `prefer-post-quantum` feature of the `aws-lc-rs` provider), which keeps `X25519MLKEM768` first in the default key-exchange group order. This integration allows `rpxy` to offer cutting-edge cryptographic security with minimal configuration.
 
 ### Hybrid Key Exchange
 

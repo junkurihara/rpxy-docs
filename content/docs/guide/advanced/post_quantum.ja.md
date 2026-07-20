@@ -1,8 +1,9 @@
 ---
 title: 耐量子暗号
 type: docs
-prev: /docs/guide/advanced/cache
-weight: 5
+prev: /docs/guide/advanced/trusted_proxies
+next: /docs/guide/advanced/proxy_protocol
+weight: 7
 sidebar:
   open: true
 ---
@@ -19,7 +20,7 @@ sidebar:
 
 ### 技術的基盤
 
-`rpxy`は[`rustls-post-quantum`](https://github.com/rustls/rustls/tree/main/rustls-post-quantum)ライブラリを通じて耐量子暗号を実現しています。このライブラリはrustlsに耐量子鍵交換アルゴリズムを提供します。この統合により、`rpxy`は最小限の設定で最先端の暗号セキュリティを提供できます。
+`rpxy`は[rustls](https://github.com/rustls/rustls)に組み込みの耐量子鍵交換サポート（`aws-lc-rs`プロバイダーの`prefer-post-quantum`フィーチャー）を通じて耐量子暗号を実現しています。これによりデフォルトの鍵交換グループ順で`X25519MLKEM768`が最優先になります。この統合により、`rpxy`は最小限の設定で最先端の暗号セキュリティを提供できます。
 
 ### ハイブリッド鍵交換
 
